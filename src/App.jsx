@@ -217,9 +217,9 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-24">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-24 md:pb-0 md:pl-24 transition-all duration-300">
       {/* Header Sticky */}
-      <header className="bg-slate-900 text-white p-5 sticky top-0 z-50 flex justify-between items-center shadow-lg">
+      <header className="bg-slate-900 text-white p-5 sticky top-0 z-40 flex justify-between items-center shadow-lg md:shadow-none md:bg-transparent md:text-slate-900 md:backdrop-blur-md">
         <div className="flex items-center gap-3">
           <div className="bg-amber-500 p-2 rounded-xl shadow-lg">
             <Database size={20} className="text-slate-900" />
@@ -231,59 +231,59 @@ const App = () => {
               Visualización</p>
           </div>
         </div>
-        <button className="bg-slate-800 p-2.5 rounded-xl border border-slate-700 active:bg-slate-700">
+        <button className="bg-slate-800 p-2.5 rounded-xl border border-slate-700 active:bg-slate-700 md:hidden">
           <Menu size={20} />
         </button>
       </header>
 
-      <main className="max-w-md mx-auto p-4 space-y-6">
+      <main className="max-w-md mx-auto p-4 space-y-6 md:max-w-7xl md:p-8">
 
         {activeTab === 'home' && (
           <div className="space-y-6 animate-in fade-in duration-500">
             <div
-              className="bg-gradient-to-br from-indigo-700 to-slate-900 rounded-[2.5rem] p-8 text-white shadow-2xl relative overflow-hidden">
+              className="bg-gradient-to-br from-indigo-700 to-slate-900 rounded-[2.5rem] p-8 text-white shadow-2xl relative overflow-hidden md:p-12">
               <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl"></div>
-              <h2 className="text-2xl font-black mb-2">Manual de Estilo</h2>
-              <p className="text-indigo-100 text-sm leading-relaxed mb-6 italic opacity-80">
+              <h2 className="text-2xl font-black mb-2 md:text-4xl">Manual de Estilo</h2>
+              <p className="text-indigo-100 text-sm leading-relaxed mb-6 italic opacity-80 md:text-lg md:max-w-2xl">
                 "El éxito en el PL-300 depende de tu capacidad para elegir el visual que responda a la pregunta del
                 negocio con el menor número de clics."
               </p>
               <div className="flex gap-2">
                 <span
-                  className="bg-white/10 px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-white/10">Full
+                  className="bg-white/10 px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-white/10 md:text-xs md:px-5 md:py-2">Full
                   Palette</span>
                 <span
-                  className="bg-amber-500 px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-900 shadow-lg">Certificación</span>
+                  className="bg-amber-500 px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-900 shadow-lg md:text-xs md:px-5 md:py-2">Certificación</span>
               </div>
             </div>
 
             <section>
-              <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-4 ml-2">Explorar la
+              <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-4 ml-2 md:text-sm">Explorar la
                 Paleta Estándar</h3>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-3 gap-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-6">
                 {categories.map(cat => (
                   <button key={cat.id} onClick={() => { setSelectedCategory(cat.id); setActiveTab('catalog'); }}
                     className="bg-white p-4 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center
-                            gap-2 active:scale-95 transition-all hover:border-indigo-500 group"
+                            gap-2 active:scale-95 transition-all hover:border-indigo-500 group md:p-6 hover:shadow-xl hover:-translate-y-1"
                   >
                     <div className={`${cat.color} p-3 rounded-2xl text-white shadow-lg group-hover:scale-110
-                                transition-transform`}>{cat.icon}</div>
+                                transition-transform md:p-4`}>{cat.icon}</div>
                     <span
-                      className="text-[9px] font-black uppercase tracking-tighter text-slate-600 text-center leading-none">{cat.name}</span>
+                      className="text-[9px] font-black uppercase tracking-tighter text-slate-600 text-center leading-none md:text-[11px]">{cat.name}</span>
                   </button>
                 ))}
               </div>
             </section>
 
             <div
-              className="bg-emerald-50 border border-emerald-100 p-6 rounded-[2.5rem] shadow-sm flex items-start gap-4">
-              <div className="bg-white p-3 rounded-2xl text-emerald-600 shadow-sm">
+              className="bg-emerald-50 border border-emerald-100 p-6 rounded-[2.5rem] shadow-sm flex items-start gap-4 md:items-center">
+              <div className="bg-white p-3 rounded-2xl text-emerald-600 shadow-sm md:p-4">
                 <Activity size={24} />
               </div>
               <div>
-                <h4 className="text-sm font-black uppercase tracking-widest mb-1 text-emerald-800">Accesibilidad
+                <h4 className="text-sm font-black uppercase tracking-widest mb-1 text-emerald-800 md:text-base">Accesibilidad
                 </h4>
-                <p className="text-[11px] text-emerald-700 leading-relaxed italic">
+                <p className="text-[11px] text-emerald-700 leading-relaxed italic md:text-sm">
                   "Usa paletas aptas para daltónicos y añade siempre 'Alt Text' a tus visuales. Microsoft valora
                   mucho los reportes inclusivos en el examen."
                 </p>
@@ -295,24 +295,24 @@ const App = () => {
         {activeTab === 'catalog' && (
           <div className="space-y-6 animate-in slide-in-from-right-10 duration-500 pb-10">
             <div className="flex items-center justify-between px-2">
-              <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">
+              <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight md:text-3xl">
                 {categories.find(c => c.id === selectedCategory)?.name}
               </h2>
               <button onClick={() => setActiveTab('home')} className="text-xs font-black text-white bg-slate-900 px-4
-                        py-2 rounded-2xl shadow-lg">Cerrar</button>
+                        py-2 rounded-2xl shadow-lg hover:bg-slate-700 transition-colors">Cerrar</button>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-6 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:space-y-0 text-left">
               {(chartLibrary[selectedCategory] || []).map((chart, i) => (
                 <div key={i}
-                  className="bg-white rounded-[2.5rem] border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all">
+                  className="bg-white rounded-[2.5rem] border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all h-full flex flex-col">
                   <div className="p-2">
                     {chart.svg}
                   </div>
-                  <div className="p-8 pt-4">
+                  <div className="p-8 pt-4 flex-1 flex flex-col">
                     <h3 className="text-2xl font-black text-slate-900 mb-4 leading-none">{chart.title}</h3>
 
-                    <div className="space-y-6">
+                    <div className="space-y-6 flex-1">
                       <section>
                         <p
                           className="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-2 flex items-center gap-2">
@@ -323,7 +323,7 @@ const App = () => {
                         </p>
                       </section>
 
-                      <section className="bg-slate-900 text-white p-7 rounded-[2.2rem] relative overflow-hidden">
+                      <section className="bg-slate-900 text-white p-7 rounded-[2.2rem] relative overflow-hidden h-full">
                         <div className="absolute -right-5 -top-5 opacity-10">
                           <Zap size={100} />
                         </div>
@@ -344,20 +344,30 @@ const App = () => {
         )}
       </main>
 
-      {/* FIXED MOBILE BAR NAV */}
+      {/* RESPONSIVE NAV */}
       <nav
-        className="fixed bottom-6 left-6 right-6 bg-slate-900/95 backdrop-blur-xl text-white p-3 rounded-[2.5rem] flex justify-around items-center z-50 shadow-2xl border border-white/10">
+        className="fixed bottom-6 left-6 right-6 bg-slate-900/95 backdrop-blur-xl text-white p-3 rounded-[2.5rem] flex justify-around items-center z-50 shadow-2xl border border-white/10
+                   md:flex-col md:left-4 md:top-4 md:bottom-4 md:w-20 md:right-auto md:justify-center md:gap-8 md:rounded-[2rem]">
+
+        <div className="hidden md:flex flex-col items-center gap-1 mb-auto pt-4 text-amber-500">
+          <Database size={24} />
+        </div>
+
         <button onClick={() => setActiveTab('home')} className={`flex flex-col items-center gap-1 transition-all
-                ${activeTab === 'home' ? 'text-amber-500 scale-110' : 'text-slate-400'}`}>
+                ${activeTab === 'home' ? 'text-amber-500 scale-110' : 'text-slate-400 hover:text-white'}`}>
           <Layout size={20} /> <span className="text-[8px] font-black uppercase tracking-widest">Home</span>
         </button>
         <button onClick={() => setActiveTab('catalog')} className={`flex flex-col items-center gap-1 transition-all
-                ${activeTab === 'catalog' ? 'text-amber-500 scale-110' : 'text-slate-400'}`}>
+                ${activeTab === 'catalog' ? 'text-amber-500 scale-110' : 'text-slate-400 hover:text-white'}`}>
           <Layers size={20} /> <span className="text-[8px] font-black uppercase tracking-widest">Paleta</span>
         </button>
-        <button className="flex flex-col items-center gap-1 text-slate-400">
+        <button className="flex flex-col items-center gap-1 text-slate-400 hover:text-white">
           <Smartphone size={20} /> <span className="text-[8px] font-black uppercase tracking-widest">Guía</span>
         </button>
+
+        <div className="hidden md:block mt-auto pb-4 opacity-50">
+          <div className="w-1 h-12 bg-slate-700 rounded-full mx-auto"></div>
+        </div>
       </nav>
     </div>
   );
