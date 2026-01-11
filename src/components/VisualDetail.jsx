@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const VisualDetail = ({ chart, onBack, onPrevious, onNext }) => {
+    const [randomTip, setRandomTip] = useState('');
+
+    useEffect(() => {
+        if (chart) {
+            if (Array.isArray(chart.tips)) {
+                setRandomTip(chart.tips[Math.floor(Math.random() * chart.tips.length)]);
+            } else {
+                setRandomTip(chart.tips);
+            }
+        }
+    }, [chart]);
+
     if (!chart) return null;
 
     return (
@@ -42,9 +54,11 @@ const VisualDetail = ({ chart, onBack, onPrevious, onNext }) => {
                     {/* Description */}
                     <div className="space-y-4">
                         <h2 className="text-white text-2xl font-bold">Guía Técnica</h2>
-                        <p className="text-slate-400 leading-relaxed">
-                            {chart.useCases}
-                        </p>
+                        <div className="text-slate-400 leading-relaxed space-y-4 font-light text-lg">
+                            {chart.useCases.split('\n').map((paragraph, index) => (
+                                paragraph.trim() && <p key={index}>{paragraph}</p>
+                            ))}
+                        </div>
                     </div>
                 </div>
 
@@ -56,9 +70,11 @@ const VisualDetail = ({ chart, onBack, onPrevious, onNext }) => {
                                 <span className="material-symbols-outlined text-sm">verified</span>
                                 Tip de Certificación
                             </h4>
-                            <p className="text-sm text-slate-300">
-                                {chart.tips}
-                            </p>
+                            <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg">
+                                <p className="text-sm text-slate-200 italic">
+                                    "{randomTip}"
+                                </p>
+                            </div>
                         </div>
 
                         <div className="pt-6 border-t border-white/5">
