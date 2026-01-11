@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detalle de Visual: Gráfico de Barras | Ultimate Power BI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f1c813",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181711",
+                        "card-dark": "#221f10",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#393628] px-6 lg:px-40 py-3 bg-white dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Ultimate Power BI</h2>
+</div>
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-white text-sm font-medium hover:text-primary transition-colors" href="#">Galería</a>
+<a class="text-slate-600 dark:text-white text-sm font-medium hover:text-primary transition-colors" href="#">Cursos</a>
+<a class="text-slate-600 dark:text-white text-sm font-medium hover:text-primary transition-colors" href="#">Recursos</a>
+<a class="text-slate-600 dark:text-white text-sm font-medium hover:text-primary transition-colors" href="#">Blog</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-4 lg:gap-8 items-center">
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-slate-400 dark:text-[#bab49c] flex border-none bg-slate-100 dark:bg-[#393628] items-center justify-center pl-4 rounded-l-lg">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-slate-100 dark:bg-[#393628] text-slate-900 dark:text-white focus:ring-0 h-full placeholder:text-slate-400 dark:placeholder:text-[#bab49c] px-4 rounded-r-lg text-base font-normal" placeholder="Buscar visuales..." value=""/>
+</div>
+</label>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold tracking-[0.015em] hover:brightness-110 transition-all">
+<span class="truncate">Pro Access</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKmhFUsjKPX5OKMgnkfZ64ia6Vv5Vt-4IKAgobVlshHhcOMvRx7EWye_3JsPLBU47yVJAWx9cxEU0tm9IkZ83f2VOUOgCE0prGquUI8mAwTOinUL9UmQdQ27x7O3dwLf3lgoR6ixwJ9O01s88HsqlsmjZJKzjwUbXFQEmOvWS6Tf0SFeSqOJuzaQHutm-0pIArDr10rBvdb4gioszwJRQns9ubzI7SdbIJGScAriR46Ze1X8jAUhgSjF7Hf1S9GKmu86e4rrEtwQ");'></div>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="px-6 lg:px-40 flex flex-1 justify-center py-8">
+<div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap items-center gap-2 mb-4">
+<a class="text-slate-500 dark:text-[#bab49c] text-sm font-medium hover:text-primary" href="#">Galería</a>
+<span class="material-symbols-outlined text-slate-400 dark:text-[#bab49c] text-sm">chevron_right</span>
+<a class="text-slate-500 dark:text-[#bab49c] text-sm font-medium hover:text-primary" href="#">Comparación</a>
+<span class="material-symbols-outlined text-slate-400 dark:text-[#bab49c] text-sm">chevron_right</span>
+<span class="text-slate-900 dark:text-white text-sm font-semibold">Gráfico de Barras</span>
+</div>
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between gap-3 mb-8">
+<div class="flex flex-col gap-2">
+<h1 class="text-slate-900 dark:text-white text-4xl lg:text-5xl font-black leading-tight tracking-tight">Gráfico de Barras</h1>
+<p class="text-slate-600 dark:text-[#bab49c] text-lg font-normal max-w-2xl">La herramienta definitiva para comparar valores entre categorías discretas con máxima precisión y claridad visual.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Main Visualization Column -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Large Scale Chart Card -->
+<div class="bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-[#393628] overflow-hidden shadow-xl">
+<div class="p-6 border-b border-slate-100 dark:border-[#393628] flex justify-between items-center">
+<h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                                        Ventas por Categoría (Preview Pro)
+                                    </h3>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase">Premium Template</span>
+</div>
+</div>
+<div class="p-8 aspect-video flex items-end justify-between gap-4 bg-[#1f1e18] relative overflow-hidden">
+<!-- Simple CSS Bar Chart Simulation -->
+<div class="flex-1 bg-gradient-to-t from-primary to-primary/40 rounded-t-lg transition-all hover:brightness-125" style="height: 85%" title="Electronics: $450k"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/80 to-primary/30 rounded-t-lg transition-all hover:brightness-125" style="height: 65%" title="Furniture: $320k"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/60 to-primary/20 rounded-t-lg transition-all hover:brightness-125" style="height: 95%" title="Software: $510k"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/80 to-primary/30 rounded-t-lg transition-all hover:brightness-125" style="height: 45%" title="Apparel: $210k"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/40 to-primary/10 rounded-t-lg transition-all hover:brightness-125" style="height: 30%" title="Other: $120k"></div>
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between p-8 pointer-events-none opacity-10">
+<div class="border-t border-white w-full"></div>
+<div class="border-t border-white w-full"></div>
+<div class="border-t border-white w-full"></div>
+<div class="border-t border-white w-full"></div>
+</div>
+</div>
+<div class="p-4 bg-slate-50 dark:bg-black/20 flex justify-center gap-8 text-[11px] text-[#bab49c] font-medium uppercase tracking-widest">
+<span>Electronics</span>
+<span>Furniture</span>
+<span>Software</span>
+<span>Apparel</span>
+<span>Other</span>
+</div>
+</div>
+<!-- DAX Code Snippet -->
+<div class="space-y-4">
+<h2 class="text-slate-900 dark:text-white text-2xl font-bold flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">code</span>
+                                    Implementación DAX
+                                </h2>
+<div class="bg-slate-900 rounded-xl p-6 font-mono text-sm relative group overflow-hidden border border-white/5">
+<div class="flex justify-between items-center mb-4 pb-2 border-b border-white/10">
+<span class="text-slate-400">Total Sales Measure</span>
+<button class="text-primary hover:text-white flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+                                            Copy
+                                        </button>
+</div>
+<pre class="text-blue-300"><span class="text-purple-400">Total Sales</span> = 
+<span class="text-yellow-400">SUMX</span>(
+    <span class="text-green-400">'Sales'</span>,
+    <span class="text-white">'Sales'[Quantity] * 'Sales'[Unit Price]</span>
+)</pre>
+</div>
+</div>
+<!-- Detailed Description -->
+<div class="space-y-4">
+<h2 class="text-slate-900 dark:text-white text-2xl font-bold">Guía Técnica</h2>
+<p class="text-slate-600 dark:text-[#bab49c] leading-relaxed">
+                                    El gráfico de barras es la piedra angular del reporting empresarial. A diferencia de los gráficos de columnas, las barras horizontales son ideales cuando los nombres de las categorías son largos o cuando se desea mostrar un ranking claro de mayor a menor. En <strong>Ultimate Power BI</strong>, recomendamos este visual para comparaciones directas donde la precisión del eje X es crítica.
+                                </p>
+</div>
+</div>
+<!-- Sidebar Column -->
+<div class="lg:col-span-4 space-y-6">
+<!-- Technical Details Panel -->
+<div class="bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-[#393628] p-6 space-y-8">
+<div>
+<h4 class="text-primary text-xs font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">help</span>
+                                        ¿Cuándo usarlo?
+                                    </h4>
+<ul class="space-y-3 text-sm text-slate-700 dark:text-slate-200">
+<li class="flex gap-2">
+<span class="text-primary">•</span>
+                                            Comparar 5-15 categorías distintas.
+                                        </li>
+<li class="flex gap-2">
+<span class="text-primary">•</span>
+                                            Visualizar rankings (Top N).
+                                        </li>
+<li class="flex gap-2">
+<span class="text-primary">•</span>
+                                            Categorías con nombres extensos.
+                                        </li>
+</ul>
+</div>
+<div class="pt-6 border-t border-slate-100 dark:border-[#393628]">
+<h4 class="text-primary text-xs font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">verified</span>
+                                        Mejores Prácticas
+                                    </h4>
+<ul class="space-y-3 text-sm text-slate-700 dark:text-slate-200">
+<li class="flex gap-2">
+<span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+                                            Ordenar siempre de mayor a menor.
+                                        </li>
+<li class="flex gap-2">
+<span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+                                            Usar colores contrastantes para resaltar.
+                                        </li>
+<li class="flex gap-2">
+<span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+                                            Mantener etiquetas de datos limpias.
+                                        </li>
+</ul>
+</div>
+<div class="pt-6 border-t border-slate-100 dark:border-[#393628]">
+<h4 class="text-primary text-xs font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">warning</span>
+                                        Limitaciones
+                                    </h4>
+<p class="text-sm text-slate-500 dark:text-[#bab49c]">No utilizar para series temporales continuas o cuando se tienen más de 20 categorías, ya que dificulta la lectura rápida.</p>
+</div>
+</div>
+<!-- Resource Links -->
+<div class="space-y-4">
+<h3 class="text-slate-900 dark:text-white font-bold text-lg">Recursos Premium</h3>
+<a class="flex items-center gap-4 p-4 bg-primary rounded-lg text-background-dark hover:brightness-105 transition-all shadow-lg group" href="#">
+<div class="bg-background-dark/10 p-2 rounded">
+<span class="material-symbols-outlined">download</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-sm">Descargar Plantilla .pbix</span>
+<span class="text-[10px] opacity-80 uppercase font-semibold">Incluye DAX avanzado</span>
+</div>
+<span class="material-symbols-outlined ml-auto group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<a class="flex items-center gap-4 p-4 bg-white dark:bg-card-dark border border-slate-200 dark:border-[#393628] rounded-lg text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-white/5 transition-all group" href="#">
+<div class="text-primary">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-sm">Documentación Técnica</span>
+<span class="text-[10px] text-slate-500 dark:text-[#bab49c] uppercase font-semibold">Guía oficial Microsoft</span>
+</div>
+<span class="material-symbols-outlined ml-auto text-slate-400 group-hover:translate-x-1 transition-transform">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Related Tutorials / Footer CTA -->
+<div class="mt-16 pt-8 border-t border-slate-200 dark:border-[#393628]">
+<h2 class="text-slate-900 dark:text-white text-2xl font-bold mb-6">Aprende más sobre Comparación</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="group cursor-pointer">
+<div class="aspect-video rounded-lg bg-slate-200 dark:bg-[#393628] mb-3 overflow-hidden" data-alt="Tutorial thumbnail for column charts">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQqXR9yWyT2PzsMshvmJi9p9KfhjS56m9OsiFEnIdzS_GNuuPKKNbVosDLnebLDyzeyNfAiqc1G0rOWr7rM0gHr8RpvRAgqQe1-cPxvC216SrCABKZCakzAN3K_ueNHo3icd03-fESslc8jITb6IV52ITOYZlawf2EywkKYZoRdP9d8LffkjqUIx-mjZZtSdDVwvEiGPwxW0psSex1_yl2M1f95pr6QONh8-LTQGdGa54MOniBC2DhnLeiv12oZy1pPDF-b_jQ1Q');"></div>
+</div>
+<h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Dominando el Gráfico de Columnas</h4>
+<p class="text-sm text-slate-500 dark:text-[#bab49c]">Cuándo elegir vertical sobre horizontal.</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-video rounded-lg bg-slate-200 dark:bg-[#393628] mb-3 overflow-hidden" data-alt="Tutorial thumbnail for treemaps">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB5dK-rJvN9GIFnnbc0Rg2UbOAUwS2R57GJP2YIsqpodotJljUXltJUBJEUYwG03AZf-QYbjehMOWKJ-CPI5bwFfB0v40amLBN9hXH8m1jW0ncHtpdNEytkDnO-GCpaLVoeYrbDlI0C72uq-pF-J2UoVW-9oLlXRavhwdFLIax6SzjLl0k83fFNOsQxu_GfADn2-2kaU3qto1eRSSC4dqgLvLF0hITJnTGtJxQ6l5JMKnnTUk9QxlmCGmLSxpcU2fh6UnjAZGaPPQ');"></div>
+</div>
+<h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Treemaps para Jerarquías</h4>
+<p class="text-sm text-slate-500 dark:text-[#bab49c]">Visualiza proporciones complejas.</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-video rounded-lg bg-slate-200 dark:bg-[#393628] mb-3 overflow-hidden" data-alt="Tutorial thumbnail for bullet charts">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-aLyC6HPIr6wgx_JRxMlhML85X8bWy8X7pvaV82WUfy1HL1nprPG4ED760XXVtnwoRld_9NHXPv4ZkmC27IEtaZ5g4_MXB-QMXFL62XfMwc6EyGHV3ZW_xdMKuoFnvKnUi7awjQWmLojU0WECf4xI6PBGF4Wi1iPAkaPPWN8eEGfLd4w8jClALSzvi6DKDo29ETSMV-d17dj_zu5qSsIiBVsdlw_hW8Qld0tuZXHVO2VoQXrlpDJyB0DOl6zOc2bq1Drf3plC4w');"></div>
+</div>
+<h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Bullet Charts: KPIs al Límite</h4>
+<p class="text-sm text-slate-500 dark:text-[#bab49c]">El estándar de oro para objetivos.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="px-6 lg:px-40 py-10 border-t border-slate-200 dark:border-[#393628] bg-white dark:bg-background-dark/50">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2 text-slate-400">
+<span class="material-symbols-outlined">copyright</span>
+<span class="text-sm">2024 Ultimate Power BI. Todos los derechos reservados.</span>
+</div>
+<div class="flex gap-6">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">Términos</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">Privacidad</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">Soporte</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

@@ -9,49 +9,29 @@ import {
   Table as TableIcon, Grid, Cpu, Database,
   MessageSquare, FileText, List
 } from 'lucide-react';
+
+// Components
+import Sidebar from './components/Sidebar';
+import Hero from './components/Hero';
+import Gallery from './components/Gallery';
+import VisualDetail from './components/VisualDetail';
 import { LegalNotice, PrivacyPolicy, CookiesPolicy } from './Legal';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [selectedCategory, setSelectedCategory] = useState('comparacion');
+  const [selectedChart, setSelectedChart] = useState(null);
 
   const categories = [
-    {
-      id: 'comparacion', name: 'Comparación', icon:
-        <BarChart3 size={18} />, color: 'bg-blue-600'
-    },
-    {
-      id: 'tiempo', name: 'Tendencias', icon:
-        <TrendingUp size={18} />, color: 'bg-emerald-600'
-    },
-    {
-      id: 'composicion', name: 'Composición', icon:
-        <PieChart size={18} />, color: 'bg-teal-600'
-    },
-    {
-      id: 'relacion', name: 'Relación', icon:
-        <Share2 size={18} />, color: 'bg-cyan-600'
-    },
-    {
-      id: 'kpi', name: 'KPIs/Cards', icon:
-        <Target size={18} />, color: 'bg-purple-600'
-    },
-    {
-      id: 'mapas', name: 'Mapas', icon:
-        <Globe size={18} />, color: 'bg-amber-600'
-    },
-    {
-      id: 'ai', name: 'IA Avanzada', icon:
-        <Cpu size={18} />, color: 'bg-rose-600'
-    },
-    {
-      id: 'tablas', name: 'Tabulares', icon:
-        <TableIcon size={18} />, color: 'bg-slate-700'
-    },
-    {
-      id: 'interactividad', name: 'Filtros/UX', icon:
-        <Filter size={18} />, color: 'bg-orange-600'
-    }
+    { id: 'comparacion', name: 'Comparación', icon: <BarChart3 size={18} />, color: 'bg-blue-600' },
+    { id: 'tiempo', name: 'Tendencias', icon: <TrendingUp size={18} />, color: 'bg-emerald-600' },
+    { id: 'composicion', name: 'Composición', icon: <PieChart size={18} />, color: 'bg-teal-600' },
+    { id: 'relacion', name: 'Relación', icon: <Share2 size={18} />, color: 'bg-cyan-600' },
+    { id: 'kpi', name: 'KPIs/Cards', icon: <Target size={18} />, color: 'bg-purple-600' },
+    { id: 'mapas', name: 'Mapas', icon: <Globe size={18} />, color: 'bg-amber-600' },
+    { id: 'ai', name: 'IA Avanzada', icon: <Cpu size={18} />, color: 'bg-rose-600' },
+    { id: 'tablas', name: 'Tabulares', icon: <TableIcon size={18} />, color: 'bg-slate-700' },
+    { id: 'interactividad', name: 'Filtros/UX', icon: <Filter size={18} />, color: 'bg-orange-600' }
   ];
 
   const chartLibrary = {
@@ -61,23 +41,25 @@ const App = () => {
         desc: "Compara valores entre categorías discretas.",
         useCases: "Es el visual por excelencia para mostrar ventas por vendedor o ingresos por región. Permite una comparación rápida de magnitudes. Las barras horizontales son ideales cuando los nombres de las categorías son largos, facilitando la lectura sin inclinar la cabeza.",
         tips: "En el examen, si te piden comparar más de 10 elementos, elige Barras Horizontales para habilitar el scroll vertical. No olvides que puedes usar 'Barras de Error' para mostrar intervalos de confianza, algo muy valorado en análisis estadísticos.",
-        svg: <svg viewBox="0 0 100 60" className="w-full h-32 bg-blue-50 rounded-2xl p-4">
+        svg: <svg viewBox="0 0 100 60" className="w-full h-32 rounded-lg">
           <rect x="10" y="30" width="15" height="25" fill="#2563eb" />
           <rect x="30" y="10" width="15" height="45" fill="#2563eb" />
           <rect x="50" y="20" width="15" height="35" fill="#2563eb" />
           <rect x="70" y="40" width="15" height="15" fill="#2563eb" />
-        </svg>
+        </svg>,
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-types-for-reports-and-q-and-a"
       },
       {
         title: "Gráfico de Embudo (Funnel)",
         desc: "Visualiza etapas de un proceso que se reducen progresivamente.",
         useCases: "Indispensable para el seguimiento de procesos de venta (Prospecto > Oferta > Cierre) o flujos de contratación. Ayuda a identificar en qué etapa específica se están perdiendo más oportunidades (cuellos de botella).",
         tips: "El gráfico de embudo en Power BI calcula automáticamente el % del primero (etapa inicial) y el % del anterior. En el examen, es la respuesta correcta para 'visualizar la retención en un flujo de trabajo'.",
-        svg: <svg viewBox="0 0 100 60" className="w-full h-32 bg-blue-50 rounded-2xl p-4">
+        svg: <svg viewBox="0 0 100 60" className="w-full h-32 rounded-lg">
           <path d="M10,10 L90,10 L75,25 L25,25 Z" fill="#2563eb" />
           <path d="M28,28 L72,28 L60,40 L40,40 Z" fill="#3b82f6" />
           <path d="M43,43 L57,43 L53,53 L47,53 Z" fill="#60a5fa" />
-        </svg>
+        </svg>,
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-funnel-charts"
       }
     ],
     tiempo: [
@@ -86,9 +68,10 @@ const App = () => {
         desc: "Similar al de líneas pero con el espacio bajo la línea sombreado.",
         useCases: "Se utiliza para enfatizar la magnitud del cambio a lo largo del tiempo, no solo la tendencia. Es excelente para mostrar el volumen acumulado de ventas o la cantidad de stock disponible durante un año.",
         tips: "Cuidado con el 'Área Apilada': si tienes muchas series, las de abajo pueden distorsionar la percepción de las de arriba. En el examen, usa el gráfico de áreas si el cliente quiere ver la 'magnitud total del volumen' además de la progresión temporal.",
-        svg: <svg viewBox="0 0 100 60" className="w-full h-32 bg-emerald-50 rounded-2xl p-4">
+        svg: <svg viewBox="0 0 100 60" className="w-full h-32 rounded-lg">
           <path d="M10,50 L30,30 L50,45 L70,10 L90,30 L90,55 L10,55 Z" fill="#10b981" fillOpacity="0.3" stroke="#059669" strokeWidth="2" />
-        </svg>
+        </svg>,
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-basic-area-chart"
       }
     ],
     composicion: [
@@ -97,9 +80,10 @@ const App = () => {
         desc: "Muestra la relación de las partes con el todo.",
         useCases: "Ideal para proporciones muy simples, como el desglose por género (Hombre/Mujer) o estado de pedido (Completado/Pendiente). El gráfico de anillo es preferido modernamente porque permite colocar un KPI o texto en el centro (hueco).",
         tips: "Regla de oro PL-300: Nunca lo uses para más de 3 o 4 categorías. El ojo humano tiene dificultades comparando áreas circulares; si tienes más de 4 elementos, la respuesta correcta siempre será un gráfico de Barras o un Treemap.",
-        svg: <svg viewBox="0 0 100 60" className="w-full h-32 bg-teal-50 rounded-2xl p-4">
+        svg: <svg viewBox="0 0 100 60" className="w-full h-32 rounded-lg">
           <circle cx="50" cy="30" r="20" fill="none" stroke="#14b8a6" strokeWidth="10" strokeDasharray="80 125.6" />
-        </svg>
+        </svg>,
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-pie-donut-charts"
       }
     ],
     kpi: [
@@ -108,16 +92,17 @@ const App = () => {
         desc: "Muestra varios campos de datos agrupados en una sola tarjeta vertical u horizontal.",
         useCases: "Útil cuando quieres mostrar una ficha técnica de un producto o un resumen de métricas para una entidad específica (ej. Nombre del Vendedor, su Total Ventas, su % de Objetivo y su Región).",
         tips: "Es más eficiente en términos de rendimiento que poner 4 o 5 tarjetas individuales. En el examen, si necesitas mostrar 'varias métricas relacionadas' de forma compacta para un solo filtro, esta es la mejor opción.",
-        svg: <div className="w-full h-32 bg-purple-50 rounded-2xl p-4 flex flex-col gap-2 justify-center">
+        svg: <div className="w-full h-32 bg-purple-500/10 rounded-lg p-4 flex flex-col gap-2 justify-center">
           <div className="border-l-4 border-purple-500 pl-2">
-            <div className="w-12 h-2 bg-purple-200 mb-1"></div>
+            <div className="w-12 h-2 bg-purple-500/30 mb-1"></div>
             <div className="w-20 h-3 bg-purple-600"></div>
           </div>
           <div className="border-l-4 border-purple-300 pl-2">
-            <div className="w-12 h-2 bg-purple-200 mb-1"></div>
+            <div className="w-12 h-2 bg-purple-500/30 mb-1"></div>
             <div className="w-16 h-3 bg-purple-400"></div>
           </div>
-        </div>
+        </div>,
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-card"
       }
     ],
     ai: [
@@ -126,22 +111,23 @@ const App = () => {
         desc: "Permite a los usuarios hacer preguntas sobre sus datos usando lenguaje natural.",
         useCases: "Permite que usuarios no técnicos escriban 'Ventas por región en 2023' y Power BI genere automáticamente el visual correspondiente. Mejora drásticamente la capacidad de auto-servicio del reporte.",
         tips: "Para que funcione bien, debes 'entrenar' el modelo con sinónimos en el panel de modelado. En el examen, es la respuesta para 'mejorar la accesibilidad y el descubrimiento de insights por parte de usuarios finales'.",
-        svg: <div className="w-full h-32 bg-rose-50 rounded-2xl p-4 flex items-center justify-center gap-2">
+        svg: <div className="w-full h-32 bg-rose-500/10 rounded-lg p-4 flex items-center justify-center gap-2">
           <MessageSquare className="text-rose-500" size={32} />
-          <div className="bg-white p-2 rounded-lg shadow-sm text-[10px] text-slate-400 italic">"Top 5 productos por..."</div>
-        </div>
+          <div className="bg-white/10 p-2 rounded-lg shadow-sm text-[10px] text-slate-400 italic">"Top 5 productos..."</div>
+        </div>,
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-q-and-a"
       },
       {
         title: "Narrativa Inteligente (Smart Narrative)",
         desc: "Genera automáticamente un resumen escrito de los datos del reporte.",
         useCases: "Ideal para ejecutivos que prefieren leer una conclusión que interpretar gráficos. Proporciona contexto dinámico: si las ventas bajan, el texto cambia automáticamente para explicar cuánto bajaron y en qué categoría.",
         tips: "Puedes insertar tus propias medidas dinámicas dentro del texto. En el examen, es la opción para 'proporcionar resúmenes textuales automáticos' que se actualizan con los filtros.",
-        svg: <div className="w-full h-32 bg-rose-50 rounded-2xl p-4 space-y-2">
+        svg: <div className="w-full h-32 bg-rose-500/10 rounded-lg p-4 space-y-2">
           <FileText className="text-rose-500" size={24} />
-          <div className="w-full h-2 bg-rose-200 rounded"></div>
-          <div className="w-2/3 h-2 bg-rose-100 rounded"></div>
-          <div className="w-5/6 h-2 bg-rose-200 rounded"></div>
-        </div>
+          <div className="w-full h-2 bg-rose-500/30 rounded"></div>
+          <div className="w-2/3 h-2 bg-rose-500/20 rounded"></div>
+        </div>,
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-smart-narrative"
       }
     ],
     relacion: [
@@ -150,13 +136,14 @@ const App = () => {
         desc: "Muestra la relación entre dos variables numéricas.",
         useCases: "Fundamental para análisis de correlación (ej. ¿Mayor gasto en marketing implica mayores ventas?). Permite identificar valores atípicos (outliers) y clusters.",
         tips: "Es el único gráfico predeterminado que acepta dos medidas numéricas (Eje X e Y). En el examen, si te piden animar datos a lo largo del tiempo, la respuesta es 'Play Axis' en un gráfico de dispersión.",
-        svg: <svg viewBox="0 0 100 60" className="w-full h-32 bg-cyan-50 rounded-2xl p-4">
-          <circle cx="20" cy="50" r="3" fill="#0891b2" />
-          <circle cx="35" cy="40" r="4" fill="#0891b2" />
-          <circle cx="50" cy="45" r="2" fill="#0891b2" />
-          <circle cx="65" cy="20" r="5" fill="#0891b2" />
-          <circle cx="80" cy="15" r="6" fill="#0891b2" />
-        </svg>
+        svg: <svg viewBox="0 0 100 60" className="w-full h-32 rounded-lg p-4">
+          <circle cx="20" cy="50" r="3" fill="#06b6d4" />
+          <circle cx="35" cy="40" r="4" fill="#06b6d4" />
+          <circle cx="50" cy="45" r="2" fill="#06b6d4" />
+          <circle cx="65" cy="20" r="5" fill="#06b6d4" />
+          <circle cx="80" cy="15" r="6" fill="#06b6d4" />
+        </svg>,
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-scatter"
       }
     ],
     mapas: [
@@ -165,23 +152,25 @@ const App = () => {
         desc: "Muestra puntos de datos en ubicaciones geográficas.",
         useCases: "Ideal para ver la distribución de clientes o tiendas. El tamaño de la burbuja puede representar ventas.",
         tips: "Para geocodificación precisa, usa siempre categorías de datos 'Latitud' y 'Longitud'. Si usas nombres de ciudades, añade la columna 'País' para evitar ambigüedades (ej. Paris, Texas vs Paris, Francia).",
-        svg: <svg viewBox="0 0 100 60" className="w-full h-32 bg-amber-50 rounded-2xl p-4">
-          <path d="M20,20 Q50,5 80,20 T90,50 Q60,55 30,50 T20,20" fill="#fbbf24" fillOpacity="0.2" />
+        svg: <svg viewBox="0 0 100 60" className="w-full h-32 rounded-lg p-4">
+          <path d="M20,20 Q50,5 80,20 T90,50 Q60,55 30,50 T20,20" fill="#f59e0b" fillOpacity="0.2" />
           <circle cx="30" cy="30" r="3" fill="#d97706" />
           <circle cx="60" cy="40" r="5" fill="#d97706" />
           <circle cx="75" cy="25" r="4" fill="#d97706" />
-        </svg>
+        </svg>,
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-map-tips-and-tricks"
       },
       {
         title: "Mapa Coroplético (Filled Map)",
         desc: "Colorea regiones geográficas (países, estados) según un valor.",
         useCases: "Mejor opción para comparar regiones definidas, como tasas de impuestos por estado o ventas por país.",
         tips: "No es bueno para ciudades (puntos), solo para áreas. En el examen, úsalo para 'comparar métricas agregadas por regiones geográficas definidas'.",
-        svg: <svg viewBox="0 0 100 60" className="w-full h-32 bg-amber-50 rounded-2xl p-4">
-          <rect x="20" y="10" width="30" height="40" fill="#fcd34d" rx="4" />
+        svg: <svg viewBox="0 0 100 60" className="w-full h-32 rounded-lg p-4">
+          <rect x="20" y="10" width="30" height="40" fill="#fbbf24" rx="4" />
           <rect x="55" y="10" width="25" height="20" fill="#d97706" rx="4" />
-          <rect x="55" y="35" width="25" height="15" fill="#fbbf24" rx="4" />
-        </svg>
+          <rect x="55" y="35" width="25" height="15" fill="#f59e0b" rx="4" />
+        </svg>,
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-filled-maps-choropleths"
       }
     ],
     tablas: [
@@ -190,11 +179,12 @@ const App = () => {
         desc: "Tabla dinámica que permite agrupar filas y columnas.",
         useCases: "Esencial para mostrar datos jerárquicos (Año > Trimestre > Mes) y permitir al usuario expandir/colapsar (Drill Down).",
         tips: "A diferencia de la Tabla simple, la Matriz soporta 'Drill Down' en filas y columnas. Usa 'Formato Condicional' (Barra de datos, Iconos) para convertirla en un visual híbrido poderoso.",
-        svg: <div className="w-full h-32 bg-slate-50 rounded-2xl p-4 flex flex-col gap-1">
-          <div className="flex gap-1"><div className="w-8 h-4 bg-slate-200 rounded"></div><div className="w-16 h-4 bg-slate-200 rounded"></div></div>
-          <div className="flex gap-1"><div className="w-4 h-4"></div><div className="w-4 h-4 bg-slate-300 rounded"></div><div className="w-12 h-4 bg-slate-100 rounded"></div></div>
-          <div className="flex gap-1"><div className="w-4 h-4"></div><div className="w-4 h-4 bg-slate-300 rounded"></div><div className="w-12 h-4 bg-slate-100 rounded"></div></div>
-        </div>
+        svg: <div className="w-full h-32 bg-slate-800 rounded-lg p-4 flex flex-col gap-1">
+          <div className="flex gap-1"><div className="w-8 h-4 bg-slate-600 rounded"></div><div className="w-16 h-4 bg-slate-600 rounded"></div></div>
+          <div className="flex gap-1"><div className="w-4 h-4"></div><div className="w-4 h-4 bg-slate-600 rounded"></div><div className="w-12 h-4 bg-slate-700 rounded"></div></div>
+          <div className="flex gap-1"><div className="w-4 h-4"></div><div className="w-4 h-4 bg-slate-600 rounded"></div><div className="w-12 h-4 bg-slate-700 rounded"></div></div>
+        </div>,
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-matrix-visual"
       }
     ],
     interactividad: [
@@ -203,203 +193,142 @@ const App = () => {
         desc: "Filtro interactivo colocado directamente en el lienzo del reporte.",
         useCases: "Permite a los usuarios filtrar dinámicamente por fecha, categoría o región. Puede presentarse como lista, menú desplegable, o una barra de tiempo deslizante.",
         tips: "Puedes sincronizar segmentadores entre diferentes páginas del reporte. En el examen, recuerda que los segmentadores de tipo 'Jerarquía' permiten ahorrar mucho espacio al agrupar niveles como Año > Mes.",
-        svg: <div className="w-full h-32 bg-orange-50 rounded-2xl p-4 flex flex-col justify-center gap-2">
-          <div className="w-full h-8 bg-white border border-orange-200 rounded-lg flex items-center px-2 justify-between">
-            <div className="w-12 h-2 bg-orange-100"></div>
-            <ChevronRight size={12} className="text-orange-300" />
+        svg: <div className="w-full h-32 bg-orange-500/10 rounded-lg p-4 flex flex-col justify-center gap-2">
+          <div className="w-full h-8 bg-black/20 border border-orange-500/30 rounded-lg flex items-center px-2 justify-between">
+            <div className="w-12 h-2 bg-orange-500/40"></div>
+            <ChevronRight size={12} className="text-orange-500" />
           </div>
           <div className="flex gap-2">
             <div className="w-1/3 h-6 bg-orange-500 rounded-lg"></div>
-            <div className="w-1/3 h-6 bg-white border border-orange-200 rounded-lg"></div>
+            <div className="w-1/3 h-6 bg-black/20 border border-orange-500/30 rounded-lg"></div>
           </div>
-        </div>
+        </div>,
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-slicers"
       }
     ]
   };
 
-  return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-24 md:pb-0 md:pl-24 transition-all duration-300">
-      {/* Header Sticky */}
-      <header className="bg-slate-900 text-white p-5 sticky top-0 z-40 flex justify-between items-center shadow-lg md:shadow-none md:bg-transparent md:text-slate-900 md:backdrop-blur-md">
-        <div className="flex items-center gap-3">
-          <div className="bg-amber-500 p-2 rounded-xl shadow-lg">
-            <Database size={20} className="text-slate-900" />
-          </div>
-          <div>
-            <h1 className="text-lg font-black tracking-tighter leading-none">PL-300 <span
-              className="text-amber-500 italic uppercase">Ultimate</span></h1>
-            <p className="text-[8px] font-bold text-slate-500 uppercase tracking-[0.3em] mt-1">Enciclopedia de
-              Visualización</p>
-          </div>
-        </div>
-        <button className="bg-slate-800 p-2.5 rounded-xl border border-slate-700 active:bg-slate-700 md:hidden">
-          <Menu size={20} />
-        </button>
-      </header>
+  // Flatten charts for easier navigation and search
+  const allCharts = Object.values(chartLibrary).flat();
 
-      <main className="max-w-md mx-auto p-4 space-y-6 md:max-w-7xl md:p-8">
+  const renderContent = () => {
+    const currentIndex = selectedChart ? allCharts.findIndex(c => c.title === selectedChart.title) : -1;
 
-        {activeTab === 'home' && (
-          <div className="space-y-6 animate-in fade-in duration-500">
-            <div
-              className="bg-gradient-to-br from-indigo-700 to-slate-900 rounded-[2.5rem] p-8 text-white shadow-2xl relative overflow-hidden md:p-12">
-              <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl"></div>
-              <h2 className="text-2xl font-black mb-2 md:text-4xl">Manual de Estilo</h2>
-              <p className="text-indigo-100 text-sm leading-relaxed mb-6 italic opacity-80 md:text-lg md:max-w-2xl">
-                "El éxito en el PL-300 depende de tu capacidad para elegir el visual que responda a la pregunta del
-                negocio con el menor número de clics."
-              </p>
-              <div className="flex gap-2">
-                <span
-                  className="bg-white/10 px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-white/10 md:text-xs md:px-5 md:py-2">Full
-                  Palette</span>
-                <span
-                  className="bg-amber-500 px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-900 shadow-lg md:text-xs md:px-5 md:py-2">Certificación</span>
-              </div>
-            </div>
+    const handlePrevious = () => {
+      if (currentIndex > 0) {
+        setSelectedChart(allCharts[currentIndex - 1]);
+      }
+    };
 
-            <section>
-              <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-4 ml-2 md:text-sm">Explorar la
-                Paleta Estándar</h3>
-              <div className="grid grid-cols-3 gap-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-6">
-                {categories.map(cat => (
-                  <button key={cat.id} onClick={() => { setSelectedCategory(cat.id); setActiveTab('catalog'); }}
-                    className="bg-white p-4 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center
-                            gap-2 active:scale-95 transition-all hover:border-indigo-500 group md:p-6 hover:shadow-xl hover:-translate-y-1"
-                  >
-                    <div className={`${cat.color} p-3 rounded-2xl text-white shadow-lg group-hover:scale-110
-                                transition-transform md:p-4`}>{cat.icon}</div>
-                    <span
-                      className="text-[9px] font-black uppercase tracking-tighter text-slate-600 text-center leading-none md:text-[11px]">{cat.name}</span>
-                  </button>
-                ))}
-              </div>
-            </section>
+    const handleNext = () => {
+      if (currentIndex < allCharts.length - 1) {
+        setSelectedChart(allCharts[currentIndex + 1]);
+      }
+    };
 
-            <div
-              className="bg-emerald-50 border border-emerald-100 p-6 rounded-[2.5rem] shadow-sm flex items-start gap-4 md:items-center">
-              <div className="bg-white p-3 rounded-2xl text-emerald-600 shadow-sm md:p-4">
-                <Activity size={24} />
-              </div>
-              <div>
-                <h4 className="text-sm font-black uppercase tracking-widest mb-1 text-emerald-800 md:text-base">Accesibilidad
-                </h4>
-                <p className="text-[11px] text-emerald-700 leading-relaxed italic md:text-sm">
-                  "Usa paletas aptas para daltónicos y añade siempre 'Alt Text' a tus visuales. Microsoft valora
-                  mucho los reportes inclusivos en el examen."
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
+    if (selectedChart) {
+      return (
+        <VisualDetail
+          chart={selectedChart}
+          onBack={() => setSelectedChart(null)}
+          onPrevious={currentIndex > 0 ? handlePrevious : null}
+          onNext={currentIndex < allCharts.length - 1 ? handleNext : null}
+        />
+      );
+    }
 
-        {activeTab === 'catalog' && (
-          <div className="space-y-6 animate-in slide-in-from-right-10 duration-500 pb-10">
-            <div className="flex items-center justify-between px-2">
-              <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight md:text-3xl">
-                {categories.find(c => c.id === selectedCategory)?.name}
-              </h2>
-              <button onClick={() => setActiveTab('home')} className="text-xs font-black text-white bg-slate-900 px-4
-                        py-2 rounded-2xl shadow-lg hover:bg-slate-700 transition-colors">Cerrar</button>
-            </div>
-
-            <div className="space-y-6 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:space-y-0 text-left">
-              {(chartLibrary[selectedCategory] || []).map((chart, i) => (
-                <div key={i}
-                  className="bg-white rounded-[2.5rem] border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all h-full flex flex-col">
-                  <div className="p-2">
-                    {chart.svg}
-                  </div>
-                  <div className="p-8 pt-4 flex-1 flex flex-col">
-                    <h3 className="text-2xl font-black text-slate-900 mb-4 leading-none">{chart.title}</h3>
-
-                    <div className="space-y-6 flex-1">
-                      <section>
-                        <p
-                          className="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-2 flex items-center gap-2">
-                          <Target size={14} className="text-indigo-400" /> Contexto de Negocio
-                        </p>
-                        <p className="text-sm text-slate-600 leading-relaxed font-medium">
-                          {chart.useCases}
-                        </p>
-                      </section>
-
-                      <section className="bg-slate-900 text-white p-7 rounded-[2.2rem] relative overflow-hidden h-full">
-                        <div className="absolute -right-5 -top-5 opacity-10">
-                          <Zap size={100} />
-                        </div>
-                        <p
-                          className="text-[10px] font-black text-amber-500 uppercase tracking-widest mb-3 flex items-center gap-2">
-                          <Zap size={14} /> Tip de Certificación
-                        </p>
-                        <p className="text-xs text-slate-300 leading-relaxed italic relative z-10">
-                          {chart.tips}
-                        </p>
-                      </section>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'legal' && (
-          <div className="bg-white rounded-[2.5rem] p-8 shadow-sm">
-            <button onClick={() => setActiveTab('home')} className="mb-6 text-xs font-black text-white bg-slate-900 px-4 py-2 rounded-2xl shadow-lg hover:bg-slate-700">Volver</button>
+    switch (activeTab) {
+      case 'home':
+        return <Hero onExplore={() => setActiveTab('catalog')} allCharts={allCharts} onSelectChart={setSelectedChart} />;
+      case 'catalog':
+        return (
+          <Gallery
+            categories={categories}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            chartLibrary={chartLibrary}
+            onSelectChart={setSelectedChart}
+          />
+        );
+      case 'legal':
+        return (
+          <div className="p-8 max-w-4xl mx-auto bg-white dark:bg-card-dark rounded-xl mt-8">
+            <button onClick={() => setActiveTab('home')} className="mb-6 text-primary hover:text-white">Volver</button>
             <LegalNotice />
           </div>
-        )}
-        {activeTab === 'privacy' && (
-          <div className="bg-white rounded-[2.5rem] p-8 shadow-sm">
-            <button onClick={() => setActiveTab('home')} className="mb-6 text-xs font-black text-white bg-slate-900 px-4 py-2 rounded-2xl shadow-lg hover:bg-slate-700">Volver</button>
+        );
+      case 'privacy':
+        return (
+          <div className="p-8 max-w-4xl mx-auto bg-white dark:bg-card-dark rounded-xl mt-8">
+            <button onClick={() => setActiveTab('home')} className="mb-6 text-primary hover:text-white">Volver</button>
             <PrivacyPolicy />
           </div>
-        )}
-        {activeTab === 'cookies' && (
-          <div className="bg-white rounded-[2.5rem] p-8 shadow-sm">
-            <button onClick={() => setActiveTab('home')} className="mb-6 text-xs font-black text-white bg-slate-900 px-4 py-2 rounded-2xl shadow-lg hover:bg-slate-700">Volver</button>
+        );
+      case 'cookies':
+        return (
+          <div className="p-8 max-w-4xl mx-auto bg-white dark:bg-card-dark rounded-xl mt-8">
+            <button onClick={() => setActiveTab('home')} className="mb-6 text-primary hover:text-white">Volver</button>
             <CookiesPolicy />
           </div>
-        )}
+        );
+      default:
+        // Placeholder for other tabs like 'learn' using Hero temporarily
+        return <Hero onExplore={() => setActiveTab('catalog')} allCharts={allCharts} onSelectChart={setSelectedChart} />;
+    }
+  };
 
-        <footer className="mt-12 py-8 border-t border-slate-200 text-center">
-          <div className="flex flex-wrap justify-center gap-4 text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest">
-            <button onClick={() => { setActiveTab('legal'); window.scrollTo(0, 0); }} className="hover:text-amber-600 transition-colors">Aviso Legal</button>
-            <span>•</span>
-            <button onClick={() => { setActiveTab('privacy'); window.scrollTo(0, 0); }} className="hover:text-amber-600 transition-colors">Privacidad</button>
-            <span>•</span>
-            <button onClick={() => { setActiveTab('cookies'); window.scrollTo(0, 0); }} className="hover:text-amber-600 transition-colors">Cookies</button>
+  return (
+    <div className="min-h-screen bg-[#0B1120] text-slate-100 flex font-sans selection:bg-primary selection:text-black">
+      <Sidebar activeTab={activeTab} setActiveTab={(tab) => { setActiveTab(tab); setSelectedChart(null); }} />
+
+      <main className="flex-1 min-w-0 flex flex-col">
+        {/* Mobile Header */}
+        <header className="md:hidden flex items-center justify-between p-4 bg-sidebar-dark border-b border-white/5 sticky top-0 z-40 backdrop-blur-md bg-opacity-90">
+          <div className="flex items-center gap-3">
+            <img src="/logo.png" alt="Logo" className="w-8 h-8 rounded-lg object-cover" />
+            <h1 className="font-display font-bold text-lg text-white">ULTIMATE <span className="text-primary">POWER BI</span></h1>
           </div>
-          <p className="mt-4 text-[10px] text-slate-300">© 2024 PL-300 Encyclopedia</p>
+          <button onClick={() => setActiveTab('home')} className="p-2 text-slate-300">
+            <Menu />
+          </button>
+        </header>
+
+        {/* Content Area */}
+        <div className="flex-1">
+          {renderContent()}
+        </div>
+
+        {/* Footer */}
+        <footer className="px-6 lg:px-40 py-10 border-t border-white/5 bg-background-dark/50 text-center md:text-left">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-2 text-slate-400">
+              <span className="material-symbols-outlined text-sm">copyright</span>
+              <span className="text-sm">2024 Ultimate Power BI. Todos los derechos reservados.</span>
+            </div>
+            <div className="flex gap-6">
+              <button onClick={() => { setActiveTab('legal'); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Aviso Legal</button>
+              <button onClick={() => { setActiveTab('privacy'); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Privacidad</button>
+              <button onClick={() => { setActiveTab('cookies'); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Cookies</button>
+            </div>
+          </div>
         </footer>
+
+        {/* Mobile Nav */}
+        <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-sidebar-dark/95 backdrop-blur-xl border-t border-white/10 p-4 flex justify-around z-50">
+          <button onClick={() => setActiveTab('home')} className={`flex flex-col items-center gap-1 ${activeTab === 'home' ? 'text-primary' : 'text-slate-500'}`}>
+            <span className="material-symbols-outlined">home</span>
+            <span className="text-[10px] uppercase font-bold">Inicio</span>
+          </button>
+          <button onClick={() => setActiveTab('catalog')} className={`flex flex-col items-center gap-1 ${activeTab === 'catalog' ? 'text-primary' : 'text-slate-500'}`}>
+            <span className="material-symbols-outlined">bar_chart</span>
+            <span className="text-[10px] uppercase font-bold">Visuales</span>
+          </button>
+          <button onClick={() => setActiveTab('learn')} className={`flex flex-col items-center gap-1 ${activeTab === 'learn' ? 'text-primary' : 'text-slate-500'}`}>
+            <span className="material-symbols-outlined">school</span>
+            <span className="text-[10px] uppercase font-bold">Aprender</span>
+          </button>
+        </nav>
       </main>
-
-      {/* RESPONSIVE NAV */}
-      <nav
-        className="fixed bottom-6 left-6 right-6 bg-slate-900/95 backdrop-blur-xl text-white p-3 rounded-[2.5rem] flex justify-around items-center z-50 shadow-2xl border border-white/10
-                   md:flex-col md:left-4 md:top-4 md:bottom-4 md:w-20 md:right-auto md:justify-center md:gap-8 md:rounded-[2rem]">
-
-        <div className="hidden md:flex flex-col items-center gap-1 mb-auto pt-4 text-amber-500">
-          <Database size={24} />
-        </div>
-
-        <button onClick={() => setActiveTab('home')} className={`flex flex-col items-center gap-1 transition-all
-                ${activeTab === 'home' ? 'text-amber-500 scale-110' : 'text-slate-400 hover:text-white'}`}>
-          <Layout size={20} /> <span className="text-[8px] font-black uppercase tracking-widest">Home</span>
-        </button>
-        <button onClick={() => setActiveTab('catalog')} className={`flex flex-col items-center gap-1 transition-all
-                ${activeTab === 'catalog' ? 'text-amber-500 scale-110' : 'text-slate-400 hover:text-white'}`}>
-          <Layers size={20} /> <span className="text-[8px] font-black uppercase tracking-widest">Paleta</span>
-        </button>
-        <button className="flex flex-col items-center gap-1 text-slate-400 hover:text-white">
-          <Smartphone size={20} /> <span className="text-[8px] font-black uppercase tracking-widest">Guía</span>
-        </button>
-
-        <div className="hidden md:block mt-auto pb-4 opacity-50">
-          <div className="w-1 h-12 bg-slate-700 rounded-full mx-auto"></div>
-        </div>
-      </nav>
     </div>
   );
 };

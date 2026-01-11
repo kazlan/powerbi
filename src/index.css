@@ -1,1 +1,75 @@
 @import "tailwindcss";
+
+@theme {
+    --color-primary: #FFC107;
+    --color-primary-hover: #FFB300;
+    --color-background-dark: #0B1120;
+    --color-background-card: #151e32;
+    --color-surface-dark: #1E293B;
+    --color-sidebar-dark: #0f172a;
+
+    --font-sans: Inter, sans-serif;
+    --font-display: Poppins, sans-serif;
+
+    --shadow-glow: 0 0 20px rgba(255, 193, 7, 0.2);
+    --shadow-glow-strong: 0 0 35px rgba(255, 193, 7, 0.4);
+}
+
+@layer utilities {
+    .glass-card {
+        background: rgba(30, 41, 59, 0.4);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .glass-effect {
+        background: rgba(26, 26, 26, 0.8);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(249, 213, 31, 0.1);
+    }
+
+    .text-gradient-primary {
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(to right, #FFC107, #FF9800);
+    }
+
+    .perspective-container {
+        perspective: 1000px;
+    }
+
+    .preserve-3d {
+        transform-style: preserve-3d;
+    }
+
+    .card-3d {
+        transform-style: preserve-3d;
+        transform: rotateY(-10deg) rotateX(5deg);
+    }
+
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* Scrollbar override */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #334155;
+        border-radius: 4px;
+    }
+}
+
+body {
+    background-color: #0B1120;
+    color: #f1f5f9;
+}

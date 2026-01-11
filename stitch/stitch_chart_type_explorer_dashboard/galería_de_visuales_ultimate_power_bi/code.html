@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Galería de Visuales | Ultimate Power BI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9d51f",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#0a0a0a",
+                        "card-dark": "#1a1a1a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body { font-family: 'Inter', sans-serif; }
+        .glass-effect {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(249, 213, 31, 0.1);
+        }
+        .card-glow:hover {
+            box-shadow: 0 0 20px rgba(249, 213, 31, 0.15);
+            border-color: rgba(249, 213, 31, 0.4);
+            transform: translateY(-4px);
+        }
+        .sidebar-item:hover {
+            background: rgba(249, 213, 31, 0.1);
+            color: #f9d51f;
+        }
+        .active-filter {
+            background-color: #f9d51f;
+            color: #0a0a0a;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex">
+<aside class="w-64 border-r border-slate-200 dark:border-white/10 hidden md:flex flex-col h-screen sticky top-0 bg-background-light dark:bg-background-dark">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons-round text-black">analytics</span>
+</div>
+<span class="font-bold text-lg tracking-tight uppercase">Ultimate <span class="text-primary">PBI</span></span>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-2">
+<a class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group" href="#">
+<span class="material-icons-round">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="sidebar-item active-filter flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200" href="#">
+<span class="material-icons-round text-inherit">grid_view</span>
+<span class="font-medium text-inherit">Galería de Visuales</span>
+</a>
+<a class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200" href="#">
+<span class="material-icons-round">school</span>
+<span class="font-medium">Cursos</span>
+</a>
+<a class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200" href="#">
+<span class="material-icons-round">auto_awesome</span>
+<span class="font-medium">Recursos Pro</span>
+</a>
+<a class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200" href="#">
+<span class="material-icons-round">groups</span>
+<span class="font-medium">Comunidad</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-white/10">
+<div class="bg-primary/10 p-4 rounded-xl">
+<p class="text-xs font-bold text-primary uppercase mb-2">Plan Premium</p>
+<p class="text-sm dark:text-slate-300 mb-3">Acceso total a todos los visuales avanzados.</p>
+<button class="w-full bg-primary text-black font-bold py-2 rounded-lg text-sm hover:brightness-110 transition-all">Saber Más</button>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col min-h-screen">
+<header class="glass-effect sticky top-0 z-10 px-8 py-4 flex items-center justify-between">
+<div class="flex-1 max-w-xl">
+<div class="relative group">
+<span class="material-icons-round absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl py-3 pl-12 pr-4 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-500" placeholder="Buscar visuales específicos..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6 ml-4">
+<button class="relative p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-icons-round">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold">Alex Rivera</p>
+<p class="text-xs text-slate-500">BI Architect</p>
+</div>
+<img alt="Profile picture of a male BI professional" class="w-10 h-10 rounded-full border-2 border-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE-W0JAy73NNk7X_tLqxYUWebgZPWfU4jFGLAHKhqzUIfI4EJWXyskHBupYLr3P_gMG78H2tA-owlDeJSl8nQLYPk5yMuYYHUAJ6hMW3o6ru2mCuWq0wpfPbnrB6tkbV2o_KEEMIOOwn0tkVhaJN4xuZI6qX7qurmjO68QLgx9S-VJ-BFUkZvjzPnTcTJswN5waqbzz34PhIkfVQnFSnCsQEPL7Z9VaLwP_7OEsTz_FqkZLFpSqPOEOwu_j3bIJe0DXWuw_qFR5A"/>
+</div>
+</div>
+</header>
+<div class="p-8">
+<div class="mb-10">
+<h1 class="text-3xl font-bold mb-6">Galería de <span class="text-primary">Visuales</span></h1>
+<div class="flex flex-wrap gap-3">
+<button class="px-5 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary font-medium hover:bg-primary hover:text-black transition-all">Todos</button>
+<button class="px-5 py-2 rounded-full border border-slate-200 dark:border-white/10 hover:border-primary/50 transition-all">Comparación</button>
+<button class="px-5 py-2 rounded-full border border-slate-200 dark:border-white/10 hover:border-primary/50 transition-all">Tendencias</button>
+<button class="px-5 py-2 rounded-full border border-slate-200 dark:border-white/10 hover:border-primary/50 transition-all">Composición</button>
+<button class="px-5 py-2 rounded-full border border-slate-200 dark:border-white/10 hover:border-primary/50 transition-all">Distribución</button>
+<button class="px-5 py-2 rounded-full border border-slate-200 dark:border-white/10 hover:border-primary/50 transition-all">Relación</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<div class="bg-white dark:bg-card-dark rounded-xl overflow-hidden border border-slate-200 dark:border-white/5 transition-all duration-300 card-glow flex flex-col">
+<div class="aspect-video relative overflow-hidden bg-slate-200 dark:bg-black">
+<img alt="High contrast bar chart visualization in dark mode" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkys44dDgTyq_IySK9kmfLW9bqAVHAYTCGlAdjQwwdiJVEoSQSIqbZT2xciFfs9bZWIJRRz4-6NOJ-dFEPx6xuBb2VRVRX5rytsVdj3UelKkkUJ_tQ7Df_P57RW6ykQ6UjN6m77rE3kcmenEjpqs4blzaDrD4IBCzAsyxB82QGK_sAYcZD6HI4WZYF7ADKHJw5JKvylCRkQaYiKsOz0J795cEeWl02c8QBq67fJoyMEA7p6BRAwNOmVrLN74eyCglULan0u4orAQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<span class="absolute top-3 right-3 bg-primary text-black text-[10px] font-bold px-2 py-1 rounded">ESTÁNDAR</span>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h3 class="text-lg font-bold mb-2">Gráfico de Barras Pro</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-1">Visualización optimizada para comparar magnitudes entre diferentes categorías con etiquetas dinámicas.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-icons-round text-sm">visibility</span> 1.2k</span>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline underline-offset-4">Explorar <span class="material-icons-round text-sm">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-xl overflow-hidden border border-slate-200 dark:border-white/5 transition-all duration-300 card-glow flex flex-col">
+<div class="aspect-video relative overflow-hidden bg-slate-200 dark:bg-black">
+<img alt="Complex treemap visualization showing hierarchical data" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDByK1LR2nUKwnebA2zJlwIkF_eui29WqfefNgoGUzk88NgqDsymUpIHZhn_KUWZbkr3_Ga58RZv-h4AQ421QROGv18ZCZNi6emwj88bnEBD0wAIVOvbxFZURbNKkrI9Dx4dnSmfjncHgqnB1Kdy_dm-QkswL0acJk67awTJyn_hZmIKPjdL2dsY8-784hvACJ8C0kdqVU06MrKP3bABbGybmUfhl7kpDIrISRU2bvv2t4Zm7bH5kTRDCpagEdsCgIhNXF-nhlivA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<span class="absolute top-3 right-3 bg-purple-500 text-white text-[10px] font-bold px-2 py-1 rounded">AVANZADO</span>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h3 class="text-lg font-bold mb-2">Treemap Dinámico</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-1">Ideal para visualizar jerarquías complejas y la contribución de cada parte al total general.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-icons-round text-sm">visibility</span> 856</span>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline underline-offset-4">Explorar <span class="material-icons-round text-sm">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-xl overflow-hidden border border-slate-200 dark:border-white/5 transition-all duration-300 card-glow flex flex-col">
+<div class="aspect-video relative overflow-hidden bg-slate-200 dark:bg-black">
+<img alt="Glowing Sankey diagram showing flow distribution" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA3IWjinn5ode8UYQtrTAqXfsh9D951-hF-1Fi971CyrkEhl7lhBg_qxz1akG8epAsd54cFqag214XeENN7U1L-PdWUu7rsZDQ-xtawhY0zuJS3czHZ3qtdLaVZICv8kKH_UPt5xNWSEP3O4Y8neE3m8e9M4Mwi8MDxh-pslopovO7_uFcYnOoOnp85xZ4MQEWIfnEHUvzx8rdXDn5H1rXGxAGYzLlWqkfRaX_d2MVzbi-jLwZNIPVxDmmuzoKwbapVEmZbrWTMA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<span class="absolute top-3 right-3 bg-blue-500 text-white text-[10px] font-bold px-2 py-1 rounded">NUEVO</span>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h3 class="text-lg font-bold mb-2">Diagrama de Sankey</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-1">Visualiza el flujo de datos entre diferentes etapas de un proceso con un diseño ultra-premium.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-icons-round text-sm">visibility</span> 2.4k</span>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline underline-offset-4">Explorar <span class="material-icons-round text-sm">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-xl overflow-hidden border border-slate-200 dark:border-white/5 transition-all duration-300 card-glow flex flex-col">
+<div class="aspect-video relative overflow-hidden bg-slate-200 dark:bg-black">
+<img alt="Line chart with glowing area shadows" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrv_UyifdtDR455l2VUuCXngA2UXVEl_By7vVdd_77JT4Ir07sbAFY-RX0EiJyeglOMJDNXZTSf-ao98dLHsZy_a4QmWs5Dm91vwhgVsC6YvwEj5iXWPdpHKwU82Hf7P5eChDCoflHyCSsEy3lbZmq5QXq1VmLUGCcWsmJFmpYJeIQKB2Wci1gMQlrcuurTB3XWDb5fQrdDeSF44_yTprlI_ffA0oHp7r4x8d8nKcxyFtttEP8UtMMx-FAPemUsRa44Z3f_iTPVg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<span class="absolute top-3 right-3 bg-primary text-black text-[10px] font-bold px-2 py-1 rounded">POPULAR</span>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h3 class="text-lg font-bold mb-2">Gráfico de Áreas</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-1">Análisis de tendencias temporales con gradientes fluidos y marcadores inteligentes.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-icons-round text-sm">visibility</span> 3.1k</span>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline underline-offset-4">Explorar <span class="material-icons-round text-sm">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-xl overflow-hidden border border-slate-200 dark:border-white/5 transition-all duration-300 card-glow flex flex-col">
+<div class="aspect-video relative overflow-hidden bg-slate-200 dark:bg-black">
+<img alt="Radar chart visualization for multiple metrics comparison" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe3dlHZwI4emUHiLFcvaCxjx-OKFM0WqeLirAuDWnPou8zi9Q6NRviutosl3bPxrexOpFhJtU21CmGRhxdVIpOma-7PvDjI-nLVASNzYcKrc41tVDuK0ibyUPz4quLvFrDX5-qo_y3SAddcXmVxmjPRvD7Y4ukRH5aqBkUBehvctwUkjYrF9hQMtMRwzSMI2KayBZyZUWkAl-NPshSMXfUIspG2-npU0bdNkitaurZcw2hgpYKPNSRB2nUTKCnIHqJO5aBIDhsCA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h3 class="text-lg font-bold mb-2">Gráfico de Radar</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-1">Compara múltiples variables cuantitativas para ver qué categorías tienen fortalezas similares.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-icons-round text-sm">visibility</span> 432</span>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline underline-offset-4">Explorar <span class="material-icons-round text-sm">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-xl overflow-hidden border border-slate-200 dark:border-white/5 transition-all duration-300 card-glow flex flex-col">
+<div class="aspect-video relative overflow-hidden bg-slate-200 dark:bg-black">
+<img alt="Abstract heat map visualization" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0m4I6NB8YM0NTajut9GujLA_rgBzzfkLULjjmLzTy_mfgUWTBhaGskDu7fBJsbv1kc7zPv06n5gCRmJff9HzmXG00vaMxRhHOazOkYttBNvRihOkMqRW-913A1pPVUlon3IHTJ6POgLfNjYu3ETpWS3fr2xn5HQyuk38m8LfjHyPx99yzn_R2I-OPCU_hq0DfVkDJ7JxnyJCs6yMOBJjQboQSWGi8o6yfFYNGJXJ9a9oKC2FpdKXFIQPJszduUiL46ZRKwY6-qQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<span class="absolute top-3 right-3 bg-primary text-black text-[10px] font-bold px-2 py-1 rounded">ESTÁNDAR</span>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h3 class="text-lg font-bold mb-2">Mapa de Calor</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-1">Encuentra patrones y correlaciones rápidamente mediante la intensidad del color.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-icons-round text-sm">visibility</span> 729</span>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline underline-offset-4">Explorar <span class="material-icons-round text-sm">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-xl overflow-hidden border border-slate-200 dark:border-white/5 transition-all duration-300 card-glow flex flex-col">
+<div class="aspect-video relative overflow-hidden bg-slate-200 dark:bg-black">
+<img alt="Sophisticated gauge and KPI visualization" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaCE7f5yxim8fLnCnM8iLNhYsC84KxwUOEf19jKFu-1Fk_L3mjJKRIhdk7opgA5L9YkTdTEzJN_MxydNMxD90gFltWDAY9nePDBUtrOvtS_uhp5YZ3HZf-kimzqPB4lcMxRML8EfgIf9sdUVmpo5FpwUNfylBAEnO-y-Zh9JfBQK3_PKB6bMAjPZVv7gM-Hr17Ue_BqSzECfnpNHCW8wKyG5N8zrBCBqb7y9hqrS8xBTp6ph90YNd_qONswpCFXyCcbYC7d74gWg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<span class="absolute top-3 right-3 bg-purple-500 text-white text-[10px] font-bold px-2 py-1 rounded">AVANZADO</span>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h3 class="text-lg font-bold mb-2">Indicadores KPI Pro</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-1">Velocímetros y tarjetas de objetivos con estados de alerta inteligentes y comparativas.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-icons-round text-sm">visibility</span> 1.8k</span>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline underline-offset-4">Explorar <span class="material-icons-round text-sm">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-xl overflow-hidden border border-slate-200 dark:border-white/5 transition-all duration-300 card-glow flex flex-col">
+<div class="aspect-video relative overflow-hidden bg-slate-200 dark:bg-black">
+<img alt="Bubble chart showing multiple data dimensions" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA3IWjinn5ode8UYQtrTAqXfsh9D951-hF-1Fi971CyrkEhl7lhBg_qxz1akG8epAsd54cFqag214XeENN7U1L-PdWUu7rsZDQ-xtawhY0zuJS3czHZ3qtdLaVZICv8kKH_UPt5xNWSEP3O4Y8neE3m8e9M4Mwi8MDxh-pslopovO7_uFcYnOoOnp85xZ4MQEWIfnEHUvzx8rdXDn5H1rXGxAGYzLlWqkfRaX_d2MVzbi-jLwZNIPVxDmmuzoKwbapVEmZbrWTMA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<span class="absolute top-3 right-3 bg-primary text-black text-[10px] font-bold px-2 py-1 rounded">ESTÁNDAR</span>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<h3 class="text-lg font-bold mb-2">Gráfico de Burbujas</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-1">Analiza hasta cuatro dimensiones de datos simultáneamente mediante posición, tamaño y color.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-icons-round text-sm">visibility</span> 562</span>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline underline-offset-4">Explorar <span class="material-icons-round text-sm">arrow_forward</span></button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-16 flex items-center justify-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-white/10 hover:border-primary transition-all"><span class="material-icons-round">chevron_left</span></button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-black font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-white/10 hover:bg-primary/10 hover:border-primary transition-all">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-white/10 hover:bg-primary/10 hover:border-primary transition-all">3</button>
+<span class="mx-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-white/10 hover:border-primary transition-all"><span class="material-icons-round">chevron_right</span></button>
+</div>
+</div>
+<footer class="mt-auto p-8 border-t border-slate-200 dark:border-white/10 text-center text-sm text-slate-500">
+            © 2024 Ultimate Power BI - La galería de visuales definitiva para expertos.
+        </footer>
+</main>
+
+</body></html>

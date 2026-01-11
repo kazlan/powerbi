@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ultimate Power BI - El Dominio de la Visualización</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FFC107", 
+                        "primary-hover": "#FFB300",
+                        "background-dark": "#0B1120", 
+                        "background-card": "#151e32", 
+                        "surface-dark": "#1E293B",
+                        "sidebar-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Poppins', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.2)',
+                        'glow': '0 0 20px rgba(255, 193, 7, 0.2)',
+                        'glow-strong': '0 0 35px rgba(255, 193, 7, 0.4)',
+                    }
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .glass-card {
+                background: rgba(30, 41, 59, 0.4);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            }
+            .text-gradient-primary {
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-image: linear-gradient(to right, #FFC107, #FF9800);
+            }
+            .perspective-container {
+                perspective: 1000px;
+            }
+            .3d-card {
+                transform-style: preserve-3d;
+                transform: rotateY(-10deg) rotateX(5deg);
+            }
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-[#0B1120] text-slate-100 font-sans antialiased min-h-screen flex selection:bg-primary selection:text-black overflow-x-hidden transition-colors duration-300">
+<aside class="hidden md:flex flex-col items-center py-6 w-24 bg-sidebar-dark border-r border-white/5 h-screen sticky top-0 shrink-0 z-50">
+<div class="mb-10 group cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-orange-500 flex items-center justify-center text-black shadow-glow group-hover:shadow-glow-strong transition-all duration-300">
+<span class="material-symbols-outlined text-3xl">analytics</span>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-6 w-full px-4">
+<a class="group flex flex-col items-center gap-1 text-primary relative" href="#">
+<div class="p-3 rounded-xl bg-white/5 border border-white/10 shadow-lg transition-all group-hover:bg-primary/20">
+<span class="material-symbols-outlined">home</span>
+</div>
+<span class="text-[10px] font-bold tracking-wider opacity-100 mt-1 uppercase">Inicio</span>
+</a>
+<a class="group flex flex-col items-center gap-1 text-slate-500 hover:text-white transition-colors relative" href="#">
+<div class="p-3 rounded-xl hover:bg-white/5 border border-transparent hover:border-white/10 transition-all">
+<span class="material-symbols-outlined">bar_chart</span>
+</div>
+<span class="text-[10px] font-bold tracking-wider opacity-80 mt-1 uppercase">Visuales</span>
+</a>
+<a class="group flex flex-col items-center gap-1 text-slate-500 hover:text-white transition-colors relative" href="#">
+<div class="p-3 rounded-xl hover:bg-white/5 border border-transparent hover:border-white/10 transition-all">
+<span class="material-symbols-outlined">code</span>
+</div>
+<span class="text-[10px] font-bold tracking-wider opacity-80 mt-1 uppercase">DAX</span>
+</a>
+<a class="group flex flex-col items-center gap-1 text-slate-500 hover:text-white transition-colors relative" href="#">
+<div class="p-3 rounded-xl hover:bg-white/5 border border-transparent hover:border-white/10 transition-all">
+<span class="material-symbols-outlined">school</span>
+</div>
+<span class="text-[10px] font-bold tracking-wider opacity-80 mt-1 uppercase">Aprender</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-4">
+<button class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-slate-400 hover:text-white transition-all">
+<span class="material-symbols-outlined text-xl">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center text-white text-xs font-bold border border-white/20 shadow-lg cursor-pointer">
+            ES
+        </div>
+</div>
+</aside>
+<main class="flex-1 min-w-0">
+<header class="md:hidden flex items-center justify-between p-4 bg-sidebar-dark border-b border-white/5 sticky top-0 z-40 backdrop-blur-md bg-opacity-90">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-orange-500 flex items-center justify-center text-black">
+<span class="material-symbols-outlined text-lg">analytics</span>
+</div>
+<h1 class="font-display font-bold text-lg text-white">ULTIMATE <span class="text-primary">POWER BI</span></h1>
+</div>
+<button class="p-2 text-slate-300">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</header>
+<div class="p-4 md:p-8 lg:p-12 max-w-[1600px] mx-auto">
+<div class="hidden md:flex items-center justify-between mb-12">
+<div>
+<h1 class="font-display font-bold text-3xl tracking-tight text-white flex items-center gap-2">
+                    ULTIMATE <span class="text-gradient-primary">POWER BI</span>
+</h1>
+<p class="text-sm font-medium text-slate-400 mt-1">La plataforma líder para el storytelling de datos</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors">search</span>
+<input class="bg-[#151e32] border border-white/10 rounded-full py-2.5 pl-10 pr-6 text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 outline-none w-72 transition-all" placeholder="Buscar visuales, patrones, funciones..." type="text"/>
+</div>
+<button class="px-6 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-semibold text-white transition-all">
+                    Iniciar Sesión
+                </button>
+<button class="px-8 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-black text-sm font-bold shadow-glow hover:shadow-glow-strong transition-all transform hover:-translate-y-0.5">
+                    Ver Galería
+                </button>
+</div>
+</div>
+<section class="relative rounded-[2.5rem] overflow-hidden mb-16 border border-white/5 bg-[#0f172a] shadow-2xl">
+<div class="absolute inset-0 bg-gradient-to-br from-[#1e1b4b] via-[#0f172a] to-black opacity-90"></div>
+<div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] -translate-y-1/3 translate-x-1/3 pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
+<div class="relative z-10 grid lg:grid-cols-2 gap-12 p-8 md:p-16 items-center min-h-[500px]">
+<div class="max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-wider mb-8">
+<span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                        Nuevos Módulos de Certificación PL-300
+                    </div>
+<h2 class="font-display font-bold text-5xl md:text-6xl lg:text-7xl text-white mb-6 leading-[1.1] tracking-tight">
+                        Domina <br/>
+<span class="text-gradient-primary">Power BI</span> Ahora
+                    </h2>
+<p class="text-lg text-slate-400 mb-10 leading-relaxed font-light">
+                        Transforma datos brutos en conocimientos accionables. El recurso definitivo para profesionales que buscan dominar la limpieza de datos, DAX avanzado y técnicas de visualización premium.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="px-10 py-4 rounded-full bg-primary text-black font-bold text-lg tracking-wide hover:bg-primary-hover hover:scale-105 transition-all shadow-glow flex items-center gap-2 group">
+                            Ver Galería
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="relative hidden lg:block h-[450px] perspective-container flex items-center justify-center">
+<div class="3d-card relative w-[90%] h-[85%] bg-gradient-to-br from-slate-800/90 to-black/90 rounded-2xl border border-white/10 shadow-2xl z-10 flex flex-col p-5 backdrop-blur-xl">
+<div class="flex items-center justify-between mb-6 border-b border-white/5 pb-4">
+<div class="w-32 h-3 bg-white/10 rounded-full"></div>
+<div class="flex gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-5 h-full">
+<div class="col-span-2 bg-blue-500/10 rounded-xl border border-blue-500/20 p-4 relative overflow-hidden group">
+<div class="absolute bottom-0 left-0 right-0 h-2/3 flex items-end justify-around px-2 pb-2 gap-2">
+<div class="w-full bg-blue-600 h-[40%] rounded-t-sm opacity-80 group-hover:h-[60%] transition-all duration-700 ease-out shadow-[0_0_15px_rgba(37,99,235,0.3)]"></div>
+<div class="w-full bg-blue-500 h-[70%] rounded-t-sm opacity-90 group-hover:h-[50%] transition-all duration-700 ease-out delay-75 shadow-[0_0_15px_rgba(59,130,246,0.3)]"></div>
+<div class="w-full bg-primary h-[50%] rounded-t-sm opacity-100 group-hover:h-[80%] transition-all duration-700 ease-out delay-150 shadow-[0_0_15px_rgba(255,193,7,0.3)]"></div>
+<div class="w-full bg-blue-600 h-[85%] rounded-t-sm opacity-80 group-hover:h-[65%] transition-all duration-700 ease-out delay-200 shadow-[0_0_15px_rgba(37,99,235,0.3)]"></div>
+</div>
+</div>
+<div class="bg-primary/5 rounded-xl border border-primary/20 p-4 flex flex-col items-center justify-center gap-3">
+<div class="w-20 h-20 rounded-full border-[6px] border-slate-700 border-t-primary animate-spin duration-[4s]"></div>
+<div class="text-center">
+<div class="text-xs text-slate-400 uppercase tracking-widest">Progreso</div>
+<div class="text-xl font-bold text-white">85%</div>
+</div>
+</div>
+<div class="col-span-3 bg-white/5 rounded-xl border border-white/5 p-4 flex flex-col justify-center gap-3">
+<div class="w-full h-2.5 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full w-[65%] bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
+</div>
+<div class="w-full h-2.5 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full w-[45%] bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-6 -left-4 w-52 h-36 glass-card rounded-2xl transform rotate-y-[-5deg] rotate-z-[3deg] z-20 p-5 flex flex-col justify-between border-t border-white/20">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="p-1.5 bg-primary/20 rounded-lg">
+<span class="material-symbols-outlined text-primary text-sm">trending_up</span>
+</div>
+<span class="text-xs font-bold text-white">Crecimiento</span>
+</div>
+<span class="text-[10px] text-green-400 font-mono">+12.5%</span>
+</div>
+<div>
+<div class="text-3xl font-black text-white mb-1">2,450</div>
+<div class="text-[10px] text-slate-400">Usuarios Activos Diarios</div>
+</div>
+<div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full w-[80%] bg-primary shadow-[0_0_10px_rgba(255,193,7,0.5)]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+<a class="group relative overflow-hidden rounded-[2rem] bg-[#151e32] border border-white/5 hover:border-blue-500/50 transition-all duration-300 p-8 flex flex-col h-72 shadow-lg hover:shadow-2xl hover:-translate-y-1" href="#">
+<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+<span class="material-symbols-outlined text-9xl text-white transform rotate-12">cleaning_services</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10 w-16 h-16 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-blue-500/20 transition-all duration-300">
+<span class="material-symbols-outlined text-3xl">cleaning_services</span>
+</div>
+<h3 class="relative z-10 font-display font-bold text-2xl text-white mb-3 group-hover:text-blue-400 transition-colors">Limpieza de Datos</h3>
+<p class="relative z-10 text-slate-400 text-sm leading-relaxed mb-4">
+                    Domina los procesos ETL de Power Query. Aprende a modelar, limpiar y transformar datos complejos en modelos robustos.
+                </p>
+<div class="relative z-10 mt-auto flex items-center gap-2 text-blue-400 text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0">
+                    Empezar Módulo <span class="material-symbols-outlined text-base">arrow_forward</span>
+</div>
+</a>
+<a class="group relative overflow-hidden rounded-[2rem] bg-[#151e32] border border-white/5 hover:border-primary/50 transition-all duration-300 p-8 flex flex-col h-72 shadow-lg hover:shadow-2xl hover:-translate-y-1" href="#">
+<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+<span class="material-symbols-outlined text-9xl text-primary transform -rotate-12">bar_chart</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10 w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-primary/20 transition-all duration-300">
+<span class="material-symbols-outlined text-3xl">bar_chart</span>
+</div>
+<h3 class="relative z-10 font-display font-bold text-2xl text-white mb-3 group-hover:text-primary transition-colors">Galería de Visuales</h3>
+<p class="relative z-10 text-slate-400 text-sm leading-relaxed mb-4">
+                    Explora la enciclopedia completa de gráficos. Encuentra el visual perfecto para tu historia de datos.
+                </p>
+<div class="relative z-10 mt-auto flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0">
+                    Explorar Galería <span class="material-symbols-outlined text-base">arrow_forward</span>
+</div>
+</a>
+<a class="group relative overflow-hidden rounded-[2rem] bg-[#151e32] border border-white/5 hover:border-purple-500/50 transition-all duration-300 p-8 flex flex-col h-72 shadow-lg hover:shadow-2xl hover:-translate-y-1" href="#">
+<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+<span class="material-symbols-outlined text-9xl text-white transform rotate-12">functions</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-b from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10 w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-purple-500/20 transition-all duration-300">
+<span class="material-symbols-outlined text-3xl">functions</span>
+</div>
+<h3 class="relative z-10 font-display font-bold text-2xl text-white mb-3 group-hover:text-purple-400 transition-colors">M y DAX</h3>
+<p class="relative z-10 text-slate-400 text-sm leading-relaxed mb-4">
+                    Libera cálculos avanzados. Sumérgete en contextos de fila, filtros y scripts en lenguaje M.
+                </p>
+<div class="relative z-10 mt-auto flex items-center gap-2 text-purple-400 text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0">
+                    Ver Patrones <span class="material-symbols-outlined text-base">arrow_forward</span>
+</div>
+</a>
+</section>
+<section class="mb-20">
+<div class="flex items-end justify-between mb-10 px-2">
+<div>
+<h3 class="font-display font-bold text-3xl text-white mb-2">Visuales Destacados</h3>
+<p class="text-slate-400 text-sm">Acceso rápido a los tipos de gráficos más utilizados</p>
+</div>
+<a class="text-sm font-bold text-primary hover:text-white transition-colors flex items-center gap-1 group" href="#">
+                    Ver Galería Completa <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+<a class="glass-card hover:bg-white/10 rounded-2xl p-6 flex flex-col items-center gap-4 transition-all group border border-white/5 hover:border-white/20" href="#">
+<div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">bar_chart</span>
+</div>
+<span class="text-xs font-bold text-slate-300 group-hover:text-white uppercase tracking-wider">Comparación</span>
+</a>
+<a class="glass-card hover:bg-white/10 rounded-2xl p-6 flex flex-col items-center gap-4 transition-all group border border-white/5 hover:border-white/20" href="#">
+<div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">ssid_chart</span>
+</div>
+<span class="text-xs font-bold text-slate-300 group-hover:text-white uppercase tracking-wider">Tendencias</span>
+</a>
+<a class="glass-card hover:bg-white/10 rounded-2xl p-6 flex flex-col items-center gap-4 transition-all group border border-white/5 hover:border-white/20" href="#">
+<div class="w-12 h-12 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">pie_chart</span>
+</div>
+<span class="text-xs font-bold text-slate-300 group-hover:text-white uppercase tracking-wider">Composición</span>
+</a>
+<a class="glass-card hover:bg-white/10 rounded-2xl p-6 flex flex-col items-center gap-4 transition-all group border border-white/5 hover:border-white/20" href="#">
+<div class="w-12 h-12 rounded-xl bg-cyan-600/20 text-cyan-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">share</span>
+</div>
+<span class="text-xs font-bold text-slate-300 group-hover:text-white uppercase tracking-wider">Relación</span>
+</a>
+<a class="glass-card hover:bg-white/10 rounded-2xl p-6 flex flex-col items-center gap-4 transition-all group border border-primary/30 hover:border-primary/60 relative overflow-hidden" href="#">
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
+<div class="relative z-10 w-12 h-12 rounded-xl bg-purple-600/20 text-purple-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">gps_fixed</span>
+</div>
+<span class="relative z-10 text-xs font-bold text-white uppercase tracking-wider">KPIs/Tarjetas</span>
+</a>
+<a class="glass-card hover:bg-white/10 rounded-2xl p-6 flex flex-col items-center gap-4 transition-all group border border-white/5 hover:border-white/20" href="#">
+<div class="w-12 h-12 rounded-xl bg-orange-600/20 text-orange-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">public</span>
+</div>
+<span class="text-xs font-bold text-slate-300 group-hover:text-white uppercase tracking-wider">Mapas</span>
+</a>
+<a class="glass-card hover:bg-white/10 rounded-2xl p-6 flex flex-col items-center gap-4 transition-all group border border-white/5 hover:border-white/20" href="#">
+<div class="w-12 h-12 rounded-xl bg-rose-600/20 text-rose-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">memory</span>
+</div>
+<span class="text-xs font-bold text-slate-300 group-hover:text-white uppercase tracking-wider">IA Avanzada</span>
+</a>
+<a class="glass-card hover:bg-white/10 rounded-2xl p-6 flex flex-col items-center gap-4 transition-all group border border-white/5 hover:border-white/20" href="#">
+<div class="w-12 h-12 rounded-xl bg-slate-600/20 text-slate-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">table_view</span>
+</div>
+<span class="text-xs font-bold text-slate-300 group-hover:text-white uppercase tracking-wider">Tabulares</span>
+</a>
+</div>
+</section>
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+<article class="bg-[#151e32] border border-white/5 rounded-[2.5rem] overflow-hidden hover:border-white/20 transition-all duration-300 group shadow-lg">
+<div class="bg-gradient-to-b from-[#1e3a8a]/20 to-[#151e32] h-56 flex items-center justify-center relative p-8">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.05]"></div>
+<div class="flex items-end gap-2 h-32 w-40 justify-center opacity-80 group-hover:opacity-100 transition-opacity transform group-hover:scale-105 duration-300">
+<div class="w-6 bg-blue-600 h-16 rounded-t-sm shadow-[0_0_15px_rgba(37,99,235,0.5)]"></div>
+<div class="w-6 bg-blue-500 h-24 rounded-t-sm shadow-[0_0_15px_rgba(59,130,246,0.5)]"></div>
+<div class="w-6 bg-blue-400 h-12 rounded-t-sm shadow-[0_0_15px_rgba(96,165,250,0.5)]"></div>
+<div class="w-6 bg-blue-300 h-8 rounded-t-sm shadow-[0_0_15px_rgba(147,197,253,0.5)]"></div>
+</div>
+</div>
+<div class="p-10">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-display font-bold text-2xl text-white">Barras y Columnas</h3>
+<span class="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[10px] font-bold uppercase text-blue-400 tracking-wider">Paleta Estándar</span>
+</div>
+<p class="text-slate-400 text-sm leading-relaxed mb-8">
+                        La piedra angular visual para mostrar ventas por vendedor o ingresos por región. Permite comparaciones rápidas de magnitud con gráficos limpios y sin distracciones.
+                    </p>
+<a class="inline-flex items-center gap-2 text-white bg-white/5 hover:bg-white/10 border border-white/10 px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wide transition-all group-hover:border-primary/50 group-hover:text-primary" href="#">
+                        Leer Documentación <span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+</article>
+<article class="bg-[#151e32] border border-white/5 rounded-[2.5rem] overflow-hidden hover:border-white/20 transition-all duration-300 group shadow-lg">
+<div class="bg-gradient-to-b from-[#1e3a8a]/20 to-[#151e32] h-56 flex items-center justify-center relative p-8">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.05]"></div>
+<div class="flex flex-col items-center gap-1 w-40 opacity-80 group-hover:opacity-100 transition-opacity transform group-hover:scale-105 duration-300">
+<div class="w-full h-8 bg-blue-600 shadow-lg" style="clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);"></div>
+<div class="w-[80%] h-8 bg-blue-500 shadow-lg" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);"></div>
+<div class="w-[60%] h-8 bg-blue-400 shadow-lg" style="clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);"></div>
+</div>
+</div>
+<div class="p-10">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-display font-bold text-2xl text-white">Gráfico de Embudo</h3>
+<span class="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-[10px] font-bold uppercase text-purple-400 tracking-wider">Flujo de Proceso</span>
+</div>
+<p class="text-slate-400 text-sm leading-relaxed mb-8">
+                        Indispensable para rastrear tasas de conversión y pérdidas en el proceso. Identifica cuellos de botella en embudos de ventas o flujos de reclutamiento al instante.
+                    </p>
+<a class="inline-flex items-center gap-2 text-white bg-white/5 hover:bg-white/10 border border-white/10 px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wide transition-all group-hover:border-primary/50 group-hover:text-primary" href="#">
+                        Leer Documentación <span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+</article>
+</section>
+</div>
+</main>
+
+</body></html>
