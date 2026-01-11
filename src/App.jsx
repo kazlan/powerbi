@@ -9,6 +9,7 @@ import {
   Table as TableIcon, Grid, Cpu, Database,
   MessageSquare, FileText, List
 } from 'lucide-react';
+import { LegalNotice, PrivacyPolicy, CookiesPolicy } from './Legal';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -342,6 +343,36 @@ const App = () => {
             </div>
           </div>
         )}
+
+        {activeTab === 'legal' && (
+          <div className="bg-white rounded-[2.5rem] p-8 shadow-sm">
+            <button onClick={() => setActiveTab('home')} className="mb-6 text-xs font-black text-white bg-slate-900 px-4 py-2 rounded-2xl shadow-lg hover:bg-slate-700">Volver</button>
+            <LegalNotice />
+          </div>
+        )}
+        {activeTab === 'privacy' && (
+          <div className="bg-white rounded-[2.5rem] p-8 shadow-sm">
+            <button onClick={() => setActiveTab('home')} className="mb-6 text-xs font-black text-white bg-slate-900 px-4 py-2 rounded-2xl shadow-lg hover:bg-slate-700">Volver</button>
+            <PrivacyPolicy />
+          </div>
+        )}
+        {activeTab === 'cookies' && (
+          <div className="bg-white rounded-[2.5rem] p-8 shadow-sm">
+            <button onClick={() => setActiveTab('home')} className="mb-6 text-xs font-black text-white bg-slate-900 px-4 py-2 rounded-2xl shadow-lg hover:bg-slate-700">Volver</button>
+            <CookiesPolicy />
+          </div>
+        )}
+
+        <footer className="mt-12 py-8 border-t border-slate-200 text-center">
+          <div className="flex flex-wrap justify-center gap-4 text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest">
+            <button onClick={() => { setActiveTab('legal'); window.scrollTo(0, 0); }} className="hover:text-amber-600 transition-colors">Aviso Legal</button>
+            <span>•</span>
+            <button onClick={() => { setActiveTab('privacy'); window.scrollTo(0, 0); }} className="hover:text-amber-600 transition-colors">Privacidad</button>
+            <span>•</span>
+            <button onClick={() => { setActiveTab('cookies'); window.scrollTo(0, 0); }} className="hover:text-amber-600 transition-colors">Cookies</button>
+          </div>
+          <p className="mt-4 text-[10px] text-slate-300">© 2024 PL-300 Encyclopedia</p>
+        </footer>
       </main>
 
       {/* RESPONSIVE NAV */}
