@@ -6,8 +6,8 @@ export const LegalNotice = () => (
         <div className="prose prose-invert max-w-none">
             <p><strong>1. DATOS IDENTIFICATIVOS</strong></p>
             <p>En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico, a continuación se reflejan los siguientes datos:</p>
-            <p>El titular de dominio web es <strong>PL-300 Encyclopedia</strong> (en adelante "El Sitio").<br />
-                Correo electrónico de contacto: contacto@pl-300-encyclopedia.com del sitio web.</p>
+            <p>El titular de dominio web es <strong>POWER BI MAX</strong> (en adelante "El Sitio").<br />
+                Correo electrónico de contacto: contacto@power-bi-max.com del sitio web.</p>
 
             <p className="mt-4"><strong>2. USUARIOS</strong></p>
             <p>El acceso y/o uso de este portal atribuye la condición de USUARIO, que acepta, desde dicho acceso y/o uso, las Condiciones Generales de Uso aquí reflejadas.</p>
@@ -24,7 +24,7 @@ export const PrivacyPolicy = () => (
         <h1 className="text-3xl font-black text-white mb-6">Política de Privacidad</h1>
         <div className="prose prose-invert max-w-none">
             <p><strong>1. RESPONSABLE DEL TRATAMIENTO</strong></p>
-            <p>Los datos de carácter personal que se pudieran recabar directamente del interesado serán tratados de forma confidencial y quedarán incorporados a la correspondiente actividad de tratamiento titularidad de PL-300 Encyclopedia.</p>
+            <p>Los datos de carácter personal que se pudieran recabar directamente del interesado serán tratados de forma confidencial y quedarán incorporados a la correspondiente actividad de tratamiento titularidad de POWER BI MAX.</p>
 
             <p className="mt-4"><strong>2. FINALIDAD</strong></p>
             <p>La finalidad del tratamiento de los datos corresponde a la gestión de las consultas realizadas por los usuarios y la mejora de su experiencia en el sitio web mediante el análisis de navegación (Google Analytics).</p>

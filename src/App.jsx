@@ -365,7 +365,7 @@ const App = () => {
         <header className="md:hidden flex items-center justify-between p-4 bg-sidebar-dark border-b border-white/5 sticky top-0 z-40 backdrop-blur-md bg-opacity-90">
           <div className="flex items-center gap-3">
             <img src="/logo.png" alt="Logo" className="w-8 h-8 rounded-lg object-cover" />
-            <h1 className="font-display font-bold text-lg text-white">ULTIMATE <span className="text-primary">POWER BI</span></h1>
+            <h1 className="font-display font-bold text-lg text-white">POWER BI <span className="text-primary">MAX</span></h1>
           </div>
           <button onClick={() => setActiveTab('home')} className="p-2 text-slate-300">
             <Menu />
@@ -382,7 +382,7 @@ const App = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2 text-slate-400">
               <span className="material-symbols-outlined text-sm">copyright</span>
-              <span className="text-sm">2024 Ultimate Power BI. Todos los derechos reservados.</span>
+              <span className="text-sm">2024 POWER BI MAX. Todos los derechos reservados.</span>
             </div>
             <div className="flex gap-6">
               <button onClick={() => { setActiveTab('legal'); setSelectedChart(null); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Aviso Legal</button>

@@ -56,7 +56,7 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart }) => {
             <div className="hidden md:flex items-center justify-between mb-12">
                 <div>
                     <h1 className="font-display font-bold text-3xl tracking-tight text-white flex items-center gap-2">
-                        ULTIMATE <span className="text-gradient-primary">POWER BI</span>
+                        POWER BI <span className="text-gradient-primary">MAX</span>
                     </h1>
                     <p className="text-sm font-medium text-slate-400 mt-1">La plataforma líder para el storytelling de datos</p>
                 </div>
