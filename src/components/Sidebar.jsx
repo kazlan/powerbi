@@ -20,8 +20,9 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
                         key={item.id}
                         onClick={() => setActiveTab(item.id)}
                         className={`group flex flex-col items-center gap-1 relative ${activeTab === item.id ? 'text-primary' : 'text-slate-500 hover:text-white'}`}
+                        aria-label={`Ir a la sección ${item.label}`}
                     >
-                        <div className={`p-3 rounded-xl border transition-all ${activeTab === item.id ? 'bg-white/5 border-white/10 shadow-lg' : 'border-transparent hover:bg-white/5 hover:border-white/10'}`}>
+                        <div className={`p-3 rounded-xl border transition-all ${activeTab === item.id ? 'bg-white/5 border-white/10 shadow-lg' : 'border-transparent hover:bg-white/5 hover:border-white/10'}`} aria-hidden="true">
                             <span className="material-symbols-outlined">{item.icon}</span>
                         </div>
                         <span className={`text-[10px] font-bold tracking-wider mt-1 uppercase transition-opacity ${activeTab === item.id ? 'opacity-100' : 'opacity-80'}`}>

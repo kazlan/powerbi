@@ -62,10 +62,11 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart }) => {
                 </div>
                 <div className="flex items-center gap-6">
                     <div className="relative hidden lg:block group z-50" ref={searchRef}>
-                        <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors">search</span>
+                        <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors" aria-hidden="true">search</span>
                         <input
                             className="bg-[#151e32] border border-white/10 rounded-full py-2.5 pl-10 pr-6 text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 outline-none w-72 transition-all relative z-20"
                             placeholder="Buscar visuales, patrones, funciones..."
+                            aria-label="Buscar visuales Power BI"
                             type="text"
                             value={searchQuery}
                             onChange={handleSearch}

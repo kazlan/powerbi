@@ -2,8 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 const VisualDetail = ({ chart, onBack, onPrevious, onNext }) => {
     const [randomTip, setRandomTip] = useState('');
+    const [isSpeaking, setIsSpeaking] = useState(false);
 
     useEffect(() => {
+        // Cancel speech when component unmounts or chart changes
+        window.speechSynthesis.cancel();
+        setIsSpeaking(false);
+
         if (chart) {
             if (Array.isArray(chart.tips)) {
                 setRandomTip(chart.tips[Math.floor(Math.random() * chart.tips.length)]);
@@ -11,7 +16,34 @@ const VisualDetail = ({ chart, onBack, onPrevious, onNext }) => {
                 setRandomTip(chart.tips);
             }
         }
+
+        return () => {
+            window.speechSynthesis.cancel();
+        };
     }, [chart]);
+
+    const handleSpeak = () => {
+        if (isSpeaking) {
+            window.speechSynthesis.cancel();
+            setIsSpeaking(false);
+        } else {
+            const textToRead = `${chart.title}. ${chart.desc}. ${chart.useCases}`;
+            const utterance = new SpeechSynthesisUtterance(textToRead);
+            utterance.lang = 'es-ES';
+            utterance.rate = 1.0;
+
+            utterance.onend = () => {
+                setIsSpeaking(false);
+            };
+
+            utterance.onerror = () => {
+                setIsSpeaking(false);
+            };
+
+            window.speechSynthesis.speak(utterance);
+            setIsSpeaking(true);
+        }
+    };
 
     if (!chart) return null;
 
@@ -53,7 +85,17 @@ const VisualDetail = ({ chart, onBack, onPrevious, onNext }) => {
 
                     {/* Description */}
                     <div className="space-y-4">
-                        <h2 className="text-white text-2xl font-bold">Guía Técnica</h2>
+                        <div className="flex items-center justify-between">
+                            <h2 className="text-white text-2xl font-bold">Guía Técnica</h2>
+                            <button
+                                onClick={handleSpeak}
+                                className={`p-2 rounded-full transition-all ${isSpeaking ? 'bg-primary text-black animate-pulse' : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10'}`}
+                                aria-label={isSpeaking ? "Detener lectura" : "Leer descripción en voz alta"}
+                                title={isSpeaking ? "Detener lectura" : "Leer descripción"}
+                            >
+                                <span className="material-symbols-outlined mb-0.5">{isSpeaking ? 'stop' : 'volume_up'}</span>
+                            </button>
+                        </div>
                         <div className="text-slate-400 leading-relaxed space-y-4 font-light text-lg">
                             {chart.useCases.split('\n').map((paragraph, index) => (
                                 paragraph.trim() && <p key={index}>{paragraph}</p>
