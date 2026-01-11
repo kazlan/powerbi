@@ -41,12 +41,7 @@ const App = () => {
         desc: "Compara valores entre categorías discretas.",
         useCases: "Es el visual por excelencia para mostrar ventas por vendedor o ingresos por región. Permite una comparación rápida de magnitudes. Las barras horizontales son ideales cuando los nombres de las categorías son largos, facilitando la lectura sin inclinar la cabeza.",
         tips: "En el examen, si te piden comparar más de 10 elementos, elige Barras Horizontales para habilitar el scroll vertical. No olvides que puedes usar 'Barras de Error' para mostrar intervalos de confianza, algo muy valorado en análisis estadísticos.",
-        svg: <svg viewBox="0 0 100 60" className="w-full h-32 rounded-lg">
-          <rect x="10" y="30" width="15" height="25" fill="#2563eb" />
-          <rect x="30" y="10" width="15" height="45" fill="#2563eb" />
-          <rect x="50" y="20" width="15" height="35" fill="#2563eb" />
-          <rect x="70" y="40" width="15" height="15" fill="#2563eb" />
-        </svg>,
+        image: "/visuals/bar_chart.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-types-for-reports-and-q-and-a"
       },
       {
@@ -54,11 +49,7 @@ const App = () => {
         desc: "Visualiza etapas de un proceso que se reducen progresivamente.",
         useCases: "Indispensable para el seguimiento de procesos de venta (Prospecto > Oferta > Cierre) o flujos de contratación. Ayuda a identificar en qué etapa específica se están perdiendo más oportunidades (cuellos de botella).",
         tips: "El gráfico de embudo en Power BI calcula automáticamente el % del primero (etapa inicial) y el % del anterior. En el examen, es la respuesta correcta para 'visualizar la retención en un flujo de trabajo'.",
-        svg: <svg viewBox="0 0 100 60" className="w-full h-32 rounded-lg">
-          <path d="M10,10 L90,10 L75,25 L25,25 Z" fill="#2563eb" />
-          <path d="M28,28 L72,28 L60,40 L40,40 Z" fill="#3b82f6" />
-          <path d="M43,43 L57,43 L53,53 L47,53 Z" fill="#60a5fa" />
-        </svg>,
+        image: "/visuals/funnel_chart.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-funnel-charts"
       }
     ],
@@ -68,9 +59,7 @@ const App = () => {
         desc: "Similar al de líneas pero con el espacio bajo la línea sombreado.",
         useCases: "Se utiliza para enfatizar la magnitud del cambio a lo largo del tiempo, no solo la tendencia. Es excelente para mostrar el volumen acumulado de ventas o la cantidad de stock disponible durante un año.",
         tips: "Cuidado con el 'Área Apilada': si tienes muchas series, las de abajo pueden distorsionar la percepción de las de arriba. En el examen, usa el gráfico de áreas si el cliente quiere ver la 'magnitud total del volumen' además de la progresión temporal.",
-        svg: <svg viewBox="0 0 100 60" className="w-full h-32 rounded-lg">
-          <path d="M10,50 L30,30 L50,45 L70,10 L90,30 L90,55 L10,55 Z" fill="#10b981" fillOpacity="0.3" stroke="#059669" strokeWidth="2" />
-        </svg>,
+        image: "/visuals/area_chart.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-basic-area-chart"
       }
     ],
@@ -80,9 +69,7 @@ const App = () => {
         desc: "Muestra la relación de las partes con el todo.",
         useCases: "Ideal para proporciones muy simples, como el desglose por género (Hombre/Mujer) o estado de pedido (Completado/Pendiente). El gráfico de anillo es preferido modernamente porque permite colocar un KPI o texto en el centro (hueco).",
         tips: "Regla de oro PL-300: Nunca lo uses para más de 3 o 4 categorías. El ojo humano tiene dificultades comparando áreas circulares; si tienes más de 4 elementos, la respuesta correcta siempre será un gráfico de Barras o un Treemap.",
-        svg: <svg viewBox="0 0 100 60" className="w-full h-32 rounded-lg">
-          <circle cx="50" cy="30" r="20" fill="none" stroke="#14b8a6" strokeWidth="10" strokeDasharray="80 125.6" />
-        </svg>,
+        image: "/visuals/pie_chart.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-pie-donut-charts"
       }
     ],
@@ -92,16 +79,7 @@ const App = () => {
         desc: "Muestra varios campos de datos agrupados en una sola tarjeta vertical u horizontal.",
         useCases: "Útil cuando quieres mostrar una ficha técnica de un producto o un resumen de métricas para una entidad específica (ej. Nombre del Vendedor, su Total Ventas, su % de Objetivo y su Región).",
         tips: "Es más eficiente en términos de rendimiento que poner 4 o 5 tarjetas individuales. En el examen, si necesitas mostrar 'varias métricas relacionadas' de forma compacta para un solo filtro, esta es la mejor opción.",
-        svg: <div className="w-full h-32 bg-purple-500/10 rounded-lg p-4 flex flex-col gap-2 justify-center">
-          <div className="border-l-4 border-purple-500 pl-2">
-            <div className="w-12 h-2 bg-purple-500/30 mb-1"></div>
-            <div className="w-20 h-3 bg-purple-600"></div>
-          </div>
-          <div className="border-l-4 border-purple-300 pl-2">
-            <div className="w-12 h-2 bg-purple-500/30 mb-1"></div>
-            <div className="w-16 h-3 bg-purple-400"></div>
-          </div>
-        </div>,
+        image: "/visuals/multi_row_card.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-card"
       }
     ],
@@ -111,10 +89,7 @@ const App = () => {
         desc: "Permite a los usuarios hacer preguntas sobre sus datos usando lenguaje natural.",
         useCases: "Permite que usuarios no técnicos escriban 'Ventas por región en 2023' y Power BI genere automáticamente el visual correspondiente. Mejora drásticamente la capacidad de auto-servicio del reporte.",
         tips: "Para que funcione bien, debes 'entrenar' el modelo con sinónimos en el panel de modelado. En el examen, es la respuesta para 'mejorar la accesibilidad y el descubrimiento de insights por parte de usuarios finales'.",
-        svg: <div className="w-full h-32 bg-rose-500/10 rounded-lg p-4 flex items-center justify-center gap-2">
-          <MessageSquare className="text-rose-500" size={32} />
-          <div className="bg-white/10 p-2 rounded-lg shadow-sm text-[10px] text-slate-400 italic">"Top 5 productos..."</div>
-        </div>,
+        image: "/visuals/q_and_a.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-q-and-a"
       },
       {
@@ -122,11 +97,7 @@ const App = () => {
         desc: "Genera automáticamente un resumen escrito de los datos del reporte.",
         useCases: "Ideal para ejecutivos que prefieren leer una conclusión que interpretar gráficos. Proporciona contexto dinámico: si las ventas bajan, el texto cambia automáticamente para explicar cuánto bajaron y en qué categoría.",
         tips: "Puedes insertar tus propias medidas dinámicas dentro del texto. En el examen, es la opción para 'proporcionar resúmenes textuales automáticos' que se actualizan con los filtros.",
-        svg: <div className="w-full h-32 bg-rose-500/10 rounded-lg p-4 space-y-2">
-          <FileText className="text-rose-500" size={24} />
-          <div className="w-full h-2 bg-rose-500/30 rounded"></div>
-          <div className="w-2/3 h-2 bg-rose-500/20 rounded"></div>
-        </div>,
+        image: "/visuals/smart_narrative.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-smart-narrative"
       }
     ],
@@ -136,13 +107,7 @@ const App = () => {
         desc: "Muestra la relación entre dos variables numéricas.",
         useCases: "Fundamental para análisis de correlación (ej. ¿Mayor gasto en marketing implica mayores ventas?). Permite identificar valores atípicos (outliers) y clusters.",
         tips: "Es el único gráfico predeterminado que acepta dos medidas numéricas (Eje X e Y). En el examen, si te piden animar datos a lo largo del tiempo, la respuesta es 'Play Axis' en un gráfico de dispersión.",
-        svg: <svg viewBox="0 0 100 60" className="w-full h-32 rounded-lg p-4">
-          <circle cx="20" cy="50" r="3" fill="#06b6d4" />
-          <circle cx="35" cy="40" r="4" fill="#06b6d4" />
-          <circle cx="50" cy="45" r="2" fill="#06b6d4" />
-          <circle cx="65" cy="20" r="5" fill="#06b6d4" />
-          <circle cx="80" cy="15" r="6" fill="#06b6d4" />
-        </svg>,
+        image: "/visuals/scatter_chart.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-scatter"
       }
     ],
@@ -152,12 +117,7 @@ const App = () => {
         desc: "Muestra puntos de datos en ubicaciones geográficas.",
         useCases: "Ideal para ver la distribución de clientes o tiendas. El tamaño de la burbuja puede representar ventas.",
         tips: "Para geocodificación precisa, usa siempre categorías de datos 'Latitud' y 'Longitud'. Si usas nombres de ciudades, añade la columna 'País' para evitar ambigüedades (ej. Paris, Texas vs Paris, Francia).",
-        svg: <svg viewBox="0 0 100 60" className="w-full h-32 rounded-lg p-4">
-          <path d="M20,20 Q50,5 80,20 T90,50 Q60,55 30,50 T20,20" fill="#f59e0b" fillOpacity="0.2" />
-          <circle cx="30" cy="30" r="3" fill="#d97706" />
-          <circle cx="60" cy="40" r="5" fill="#d97706" />
-          <circle cx="75" cy="25" r="4" fill="#d97706" />
-        </svg>,
+        image: "/visuals/map.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-map-tips-and-tricks"
       },
       {
@@ -165,11 +125,7 @@ const App = () => {
         desc: "Colorea regiones geográficas (países, estados) según un valor.",
         useCases: "Mejor opción para comparar regiones definidas, como tasas de impuestos por estado o ventas por país.",
         tips: "No es bueno para ciudades (puntos), solo para áreas. En el examen, úsalo para 'comparar métricas agregadas por regiones geográficas definidas'.",
-        svg: <svg viewBox="0 0 100 60" className="w-full h-32 rounded-lg p-4">
-          <rect x="20" y="10" width="30" height="40" fill="#fbbf24" rx="4" />
-          <rect x="55" y="10" width="25" height="20" fill="#d97706" rx="4" />
-          <rect x="55" y="35" width="25" height="15" fill="#f59e0b" rx="4" />
-        </svg>,
+        image: "/visuals/filled_map.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-filled-maps-choropleths"
       }
     ],
@@ -179,11 +135,7 @@ const App = () => {
         desc: "Tabla dinámica que permite agrupar filas y columnas.",
         useCases: "Esencial para mostrar datos jerárquicos (Año > Trimestre > Mes) y permitir al usuario expandir/colapsar (Drill Down).",
         tips: "A diferencia de la Tabla simple, la Matriz soporta 'Drill Down' en filas y columnas. Usa 'Formato Condicional' (Barra de datos, Iconos) para convertirla en un visual híbrido poderoso.",
-        svg: <div className="w-full h-32 bg-slate-800 rounded-lg p-4 flex flex-col gap-1">
-          <div className="flex gap-1"><div className="w-8 h-4 bg-slate-600 rounded"></div><div className="w-16 h-4 bg-slate-600 rounded"></div></div>
-          <div className="flex gap-1"><div className="w-4 h-4"></div><div className="w-4 h-4 bg-slate-600 rounded"></div><div className="w-12 h-4 bg-slate-700 rounded"></div></div>
-          <div className="flex gap-1"><div className="w-4 h-4"></div><div className="w-4 h-4 bg-slate-600 rounded"></div><div className="w-12 h-4 bg-slate-700 rounded"></div></div>
-        </div>,
+        image: "/visuals/matrix.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-matrix-visual"
       }
     ],
@@ -193,16 +145,7 @@ const App = () => {
         desc: "Filtro interactivo colocado directamente en el lienzo del reporte.",
         useCases: "Permite a los usuarios filtrar dinámicamente por fecha, categoría o región. Puede presentarse como lista, menú desplegable, o una barra de tiempo deslizante.",
         tips: "Puedes sincronizar segmentadores entre diferentes páginas del reporte. En el examen, recuerda que los segmentadores de tipo 'Jerarquía' permiten ahorrar mucho espacio al agrupar niveles como Año > Mes.",
-        svg: <div className="w-full h-32 bg-orange-500/10 rounded-lg p-4 flex flex-col justify-center gap-2">
-          <div className="w-full h-8 bg-black/20 border border-orange-500/30 rounded-lg flex items-center px-2 justify-between">
-            <div className="w-12 h-2 bg-orange-500/40"></div>
-            <ChevronRight size={12} className="text-orange-500" />
-          </div>
-          <div className="flex gap-2">
-            <div className="w-1/3 h-6 bg-orange-500 rounded-lg"></div>
-            <div className="w-1/3 h-6 bg-black/20 border border-orange-500/30 rounded-lg"></div>
-          </div>
-        </div>,
+        image: "/visuals/slicer.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-slicers"
       }
     ]

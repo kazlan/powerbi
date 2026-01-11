@@ -23,8 +23,18 @@ const VisualDetail = ({ chart, onBack, onPrevious, onNext }) => {
                             </h3>
                         </div>
                         <div className="p-8 h-80 bg-[#0B1120] relative flex items-center justify-center">
-                            <div className="w-3/4 h-3/4">
-                                {chart.svg}
+                            <div className="w-full h-full flex items-center justify-center">
+                                {chart.image ? (
+                                    <img
+                                        src={chart.image}
+                                        alt={chart.title}
+                                        className="w-full h-full object-contain rounded-lg shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                                    />
+                                ) : (
+                                    <div className="w-3/4 h-3/4">
+                                        {chart.svg}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

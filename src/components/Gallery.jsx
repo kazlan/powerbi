@@ -15,8 +15,8 @@ const Gallery = ({ categories, selectedCategory, setSelectedCategory, chartLibra
                             key={cat.id}
                             onClick={() => setSelectedCategory(cat.id)}
                             className={`px-5 py-2 rounded-full border transition-all text-sm font-medium ${selectedCategory === cat.id
-                                    ? 'border-primary/30 bg-primary/10 text-primary'
-                                    : 'border-white/10 text-slate-400 hover:border-primary/50 hover:text-white'
+                                ? 'border-primary/30 bg-primary/10 text-primary'
+                                : 'border-white/10 text-slate-400 hover:border-primary/50 hover:text-white'
                                 }`}
                         >
                             {cat.name}
@@ -36,7 +36,11 @@ const Gallery = ({ categories, selectedCategory, setSelectedCategory, chartLibra
                         {/* Visual Preview Area (Replaces Image) */}
                         <div className="aspect-video relative overflow-hidden bg-black/50 p-4 flex items-center justify-center">
                             <div className="w-full h-full opacity-80 group-hover:scale-105 transition-transform duration-500">
-                                {chart.svg}
+                                {chart.image ? (
+                                    <img src={chart.image} alt={chart.title} className="w-full h-full object-cover" />
+                                ) : (
+                                    chart.svg
+                                )}
                             </div>
                             <div className="absolute inset-0 bg-gradient-to-t from-background-card to-transparent"></div>
                             <span className="absolute top-3 right-3 bg-primary text-black text-[10px] font-bold px-2 py-1 rounded">PL-300</span>
