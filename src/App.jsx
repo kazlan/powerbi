@@ -340,8 +340,18 @@ const App = () => {
             <CookiesPolicy />
           </div>
         );
+      case 'podcasts':
+        return (
+          <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-8 animate-in fade-in zoom-in duration-500">
+            <div className="w-24 h-24 bg-gradient-to-tr from-purple-600 to-pink-600 rounded-full flex items-center justify-center mb-6 shadow-glow">
+              <span className="material-symbols-outlined text-4xl text-white">podcasts</span>
+            </div>
+            <h2 className="text-3xl font-bold text-white mb-2">Podcasts PL-300</h2>
+            <p className="text-slate-400 max-w-md">Próximamente: Entrevistas con expertos, repaso de preguntas de examen y novedades de Power BI en formato audio.</p>
+          </div>
+        );
       default:
-        // Placeholder for other tabs like 'learn' using Hero temporarily
+        // Fallback
         return <Hero onExplore={() => setActiveTab('catalog')} allCharts={allCharts} onSelectChart={setSelectedChart} />;
     }
   };
@@ -392,9 +402,9 @@ const App = () => {
             <span className="material-symbols-outlined">bar_chart</span>
             <span className="text-[10px] uppercase font-bold">Visuales</span>
           </button>
-          <button onClick={() => setActiveTab('learn')} className={`flex flex-col items-center gap-1 ${activeTab === 'learn' ? 'text-primary' : 'text-slate-500'}`}>
-            <span className="material-symbols-outlined">school</span>
-            <span className="text-[10px] uppercase font-bold">Aprender</span>
+          <button onClick={() => setActiveTab('podcasts')} className={`flex flex-col items-center gap-1 ${activeTab === 'podcasts' ? 'text-primary' : 'text-slate-500'}`}>
+            <span className="material-symbols-outlined">podcasts</span>
+            <span className="text-[10px] uppercase font-bold">Podcasts</span>
           </button>
         </nav>
       </main>

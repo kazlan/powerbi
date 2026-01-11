@@ -4,8 +4,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
     const menuItems = [
         { id: 'home', icon: 'home', label: 'Inicio' },
         { id: 'catalog', icon: 'bar_chart', label: 'Visuales' },
-        { id: 'dax', icon: 'code', label: 'DAX' },
-        { id: 'learn', icon: 'school', label: 'Aprender' },
+        { id: 'podcasts', icon: 'podcasts', label: 'Podcasts' },
     ];
 
     return (
