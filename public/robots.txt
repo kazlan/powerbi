@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://powerbi.perseoh.com/sitemap.xml
+Sitemap: https://powerbimax.com/sitemap.xml

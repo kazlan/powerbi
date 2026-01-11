@@ -7,7 +7,7 @@ export const LegalNotice = () => (
             <p><strong>1. DATOS IDENTIFICATIVOS</strong></p>
             <p>En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico, a continuación se reflejan los siguientes datos:</p>
             <p>El titular de dominio web es <strong>POWER BI MAX</strong> (en adelante "El Sitio").<br />
-                Correo electrónico de contacto: contacto@power-bi-max.com del sitio web.</p>
+                Correo electrónico de contacto: contacto@powerbimax.com del sitio web.</p>
 
             <p className="mt-4"><strong>2. USUARIOS</strong></p>
             <p>El acceso y/o uso de este portal atribuye la condición de USUARIO, que acepta, desde dicho acceso y/o uso, las Condiciones Generales de Uso aquí reflejadas.</p>
