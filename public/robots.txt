@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pl-300-encyclopedia.vercel.app/sitemap.xml
+Sitemap: https://powerbi.perseoh.com/sitemap.xml
