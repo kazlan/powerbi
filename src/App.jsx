@@ -315,22 +315,28 @@ const App = () => {
         );
       case 'legal':
         return (
-          <div className="p-8 max-w-4xl mx-auto bg-white dark:bg-card-dark rounded-xl mt-8">
-            <button onClick={() => setActiveTab('home')} className="mb-6 text-primary hover:text-white">Volver</button>
+          <div className="p-8 max-w-4xl mx-auto bg-background-card border border-white/5 rounded-xl mt-8">
+            <button onClick={() => setActiveTab('home')} className="mb-6 text-primary hover:text-white flex items-center gap-2">
+              <span className="material-symbols-outlined text-sm">arrow_back</span> Volver
+            </button>
             <LegalNotice />
           </div>
         );
       case 'privacy':
         return (
-          <div className="p-8 max-w-4xl mx-auto bg-white dark:bg-card-dark rounded-xl mt-8">
-            <button onClick={() => setActiveTab('home')} className="mb-6 text-primary hover:text-white">Volver</button>
+          <div className="p-8 max-w-4xl mx-auto bg-background-card border border-white/5 rounded-xl mt-8">
+            <button onClick={() => setActiveTab('home')} className="mb-6 text-primary hover:text-white flex items-center gap-2">
+              <span className="material-symbols-outlined text-sm">arrow_back</span> Volver
+            </button>
             <PrivacyPolicy />
           </div>
         );
       case 'cookies':
         return (
-          <div className="p-8 max-w-4xl mx-auto bg-white dark:bg-card-dark rounded-xl mt-8">
-            <button onClick={() => setActiveTab('home')} className="mb-6 text-primary hover:text-white">Volver</button>
+          <div className="p-8 max-w-4xl mx-auto bg-background-card border border-white/5 rounded-xl mt-8">
+            <button onClick={() => setActiveTab('home')} className="mb-6 text-primary hover:text-white flex items-center gap-2">
+              <span className="material-symbols-outlined text-sm">arrow_back</span> Volver
+            </button>
             <CookiesPolicy />
           </div>
         );
@@ -369,9 +375,9 @@ const App = () => {
               <span className="text-sm">2024 Ultimate Power BI. Todos los derechos reservados.</span>
             </div>
             <div className="flex gap-6">
-              <button onClick={() => { setActiveTab('legal'); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Aviso Legal</button>
-              <button onClick={() => { setActiveTab('privacy'); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Privacidad</button>
-              <button onClick={() => { setActiveTab('cookies'); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Cookies</button>
+              <button onClick={() => { setActiveTab('legal'); setSelectedChart(null); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Aviso Legal</button>
+              <button onClick={() => { setActiveTab('privacy'); setSelectedChart(null); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Privacidad</button>
+              <button onClick={() => { setActiveTab('cookies'); setSelectedChart(null); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Cookies</button>
             </div>
           </div>
         </footer>

@@ -1,9 +1,9 @@
 import React from 'react';
 
 export const LegalNotice = () => (
-    <div className="space-y-6 animate-in fade-in duration-500 text-slate-700">
-        <h1 className="text-3xl font-black text-slate-900 mb-6">Aviso Legal</h1>
-        <div className="prose prose-slate max-w-none">
+    <div className="space-y-6 animate-in fade-in duration-500 text-slate-300">
+        <h1 className="text-3xl font-black text-white mb-6">Aviso Legal</h1>
+        <div className="prose prose-invert max-w-none">
             <p><strong>1. DATOS IDENTIFICATIVOS</strong></p>
             <p>En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico, a continuación se reflejan los siguientes datos:</p>
             <p>El titular de dominio web es <strong>PL-300 Encyclopedia</strong> (en adelante "El Sitio").<br />
@@ -20,9 +20,9 @@ export const LegalNotice = () => (
 );
 
 export const PrivacyPolicy = () => (
-    <div className="space-y-6 animate-in fade-in duration-500 text-slate-700">
-        <h1 className="text-3xl font-black text-slate-900 mb-6">Política de Privacidad</h1>
-        <div className="prose prose-slate max-w-none">
+    <div className="space-y-6 animate-in fade-in duration-500 text-slate-300">
+        <h1 className="text-3xl font-black text-white mb-6">Política de Privacidad</h1>
+        <div className="prose prose-invert max-w-none">
             <p><strong>1. RESPONSABLE DEL TRATAMIENTO</strong></p>
             <p>Los datos de carácter personal que se pudieran recabar directamente del interesado serán tratados de forma confidencial y quedarán incorporados a la correspondiente actividad de tratamiento titularidad de PL-300 Encyclopedia.</p>
 
@@ -39,9 +39,9 @@ export const PrivacyPolicy = () => (
 );
 
 export const CookiesPolicy = () => (
-    <div className="space-y-6 animate-in fade-in duration-500 text-slate-700">
-        <h1 className="text-3xl font-black text-slate-900 mb-6">Política de Cookies</h1>
-        <div className="prose prose-slate max-w-none">
+    <div className="space-y-6 animate-in fade-in duration-500 text-slate-300">
+        <h1 className="text-3xl font-black text-white mb-6">Política de Cookies</h1>
+        <div className="prose prose-invert max-w-none">
             <p><strong>1. ¿QUÉ SON LAS COOKIES?</strong></p>
             <p>Una cookie es un fichero que se descarga en su ordenador al acceder a determinadas páginas web. Las cookies permiten a una página web, entre otras cosas, almacenar y recuperar información sobre los hábitos de navegación de un usuario o de su equipo y, dependiendo de la información que contengan y de la forma en que utilice su equipo, pueden utilizarse para reconocer al usuario.</p>
 
