@@ -143,6 +143,59 @@ const App = () => {
         </div>
       }
     ],
+    relacion: [
+      {
+        title: "Gráfico de Dispersión (Scatter Chart)",
+        desc: "Muestra la relación entre dos variables numéricas.",
+        useCases: "Fundamental para análisis de correlación (ej. ¿Mayor gasto en marketing implica mayores ventas?). Permite identificar valores atípicos (outliers) y clusters.",
+        tips: "Es el único gráfico predeterminado que acepta dos medidas numéricas (Eje X e Y). En el examen, si te piden animar datos a lo largo del tiempo, la respuesta es 'Play Axis' en un gráfico de dispersión.",
+        svg: <svg viewBox="0 0 100 60" className="w-full h-32 bg-cyan-50 rounded-2xl p-4">
+          <circle cx="20" cy="50" r="3" fill="#0891b2" />
+          <circle cx="35" cy="40" r="4" fill="#0891b2" />
+          <circle cx="50" cy="45" r="2" fill="#0891b2" />
+          <circle cx="65" cy="20" r="5" fill="#0891b2" />
+          <circle cx="80" cy="15" r="6" fill="#0891b2" />
+        </svg>
+      }
+    ],
+    mapas: [
+      {
+        title: "Mapa (Map)",
+        desc: "Muestra puntos de datos en ubicaciones geográficas.",
+        useCases: "Ideal para ver la distribución de clientes o tiendas. El tamaño de la burbuja puede representar ventas.",
+        tips: "Para geocodificación precisa, usa siempre categorías de datos 'Latitud' y 'Longitud'. Si usas nombres de ciudades, añade la columna 'País' para evitar ambigüedades (ej. Paris, Texas vs Paris, Francia).",
+        svg: <svg viewBox="0 0 100 60" className="w-full h-32 bg-amber-50 rounded-2xl p-4">
+          <path d="M20,20 Q50,5 80,20 T90,50 Q60,55 30,50 T20,20" fill="#fbbf24" fillOpacity="0.2" />
+          <circle cx="30" cy="30" r="3" fill="#d97706" />
+          <circle cx="60" cy="40" r="5" fill="#d97706" />
+          <circle cx="75" cy="25" r="4" fill="#d97706" />
+        </svg>
+      },
+      {
+        title: "Mapa Coroplético (Filled Map)",
+        desc: "Colorea regiones geográficas (países, estados) según un valor.",
+        useCases: "Mejor opción para comparar regiones definidas, como tasas de impuestos por estado o ventas por país.",
+        tips: "No es bueno para ciudades (puntos), solo para áreas. En el examen, úsalo para 'comparar métricas agregadas por regiones geográficas definidas'.",
+        svg: <svg viewBox="0 0 100 60" className="w-full h-32 bg-amber-50 rounded-2xl p-4">
+          <rect x="20" y="10" width="30" height="40" fill="#fcd34d" rx="4" />
+          <rect x="55" y="10" width="25" height="20" fill="#d97706" rx="4" />
+          <rect x="55" y="35" width="25" height="15" fill="#fbbf24" rx="4" />
+        </svg>
+      }
+    ],
+    tablas: [
+      {
+        title: "Matriz (Matrix)",
+        desc: "Tabla dinámica que permite agrupar filas y columnas.",
+        useCases: "Esencial para mostrar datos jerárquicos (Año > Trimestre > Mes) y permitir al usuario expandir/colapsar (Drill Down).",
+        tips: "A diferencia de la Tabla simple, la Matriz soporta 'Drill Down' en filas y columnas. Usa 'Formato Condicional' (Barra de datos, Iconos) para convertirla en un visual híbrido poderoso.",
+        svg: <div className="w-full h-32 bg-slate-50 rounded-2xl p-4 flex flex-col gap-1">
+          <div className="flex gap-1"><div className="w-8 h-4 bg-slate-200 rounded"></div><div className="w-16 h-4 bg-slate-200 rounded"></div></div>
+          <div className="flex gap-1"><div className="w-4 h-4"></div><div className="w-4 h-4 bg-slate-300 rounded"></div><div className="w-12 h-4 bg-slate-100 rounded"></div></div>
+          <div className="flex gap-1"><div className="w-4 h-4"></div><div className="w-4 h-4 bg-slate-300 rounded"></div><div className="w-12 h-4 bg-slate-100 rounded"></div></div>
+        </div>
+      }
+    ],
     interactividad: [
       {
         title: "Segmentador (Slicer)",
