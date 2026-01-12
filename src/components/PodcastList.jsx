@@ -1,0 +1,68 @@
+import React from 'react';
+import { Play, Calendar, Clock } from 'lucide-react';
+
+const PodcastList = ({ podcasts, onSelectPodcast }) => {
+    return (
+        <div className="p-4 md:p-8 lg:p-12 max-w-[1600px] mx-auto animate-in fade-in duration-500">
+            <div className="mb-10 text-center md:text-left">
+                <h1 className="text-3xl font-bold mb-4 text-white">Podcasts <span className="text-primary">PL-300</span></h1>
+                <p className="text-slate-400 max-w-2xl">
+                    Escucha a expertos discutir temas clave, actualizaciones y estrategias para dominar Power BI.
+                    Aprende mientras viajas, haces ejercicio o simplemente descansas la vista.
+                </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {podcasts.map((podcast) => (
+                    <div
+                        key={podcast.id}
+                        onClick={() => onSelectPodcast(podcast)}
+                        className="group bg-background-card border border-white/5 rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-glow cursor-pointer flex flex-col"
+                    >
+                        {/* Thumbnail */}
+                        <div className="relative aspect-video overflow-hidden">
+                            <img
+                                src={podcast.thumbnail}
+                                alt={podcast.title}
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-black shadow-lg shadow-primary/50 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <Play fill="currentColor" size={24} />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Content */}
+                        <div className="p-6 flex-1 flex flex-col">
+                            <div className="flex items-center gap-4 text-xs text-slate-500 mb-3">
+                                <span className="flex items-center gap-1">
+                                    <Calendar size={14} />
+                                    {new Date(podcast.date).toLocaleDateString()}
+                                </span>
+                                <span className="flex items-center gap-1">
+                                    <Clock size={14} />
+                                    {podcast.duration}
+                                </span>
+                            </div>
+
+                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                                {podcast.title}
+                            </h3>
+
+                            <p className="text-slate-400 text-sm line-clamp-3 mb-6 flex-1">
+                                {podcast.description}
+                            </p>
+
+                            <div className="flex items-center text-primary text-sm font-bold mt-auto">
+                                Escuchar ahora <span className="material-symbols-outlined text-sm ml-1 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default PodcastList;

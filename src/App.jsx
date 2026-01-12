@@ -7,7 +7,7 @@ import {
   PieChart, Share2, MousePointerClick, Smartphone,
   Search, Boxes, ArrowDownWideNarrow, Navigation,
   Table as TableIcon, Grid, Cpu, Database,
-  MessageSquare, FileText, List
+  MessageSquare, FileText, List, Mic
 } from 'lucide-react';
 
 // Components
@@ -15,12 +15,16 @@ import Sidebar from './components/Sidebar';
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';
 import VisualDetail from './components/VisualDetail';
+import PodcastList from './components/PodcastList';
+import PodcastDetail from './components/PodcastDetail';
 import { LegalNotice, PrivacyPolicy, CookiesPolicy } from './Legal';
+import { podcasts } from './data/podcasts';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [selectedCategory, setSelectedCategory] = useState('comparacion');
   const [selectedChart, setSelectedChart] = useState(null);
+  const [selectedPodcast, setSelectedPodcast] = useState(null);
 
   const categories = [
     { id: 'comparacion', name: 'Comparación', icon: <BarChart3 size={18} />, color: 'bg-blue-600' },
@@ -476,14 +480,19 @@ const App = () => {
           </div>
         );
       case 'podcasts':
+        if (selectedPodcast) {
+          return (
+            <PodcastDetail
+              podcast={selectedPodcast}
+              onBack={() => setSelectedPodcast(null)}
+            />
+          );
+        }
         return (
-          <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-8 animate-in fade-in zoom-in duration-500">
-            <div className="w-24 h-24 bg-gradient-to-tr from-purple-600 to-pink-600 rounded-full flex items-center justify-center mb-6 shadow-glow">
-              <span className="material-symbols-outlined text-4xl text-white">podcasts</span>
-            </div>
-            <h2 className="text-3xl font-bold text-white mb-2">Podcasts PL-300</h2>
-            <p className="text-slate-400 max-w-md">Próximamente: Entrevistas con expertos, repaso de preguntas de examen y novedades de Power BI en formato audio.</p>
-          </div>
+          <PodcastList
+            podcasts={podcasts}
+            onSelectPodcast={setSelectedPodcast}
+          />
         );
       default:
         // Fallback
