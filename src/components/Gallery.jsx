@@ -52,9 +52,9 @@ const Gallery = ({ categories, selectedCategory, setSelectedCategory, chartLibra
 
                             <div className="flex items-center justify-between mt-auto border-t border-white/5 pt-4">
                                 <span className="text-xs text-slate-500 flex items-center gap-1">
-                                    <span className="material-symbols-outlined text-sm">visibility</span> Certificado
+                                    {/* Empty span to keep layout if needed, or remove completely if flex justify handles it */}
                                 </span>
-                                <button className="text-primary text-sm font-bold flex items-center gap-1 hover:underline underline-offset-4">
+                                <button className="text-primary text-sm font-bold flex items-center gap-1 underline-offset-4">
                                     Explorar <span className="material-symbols-outlined text-sm">arrow_forward</span>
                                 </button>
                             </div>

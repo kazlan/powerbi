@@ -517,7 +517,7 @@ const App = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2 text-slate-400">
               <span className="material-symbols-outlined text-sm">copyright</span>
-              <span className="text-sm">2024 POWER BI MAX. Todos los derechos reservados.</span>
+              <span className="text-sm">2026 POWER BI MAX. Todos los derechos reservados.</span>
             </div>
             <div className="flex gap-6">
               <button onClick={() => { setActiveTab('legal'); setSelectedChart(null); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Aviso Legal</button>
