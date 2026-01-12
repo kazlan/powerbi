@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, Play, Pause, FastForward, Rewind, Link as LinkIcon, ExternalLink, Tag } from 'lucide-react';
+import { ArrowLeft, Play, Pause, FastForward, Rewind, Link as LinkIcon, ExternalLink, Tag, Volume2, Volume1, VolumeX } from 'lucide-react';
 
 const PodcastDetail = ({ podcast, onBack }) => {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -7,6 +7,24 @@ const PodcastDetail = ({ podcast, onBack }) => {
     const [duration, setDuration] = useState(0);
 
     const audioRef = useRef(null);
+    const [volume, setVolume] = useState(1);
+    const [isMuted, setIsMuted] = useState(false);
+
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.volume = isMuted ? 0 : volume;
+        }
+    }, [volume, isMuted]);
+
+    const handleVolumeChange = (e) => {
+        const newVolume = parseFloat(e.target.value);
+        setVolume(newVolume);
+        setIsMuted(newVolume === 0);
+    };
+
+    const toggleMute = () => {
+        setIsMuted(!isMuted);
+    };
 
     const togglePlay = () => {
         if (audioRef.current.paused) {
@@ -123,6 +141,22 @@ const PodcastDetail = ({ podcast, onBack }) => {
                                             <button onClick={skipForward} className="text-slate-400 hover:text-white transition-colors">
                                                 <FastForward size={24} />
                                             </button>
+                                        </div>
+
+                                        {/* Volume Control */}
+                                        <div className="flex items-center justify-center gap-4 mt-6 px-4 py-2 bg-white/5 rounded-lg border border-white/5 w-fit mx-auto">
+                                            <button onClick={toggleMute} className="text-slate-400 hover:text-primary transition-colors">
+                                                {isMuted || volume === 0 ? <VolumeX size={18} /> : volume < 0.5 ? <Volume1 size={18} /> : <Volume2 size={18} />}
+                                            </button>
+                                            <input
+                                                type="range"
+                                                min="0"
+                                                max="1"
+                                                step="0.05"
+                                                value={isMuted ? 0 : volume}
+                                                onChange={handleVolumeChange}
+                                                className="w-24 h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary hover:accent-primary/80"
+                                            />
                                         </div>
                                     </div>
                                 </div>
