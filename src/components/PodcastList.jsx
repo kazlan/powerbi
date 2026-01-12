@@ -2,7 +2,9 @@ import React from 'react';
 import { Play, Calendar, Clock, Filter, Sparkles } from 'lucide-react';
 
 const PodcastList = ({ podcasts, onSelectPodcast, selectedTag = 'Todos', onSelectTag }) => {
-    // Local state removed, using props now
+    // Defensive check
+    if (!podcasts) return <div className="p-8 text-white">Cargando podcasts...</div>;
+
 
 
     // Extract unique tags

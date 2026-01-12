@@ -29,15 +29,19 @@ const App = () => {
 
   // Handle Deep Linking on Load
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const podcastId = params.get('podcast');
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const podcastId = params.get('podcast');
 
-    if (podcastId) {
-      const foundPodcast = podcasts.find(p => p.id === podcastId);
-      if (foundPodcast) {
-        setActiveTab('podcasts');
-        setSelectedPodcast(foundPodcast);
+      if (podcastId) {
+        const foundPodcast = podcasts.find(p => p.id === podcastId);
+        if (foundPodcast) {
+          setActiveTab('podcasts');
+          setSelectedPodcast(foundPodcast);
+        }
       }
+    } catch (error) {
+      console.error("Deep linking error:", error);
     }
   }, []);
 
