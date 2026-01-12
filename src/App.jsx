@@ -27,9 +27,43 @@ const App = () => {
   const [selectedPodcast, setSelectedPodcast] = useState(null);
   const [selectedTag, setSelectedTag] = useState('Todos');
 
+  // Handle Deep Linking on Load
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const podcastId = params.get('podcast');
+
+    if (podcastId) {
+      const foundPodcast = podcasts.find(p => p.id === podcastId);
+      if (foundPodcast) {
+        setActiveTab('podcasts');
+        setSelectedPodcast(foundPodcast);
+      }
+    }
+  }, []);
+
   const handleTagSelect = (tag) => {
     setSelectedTag(tag);
     setSelectedPodcast(null);
+    // Clear URL param when going back to list via tag
+    const url = new URL(window.location);
+    url.searchParams.delete('podcast');
+    window.history.pushState({}, '', url);
+  };
+
+  const handlePodcastSelect = (podcast) => {
+    setSelectedPodcast(podcast);
+    // Update URL
+    const url = new URL(window.location);
+    url.searchParams.set('podcast', podcast.id);
+    window.history.pushState({}, '', url);
+  };
+
+  const handleBackToPodcasts = () => {
+    setSelectedPodcast(null);
+    // Clean URL
+    const url = new URL(window.location);
+    url.searchParams.delete('podcast');
+    window.history.pushState({}, '', url);
   };
 
   const categories = [
@@ -490,7 +524,7 @@ const App = () => {
           return (
             <PodcastDetail
               podcast={selectedPodcast}
-              onBack={() => setSelectedPodcast(null)}
+              onBack={handleBackToPodcasts}
               onTagSelect={handleTagSelect}
             />
           );
@@ -498,7 +532,7 @@ const App = () => {
         return (
           <PodcastList
             podcasts={podcasts}
-            onSelectPodcast={setSelectedPodcast}
+            onSelectPodcast={handlePodcastSelect}
             selectedTag={selectedTag}
             onSelectTag={handleTagSelect}
           />
