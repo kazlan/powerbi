@@ -55,25 +55,52 @@ const App = () => {
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-types-for-reports-and-q-and-a"
       },
       {
-        title: "Gráfico de Embudo (Funnel)",
-        desc: "Visualiza etapas de un proceso lineal que se reducen progresivamente.",
-        useCases: `El gráfico de Embudo es una herramienta especializada diseñada para representar procesos lineales donde se espera una disminución o filtrado en cada paso sucesivo. Es el estándar de oro para analizar 'Pipelines' de ventas, flujos de marketing digital o procesos de reclutamiento de personal.
+        title: "Gráfico Combinado (Combo Chart)",
+        desc: "Combina una línea y una columna para comparar valores con diferentes escalas.",
+        useCases: `La solución perfecta cuando tienes dos métricas con escalas muy diferentes (ej. 'Ventas' en millones y 'Margen' en porcentaje). Permite correlacionar volumen con rendimiento.
         
-        Lo que hace único al Embudo en Power BI es su capacidad automática para calcular conversiones. Sin necesidad de escribir medidas DAX complejas, el visual te muestra implícitamente qué porcentaje del paso 1 (el 100%) llega al paso final (tasa de conversión global) y qué porcentaje de un paso sobrevive al siguiente (tasa de caída o drop-off rate).
-        
-        Este análisis visual inmediato permite identificar 'cuellos de botella'. Si ves una reducción drástica entre la etapa de 'Propuesta Enviada' y 'Contrato Firmado', sabes exactamente dónde enfocar tus esfuerzos de mejora de procesos.`,
+        Al combinar barras y líneas, ahorras espacio en el informe y facilitas la detección de correlaciones entre dos series de datos que de otro modo requerirían dos gráficos separados.`,
         tips: [
-          "Es la respuesta correcta en el examen para 'visualizar etapas de un proceso de ventas' o 'analizar tasas de retención'.",
-          "El gráfico calcula automáticamente el % del primero (la etapa superior) y el % del anterior (la etapa inmediata superior).",
-          "No lo uses si las etapas no son secuenciales o si el tamaño de las etapas no se espera que disminuya (un proceso donde entran más elementos a mitad de camino rompería la metáfora).",
-          "Puedes usar el gráfico de embudo como un filtro (slicer) muy visual para filtrar otras partes del informe por etapa del proceso.",
-          "Permite el ordenamiento personalizado si tu proceso no sigue un orden lógico por valor numérico, sino por flujo de trabajo."
+          "Usa el eje secundario (Y derecho) con precaución; asegúrate de etiquetarlo claramente.",
+          "Ideal para mostrar 'Real vs Meta' (Meta como línea, Real como barra) o 'Ventas vs Crecimiento'.",
+          "En el examen PL-300: Es visual clave para 'comparar métricas de diferente magnitud'.",
+          "Puedes compartir el mismo eje X para ambas series."
         ],
-        image: "/visuals/funnel_chart.png",
-        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-funnel-charts"
+        image: "/visuals/combo_chart.png",
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-combo-chart"
+      },
+      {
+        title: "Gráfico de Cintas (Ribbon Chart)",
+        desc: "Muestra cambios de clasificación (ranking) a lo largo del tiempo.",
+        useCases: `Similar al gráfico de columnas apiladas, pero conecta las categorías con 'cintas'. El grosor de la cinta representa el valor, pero lo más importante es el cruce: puedes ver cómo una categoría sube o baja de ranking mes a mes.
+        
+        Es muy visual para identificar rápidamente quién lidera en cada periodo y cómo fluctúan las posiciones relativas más allá de los valores absolutos.`,
+        tips: [
+          "Único visual que enfatiza el cambio de rango/posición entre periodos.",
+          "El elemento con mayor valor siempre se coloca en la parte superior de cada periodo.",
+          "Excelente para ver líderes de mercado cambiantes a lo largo del tiempo.",
+          "Los tooltip muestran detalles del cambio de rango y la variación porcentual."
+        ],
+        image: "/visuals/ribbon_chart.png",
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-ribbon-charts"
       }
     ],
     tiempo: [
+      {
+        title: "Gráfico de Líneas (Line Chart)",
+        desc: "Visualiza tendencias y cambios continuos a lo largo del tiempo.",
+        useCases: `El estándar para análisis temporal. Úsalo para conectar puntos de datos individuales y mostrar la secuencia de valores. Ideal para identificar tendencias, aceleraciones, desaceleraciones o volatilidad.
+        
+        Es fundamental para series temporales donde la continuidad del dato es clave, permitiendo detectar patrones estacionales o cíclicos con facilidad.`,
+        tips: [
+          "Usa líneas sólidas para datos reales y líneas punteadas para proyecciones.",
+          "Limita a 3-4 series para evitar el 'gráfico de espagueti'.",
+          "El eje Y no necesita empezar en cero si el objetivo es ver la variabilidad, pero avisa al usuario.",
+          "Usa marcadores si los puntos de datos individuales son importantes."
+        ],
+        image: "/visuals/line_chart.png",
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-line-charts"
+      },
       {
         title: "Gráfico de Áreas",
         desc: "Enfatiza la magnitud del cambio a lo largo del tiempo.",
@@ -111,6 +138,51 @@ const App = () => {
         ],
         image: "/visuals/pie_chart.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-pie-donut-charts"
+      },
+      {
+        title: "Treemap (Mapa de Árbol)",
+        desc: "Visualiza datos jerárquicos usando rectángulos anidados.",
+        useCases: `Alternativa superior al gráfico circular cuando tienes muchas categorías. El tamaño del rectángulo es el valor principal y el color puede ser una segunda métrica (ej. Tamaño=Ventas, Color=Rentabilidad).
+        
+        Permite detectar patrones rápidamente en conjuntos de datos complejos con estructura jerárquica.`,
+        tips: [
+          "Funciona mejor con datos jerárquicos (ej. Categoría > Subcategoría).",
+          "Permite visualizar patrones rápidamente gracias al código de colores.",
+          "Los rectángulos se ordenan por tamaño de mayor a menor (arriba-izquierda a abajo-derecha).",
+          "En el examen: Usar para 'mostrar proporciones de un todo dentro de una jerarquía'."
+        ],
+        image: "/visuals/treemap.png",
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-treemaps"
+      },
+      {
+        title: "Gráfico de Cascada (Waterfall)",
+        desc: "Desglosa cómo se llega de un valor inicial a uno final.",
+        useCases: `Esencial para análisis financiero (puentes de varianza). Muestra cómo los ingresos netos se convierten en beneficio bruto después de restar costos, o cómo variaron las ventas de un año a otro por factor.
+        
+        Permite entender la composición de un cambio neto acumulado, visualizando claramente las contribuciones positivas y negativas.`,
+        tips: [
+          "Los valores verdes suman, los rojos restan (colores estándar).",
+          "Incluye automáticamente una barra de 'Total' final.",
+          "En el examen: La respuesta para 'analizar la variación' o 'bridge chart'.",
+          "Permite 'Desglose' (Breakdown) para explicar una barra específica por otra categoría."
+        ],
+        image: "/visuals/waterfall_chart.png",
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-waterfall-charts"
+      },
+      {
+        title: "Gráfico de Embudo (Funnel)",
+        desc: "Visualiza etapas de un proceso lineal que se reducen progresivamente.",
+        useCases: `El gráfico de Embudo es una herramienta especializada diseñada para representar procesos lineales donde se espera una disminución o filtrado en cada paso sucesivo. Es el estándar de oro para analizar 'Pipelines' de ventas.
+        
+        Calcula automáticamente conversiones entre etapas y ayuda a identificar cuellos de botella en flujos de procesos.`,
+        tips: [
+          "Es la respuesta correcta en el examen para 'visualizar etapas de un proceso de ventas'.",
+          "Calcula automáticamente el % del primero y el % del anterior.",
+          "Puede usarse como un filtro visual muy efectivo.",
+          "Permite ordenamiento personalizado para seguir la lógica del proceso."
+        ],
+        image: "/visuals/funnel_chart.png",
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-funnel-charts"
       }
     ],
     kpi: [
@@ -119,18 +191,55 @@ const App = () => {
         desc: "Agrupa múltiples métricas relacionadas en una sola visualización compacta.",
         useCases: `La tarjeta de varias filas es una herramienta de condensación de información. A diferencia de llenar tu dashboard con 5 o 6 tarjetas individuales (Key Performance Indicators) dispersas, este visual te permite agrupar métricas que pertenecen al mismo contexto en un solo bloque coherente y alineado.
         
-        Es extremadamente útil para crear 'Fichas de Entidad'. Imagina que seleccionas a un empleado en un filtro: este visual puede mostrar instantáneamente su Foto, Nombre, Departamento, Total de Ventas y Antigüedad, todo formateado como una sola unidad informativa. 
-        
-        Técnicamente, también es más eficiente para el rendimiento de renderizado del reporte tener un visual complejo que 6 simples. Además, soporta resaltado cruzado: al hacer clic en una barra de otro gráfico, la tarjeta se actualiza para mostrar los detalles de esa selección específica.`,
+        Es extremadamente útil para crear 'Fichas de Entidad'. Imagina que seleccionas a un empleado en un filtro: este visual puede mostrar instantáneamente su Foto, Nombre, Departamento, Total de Ventas y Antigüedad, todo formateado como una sola unidad informativa.`,
         tips: [
           "Úsalo para crear 'Fichas de Detalle' o 'Header strips' en tus reportes para mostrar el estado actual de la selección.",
           "En el examen: Es la mejor opción para mostrar un grupo de métricas relacionadas sin saturar el lienzo con múltiples objetos visuales.",
-          "Soporta barras de acento de color a la izquierda, lo que ayuda a agrupar visualmente la información o denotar categorías.",
-          "A diferencia de la Tabla, se adapta mejor a pantallas móviles y layouts verticales tipo 'tarjeta de perfil'.",
-          "Puedes usar medidas DAX que devuelvan texto para mostrar estados dinámicos como 'Objetivo Cumplido' o 'Requiere Atención' dentro de la tarjeta."
+          "Soporta barras de acento de color a la izquierda, lo que ayuda a agrupar visualmente la información o denotar categorías."
         ],
         image: "/visuals/multi_row_card.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-card"
+      },
+      {
+        title: "Tarjeta (Card)",
+        desc: "Muestra un único número importante (Big Number).",
+        useCases: `El visual más simple pero quizás el más importante. Úsalo para mostrar el KPI principal (Ventas Totales) en la esquina superior izquierda del dashboard. Sin distracciones, solo el dato.
+        
+        Su propósito es comunicar un hecho único e inequívoco.`,
+        tips: [
+          "Elimina la etiqueta de categoría y usa un título de texto si quieres más control.",
+          "Usa el 'Valor de visualización' para formatear (Millones, Miles).",
+          "Solo admite un campo de datos.",
+          "Combínala con un pequeño sparkline o icono para dar contexto."
+        ],
+        image: "/visuals/card.png",
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-card"
+      },
+      {
+        title: "Medidor (Gauge)",
+        desc: "Visualiza un valor en relación con un objetivo en un arco circular.",
+        useCases: `Compara un valor actual contra una meta definida. Aunque popular, ocupa mucho espacio para poca información. Úsalo solo para métricas críticas que necesitan monitoreo tipo 'tablero de coche'.`,
+        tips: [
+          "Requiere 4 valores posibles: Mínimo, Máximo, Destino (la línea) y Valor Actual.",
+          "Si no defines Mín/Máx, Power BI los calcula automáticamente (lo cual puede ser engañoso).",
+          "Considera usar un KPI o Bullet Chart para ahorrar espacio.",
+          "En el examen: Úsalo para 'objetivos de un vistazo'."
+        ],
+        image: "/visuals/gauge.png",
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-radial-gauge-charts"
+      },
+      {
+        title: "KPI (Indicador Clave de Rendimiento)",
+        desc: "Muestra valor, objetivo y tendencia con codificación de color.",
+        useCases: `Específicamente diseñado para decirte: ¿Vamos bien o mal? Muestra el valor actual, el objetivo, y colorea el fondo (o texto) de verde/rojo automáticamente. Además, muestra una pequeña gráfica de tendencia de fondo.`,
+        tips: [
+          "Requiere tres campos: Valor, Eje de Tendencia (Tiempo) y Objetivo.",
+          "Puedes configurar si 'Alto es bueno' (Ventas) o 'Bajo es bueno' (Devoluciones).",
+          "En el examen: La mejor opción para 'monitorear el progreso hacia un objetivo con contexto de historia'.",
+          "Muestra la distancia al objetivo en %."
+        ],
+        image: "/visuals/kpi.png",
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-kpi"
       }
     ],
     ai: [
@@ -230,6 +339,19 @@ const App = () => {
       }
     ],
     tablas: [
+      {
+        title: "Tabla (Table)",
+        desc: "Cuadrícula de filas y columnas para mostrar datos detallados precisos.",
+        useCases: `Cuando la precisión exacta es más importante que la tendencia. Úsala para listados detallados (ej. lista de pedidos), no para análisis de alto nivel. Soporta formato condicional para añadir barras o iconos.`,
+        tips: [
+          "A diferencia de la Matriz, la Tabla es plana (sin jerarquía de filas).",
+          "Soporta totales automáticos al pie.",
+          "Cuidado con el rendimiento: no intentes mostrar 1 millón de filas.",
+          "Es el formato por defecto cuando creas un visual arrastrando campos sin elegir tipo."
+        ],
+        image: "/visuals/table.png",
+        learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-tables"
+      },
       {
         title: "Matriz (Matrix)",
         desc: "Una tabla dinámica potente con capacidades de agrupación y drill-down.",
