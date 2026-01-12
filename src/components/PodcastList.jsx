@@ -1,7 +1,7 @@
 import React from 'react';
 import { Play, Calendar, Clock, Filter, Sparkles } from 'lucide-react';
 
-const PodcastList = ({ podcasts, onSelectPodcast, selectedTag, onSelectTag }) => {
+const PodcastList = ({ podcasts, onSelectPodcast, selectedTag = 'Todos', onSelectTag }) => {
     // Local state removed, using props now
 
 

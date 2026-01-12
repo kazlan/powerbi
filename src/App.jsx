@@ -25,6 +25,12 @@ const App = () => {
   const [selectedCategory, setSelectedCategory] = useState('comparacion');
   const [selectedChart, setSelectedChart] = useState(null);
   const [selectedPodcast, setSelectedPodcast] = useState(null);
+  const [selectedTag, setSelectedTag] = useState('Todos');
+
+  const handleTagSelect = (tag) => {
+    setSelectedTag(tag);
+    setSelectedPodcast(null);
+  };
 
   const categories = [
     { id: 'comparacion', name: 'Comparación', icon: <BarChart3 size={18} />, color: 'bg-blue-600' },
