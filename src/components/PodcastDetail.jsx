@@ -1,24 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, Play, Pause, FastForward, Rewind } from 'lucide-react';
+import { ArrowLeft, Play, Pause, FastForward, Rewind, Link as LinkIcon, ExternalLink, Tag } from 'lucide-react';
 
 const PodcastDetail = ({ podcast, onBack }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
-    const [activeSegmentIndex, setActiveSegmentIndex] = useState(-1);
 
     const audioRef = useRef(null);
-    const transcriptRef = useRef(null);
-    const activeSegmentRef = useRef(null);
-
-    useEffect(() => {
-        if (activeSegmentRef.current && transcriptRef.current) {
-            activeSegmentRef.current.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-            });
-        }
-    }, [activeSegmentIndex]);
 
     const togglePlay = () => {
         if (audioRef.current.paused) {
@@ -33,12 +21,6 @@ const PodcastDetail = ({ podcast, onBack }) => {
     const handleTimeUpdate = () => {
         const time = audioRef.current.currentTime;
         setCurrentTime(time);
-
-        // Find active transcript segment
-        const index = podcast.transcript.findIndex(
-            (segment) => time >= segment.start && time < segment.end
-        );
-        setActiveSegmentIndex(index);
     };
 
     const handleLoadedMetadata = () => {
@@ -79,123 +61,123 @@ const PodcastDetail = ({ podcast, onBack }) => {
                 <h2 className="text-xl font-bold text-white truncate flex-1">{podcast.title}</h2>
             </div>
 
-            <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
+            <div className="flex-1 overflow-y-auto">
+                <div className="max-w-7xl mx-auto p-6 md:p-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
 
-                {/* Left Side: Player & Info */}
-                <div className="w-full md:w-1/3 lg:w-1/4 p-6 bg-background-card/50 border-r border-white/5 flex flex-col overflow-y-auto shrink-0 z-10 shadow-lg">
-                    <div className="aspect-square rounded-xl overflow-hidden shadow-2xl mb-6 border border-white/10 relative group">
-                        <img src={podcast.thumbnail} alt={podcast.title} className="w-full h-full object-cover" />
-                        {/* Simple visualizer fake overlay */}
-                        {isPlaying && (
-                            <div className="absolute inset-0 flex items-end justify-center gap-1 p-4 bg-black/30">
-                                <div className="w-1 bg-primary h-4 animate-pulse"></div>
-                                <div className="w-1 bg-primary h-8 animate-pulse delay-75"></div>
-                                <div className="w-1 bg-primary h-6 animate-pulse delay-150"></div>
-                                <div className="w-1 bg-primary h-10 animate-pulse delay-100"></div>
-                                <div className="w-1 bg-primary h-5 animate-pulse delay-200"></div>
-                            </div>
-                        )}
-                    </div>
+                    {/* Left Side: Player & Main Info */}
+                    <div className="lg:col-span-7 flex flex-col gap-8">
+                        {/* Player Card */}
+                        <div className="bg-background-card border border-white/5 rounded-2xl p-6 shadow-xl relative overflow-hidden group">
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
-                    <h1 className="text-2xl font-bold text-white mb-2">{podcast.title}</h1>
-                    <p className="text-sm text-slate-400 mb-6">{podcast.description}</p>
-
-                    {/* Player Controls */}
-                    <div className="bg-black/30 p-4 rounded-xl border border-white/5">
-                        <audio
-                            ref={audioRef}
-                            src={podcast.audioSrc}
-                            onTimeUpdate={handleTimeUpdate}
-                            onLoadedMetadata={handleLoadedMetadata}
-                            onEnded={() => setIsPlaying(false)}
-                        />
-
-                        {/* Progress Bar */}
-                        <div className="mb-4">
-                            <input
-                                type="range"
-                                min="0"
-                                max={duration}
-                                value={currentTime}
-                                onChange={handleSeek}
-                                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary"
-                            />
-                            <div className="flex justify-between text-xs text-slate-500 mt-1">
-                                <span>{formatTime(currentTime)}</span>
-                                <span>{formatTime(duration)}</span>
-                            </div>
-                        </div>
-
-                        {/* Buttons */}
-                        <div className="flex items-center justify-center gap-6">
-                            <button onClick={skipBackward} className="text-slate-400 hover:text-white transition-colors">
-                                <Rewind size={24} />
-                            </button>
-
-                            <button
-                                onClick={togglePlay}
-                                className="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-black hover:scale-105 active:scale-95 transition-all shadow-glow"
-                            >
-                                {isPlaying ? <Pause size={28} fill="currentColor" /> : <Play size={28} fill="currentColor" className="ml-1" />}
-                            </button>
-
-                            <button onClick={skipForward} className="text-slate-400 hover:text-white transition-colors">
-                                <FastForward size={24} />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Right Side: Karaoke Transcript */}
-                <div className="flex-1 relative flex flex-col bg-[#0f172a]">
-                    {/* Transcript Header with subtle gradient */}
-                    <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#0f172a] to-transparent z-10 pointer-events-none"></div>
-
-                    <div ref={transcriptRef} className="flex-1 overflow-y-auto p-8 md:p-12 space-y-8 scroll-smooth pb-40">
-                        {podcast.transcript.map((segment, index) => {
-                            const isActive = index === activeSegmentIndex;
-                            const isPast = currentTime > segment.end;
-
-                            // Only simulate this part for testing if audio is not working, 
-                            // in real app this depends on actual audio loaded.
-                            // For now, assuming audio works.
-
-                            return (
-                                <div
-                                    key={index}
-                                    ref={isActive ? activeSegmentRef : null}
-                                    onClick={() => {
-                                        audioRef.current.currentTime = segment.start;
-                                        audioRef.current.play();
-                                        setIsPlaying(true);
-                                    }}
-                                    className={`
-                    transition-all duration-500 cursor-pointer p-4 rounded-xl -mx-4
-                    ${isActive
-                                            ? 'scale-105 bg-white/5 border-l-4 border-primary pl-6 shadow-lg'
-                                            : 'hover:bg-white/5 opacity-50 hover:opacity-100'}
-                  `}
-                                >
-                                    <p className={`
-                    text-lg md:text-2xl font-medium leading-relaxed
-                    ${isActive ? 'text-white' : 'text-slate-400'}
-                    ${isPast && !isActive ? 'text-slate-600' : ''}
-                  `}>
-                                        {segment.text}
-                                    </p>
-                                    {isActive && (
-                                        <span className="text-xs text-primary font-bold mt-2 block animate-pulse">
-                                            Reproduciendo...
-                                        </span>
-                                    )}
+                            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                                <div className="w-full md:w-48 aspect-square rounded-xl overflow-hidden shadow-2xl border border-white/10 shrink-0">
+                                    <img src={podcast.thumbnail} alt={podcast.title} className="w-full h-full object-cover" />
                                 </div>
-                            );
-                        })}
-                        {/* Empty space at bottom to allow scrolling last item to center */}
-                        <div className="h-[50vh]"></div>
+
+                                <div className="flex-1 w-full space-y-6">
+                                    <div>
+                                        <h1 className="text-2xl md:text-3xl font-bold text-white mb-2 leading-tight">{podcast.title}</h1>
+                                        <p className="text-slate-400 text-sm">{podcast.description}</p>
+                                    </div>
+
+                                    {/* Player Controls */}
+                                    <div className="bg-black/20 p-4 rounded-xl border border-white/5">
+                                        <audio
+                                            ref={audioRef}
+                                            src={podcast.audioSrc}
+                                            onTimeUpdate={handleTimeUpdate}
+                                            onLoadedMetadata={handleLoadedMetadata}
+                                            onEnded={() => setIsPlaying(false)}
+                                        />
+
+                                        {/* Progress Bar */}
+                                        <div className="mb-4">
+                                            <input
+                                                type="range"
+                                                min="0"
+                                                max={duration}
+                                                value={currentTime}
+                                                onChange={handleSeek}
+                                                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary"
+                                            />
+                                            <div className="flex justify-between text-xs text-slate-500 mt-1">
+                                                <span>{formatTime(currentTime)}</span>
+                                                <span>{formatTime(duration)}</span>
+                                            </div>
+                                        </div>
+
+                                        {/* Buttons */}
+                                        <div className="flex items-center justify-center gap-6">
+                                            <button onClick={skipBackward} className="text-slate-400 hover:text-white transition-colors">
+                                                <Rewind size={24} />
+                                            </button>
+
+                                            <button
+                                                onClick={togglePlay}
+                                                className="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-black hover:scale-105 active:scale-95 transition-all shadow-glow"
+                                            >
+                                                {isPlaying ? <Pause size={28} fill="currentColor" /> : <Play size={28} fill="currentColor" className="ml-1" />}
+                                            </button>
+
+                                            <button onClick={skipForward} className="text-slate-400 hover:text-white transition-colors">
+                                                <FastForward size={24} />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/80 to-transparent z-10 pointer-events-none"></div>
+                    {/* Right Side: Meta Info (Tags & Links) */}
+                    <div className="lg:col-span-5 space-y-8">
+                        {/* Tags Section */}
+                        <div className="bg-background-card/50 border border-white/5 rounded-2xl p-6">
+                            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                <Tag size={20} className="text-primary" />
+                                Temas Relacionados
+                            </h3>
+                            <div className="flex flex-wrap gap-2">
+                                {podcast.tags?.map(tag => (
+                                    <span key={tag} className="bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white px-3 py-1.5 rounded-lg text-sm transition-colors cursor-default border border-white/5">
+                                        {tag}
+                                    </span>
+                                ))}
+                                {!podcast.tags?.length && <span className="text-slate-500 text-sm">No hay etiquetas disponibles.</span>}
+                            </div>
+                        </div>
+
+                        {/* Links Section */}
+                        <div className="bg-background-card/50 border border-white/5 rounded-2xl p-6">
+                            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                <LinkIcon size={20} className="text-primary" />
+                                Enlaces de Interés
+                            </h3>
+                            <div className="space-y-3">
+                                {podcast.links?.map((link, idx) => (
+                                    <a
+                                        key={idx}
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-start gap-3 p-3 rounded-xl bg-black/20 hover:bg-white/5 border border-white/5 hover:border-primary/30 transition-all group"
+                                    >
+                                        <ExternalLink size={18} className="text-slate-500 group-hover:text-primary mt-0.5" />
+                                        <div>
+                                            <div className="text-slate-300 group-hover:text-white font-medium transition-colors">
+                                                {link.title}
+                                            </div>
+                                            <div className="text-xs text-slate-500 truncate mt-0.5 max-w-[250px] opacity-70">
+                                                {link.url}
+                                            </div>
+                                        </div>
+                                    </a>
+                                ))}
+                                {!podcast.links?.length && <span className="text-slate-500 text-sm">No hay enlaces adicionales.</span>}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
