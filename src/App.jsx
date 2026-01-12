@@ -142,9 +142,9 @@ const App = () => {
       {
         title: "Treemap (Mapa de Árbol)",
         desc: "Visualiza datos jerárquicos usando rectángulos anidados.",
-        useCases: `Alternativa superior al gráfico circular cuando tienes muchas categorías. El tamaño del rectángulo es el valor principal y el color puede ser una segunda métrica (ej. Tamaño=Ventas, Color=Rentabilidad).
+        useCases: `El Treemap es una visualización de áreas donde el tamaño de cada rectángulo representa una métrica cuantitativa. Es una alternativa superior al gráfico circular cuando necesitas visualizar muchas categorías, ya que aprovecha eficientemente todo el espacio rectangular del lienzo en lugar de dejar espacios vacíos en las esquinas.
         
-        Permite detectar patrones rápidamente en conjuntos de datos complejos con estructura jerárquica.`,
+        Su verdadera potencia se revela con datos jerárquicos. Puedes anidar 'Producto' dentro de 'Categoría', y el visual creará rectángulos grandes (categorías) subdivididos en rectángulos más pequeños (productos). Además, admite una segunda dimensión de análisis mediante el color: puedes determinar el tamaño por 'Ventas' (cuanto más grande, más ventas) y la saturación del color por 'Rentabilidad' (cuanto más oscuro, más rentable), permitiendo detectar al instante productos 'superventas' que quizás tienen bajo margen.`,
         tips: [
           "Funciona mejor con datos jerárquicos (ej. Categoría > Subcategoría).",
           "Permite visualizar patrones rápidamente gracias al código de colores.",
@@ -157,9 +157,9 @@ const App = () => {
       {
         title: "Gráfico de Cascada (Waterfall)",
         desc: "Desglosa cómo se llega de un valor inicial a uno final.",
-        useCases: `Esencial para análisis financiero (puentes de varianza). Muestra cómo los ingresos netos se convierten en beneficio bruto después de restar costos, o cómo variaron las ventas de un año a otro por factor.
+        useCases: `El gráfico de Cascada es la herramienta estándar para el análisis financiero y de variaciones, conocido a menudo como 'Bridge Chart' o gráfico de puente. Su propósito es desglosar auditivamente cómo se llega de un saldo inicial a uno final. Por ejemplo, te permite visualizar paso a paso cómo los 'Ingresos Brutos' se ven erosionados por el 'Costo de Ventas', 'Gastos Operativos' e 'Impuestos' hasta llegar a la 'Utilidad Neta'.
         
-        Permite entender la composición de un cambio neto acumulado, visualizando claramente las contribuciones positivas y negativas.`,
+        Más allá de las finanzas, es crucial para explicar el cambio entre dos periodos. Si las ventas bajaron de 1M a 800k, el gráfico de cascada puede mostrar barras rojas y verdes para cada factor causal (ej. 'Precio', 'Volumen', 'Mix de Producto'), explicando visualmente 'por qué' ocurrió el cambio neto. Power BI colorea automáticamente los incrementos en verde y los decrementos en rojo, aunque esto es personalizable.`,
         tips: [
           "Los valores verdes suman, los rojos restan (colores estándar).",
           "Incluye automáticamente una barra de 'Total' final.",
@@ -172,14 +172,17 @@ const App = () => {
       {
         title: "Gráfico de Embudo (Funnel)",
         desc: "Visualiza etapas de un proceso lineal que se reducen progresivamente.",
-        useCases: `El gráfico de Embudo es una herramienta especializada diseñada para representar procesos lineales donde se espera una disminución o filtrado en cada paso sucesivo. Es el estándar de oro para analizar 'Pipelines' de ventas.
+        useCases: `El gráfico de Embudo es una herramienta especializada diseñada para representar procesos lineales donde se espera una disminución o filtrado en cada paso sucesivo. Es el estándar de oro para analizar 'Pipelines' de ventas, flujos de marketing digital o procesos de reclutamiento de personal.
         
-        Calcula automáticamente conversiones entre etapas y ayuda a identificar cuellos de botella en flujos de procesos.`,
+        Lo que hace único al Embudo en Power BI es su capacidad automática para calcular conversiones. Sin necesidad de escribir medidas DAX complejas, el visual te muestra implícitamente qué porcentaje del paso 1 (el 100%) llega al paso final (tasa de conversión global) y qué porcentaje de un paso sobrevive al siguiente (tasa de caída o drop-off rate).
+        
+        Este análisis visual inmediato permite identificar 'cuellos de botella'. Si ves una reducción drástica entre la etapa de 'Propuesta Enviada' y 'Contrato Firmado', sabes exactamente dónde enfocar tus esfuerzos de mejora de procesos.`,
         tips: [
-          "Es la respuesta correcta en el examen para 'visualizar etapas de un proceso de ventas'.",
-          "Calcula automáticamente el % del primero y el % del anterior.",
-          "Puede usarse como un filtro visual muy efectivo.",
-          "Permite ordenamiento personalizado para seguir la lógica del proceso."
+          "Es la respuesta correcta en el examen para 'visualizar etapas de un proceso de ventas' o 'analizar tasas de retención'.",
+          "El gráfico calcula automáticamente el % del primero (la etapa superior) y el % del anterior (la etapa inmediata superior).",
+          "No lo uses si las etapas no son secuenciales o si el tamaño de las etapas no se espera que disminuya (un proceso donde entran más elementos a mitad de camino rompería la metáfora).",
+          "Puedes usar el gráfico de embudo como un filtro (slicer) muy visual para filtrar otras partes del informe por etapa del proceso.",
+          "Permite el ordenamiento personalizado si tu proceso no sigue un orden lógico por valor numérico, sino por flujo de trabajo."
         ],
         image: "/visuals/funnel_chart.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-funnel-charts"
@@ -191,11 +194,15 @@ const App = () => {
         desc: "Agrupa múltiples métricas relacionadas en una sola visualización compacta.",
         useCases: `La tarjeta de varias filas es una herramienta de condensación de información. A diferencia de llenar tu dashboard con 5 o 6 tarjetas individuales (Key Performance Indicators) dispersas, este visual te permite agrupar métricas que pertenecen al mismo contexto en un solo bloque coherente y alineado.
         
-        Es extremadamente útil para crear 'Fichas de Entidad'. Imagina que seleccionas a un empleado en un filtro: este visual puede mostrar instantáneamente su Foto, Nombre, Departamento, Total de Ventas y Antigüedad, todo formateado como una sola unidad informativa.`,
+        Es extremadamente útil para crear 'Fichas de Entidad'. Imagina que seleccionas a un empleado en un filtro: este visual puede mostrar instantáneamente su Foto, Nombre, Departamento, Total de Ventas y Antigüedad, todo formateado como una sola unidad informativa. 
+        
+        Técnicamente, también es más eficiente para el rendimiento de renderizado del reporte tener un visual complejo que 6 simples. Además, soporta resaltado cruzado: al hacer clic en una barra de otro gráfico, la tarjeta se actualiza para mostrar los detalles de esa selección específica.`,
         tips: [
           "Úsalo para crear 'Fichas de Detalle' o 'Header strips' en tus reportes para mostrar el estado actual de la selección.",
           "En el examen: Es la mejor opción para mostrar un grupo de métricas relacionadas sin saturar el lienzo con múltiples objetos visuales.",
-          "Soporta barras de acento de color a la izquierda, lo que ayuda a agrupar visualmente la información o denotar categorías."
+          "Soporta barras de acento de color a la izquierda, lo que ayuda a agrupar visualmente la información o denotar categorías.",
+          "A diferencia de la Tabla, se adapta mejor a pantallas móviles y layouts verticales tipo 'tarjeta de perfil'.",
+          "Puedes usar medidas DAX que devuelvan texto para mostrar estados dinámicos como 'Objetivo Cumplido' o 'Requiere Atención' dentro de la tarjeta."
         ],
         image: "/visuals/multi_row_card.png",
         learnUrl: "https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualization-card"
@@ -203,9 +210,9 @@ const App = () => {
       {
         title: "Tarjeta (Card)",
         desc: "Muestra un único número importante (Big Number).",
-        useCases: `El visual más simple pero quizás el más importante. Úsalo para mostrar el KPI principal (Ventas Totales) en la esquina superior izquierda del dashboard. Sin distracciones, solo el dato.
+        useCases: `La Tarjeta (Card) de una sola fila es el elemento fundamental para contar la historia de alto nivel. Se utiliza para mostrar los 'Big Numbers': esas métricas críticas que el usuario debe absorber en los primeros 3 segundos, como 'Ventas Totales', 'Tickets Abiertos' o 'Satisfacción del Cliente'. Se colocan típicamente en la parte superior izquierda del informe (el área de mayor atención visual).
         
-        Su propósito es comunicar un hecho único e inequívoco.`,
+        Una limitación común es que solo muestra un número sin contexto. Para solucionar esto en el examen PL-300 y en la práctica profesional, es vital usar medidas DAX formateadas o combinar la tarjeta con indicadores visuales externos. Por ejemplo, si el número es bajo, puedes cambiar programáticamente el color de la etiqueta (usando formato condicional fx) para alertar al usuario, convirtiendo un dato estático en una señal de alarma inteligente.`,
         tips: [
           "Elimina la etiqueta de categoría y usa un título de texto si quieres más control.",
           "Usa el 'Valor de visualización' para formatear (Millones, Miles).",
@@ -218,7 +225,9 @@ const App = () => {
       {
         title: "Medidor (Gauge)",
         desc: "Visualiza un valor en relación con un objetivo en un arco circular.",
-        useCases: `Compara un valor actual contra una meta definida. Aunque popular, ocupa mucho espacio para poca información. Úsalo solo para métricas críticas que necesitan monitoreo tipo 'tablero de coche'.`,
+        useCases: `El Medidor (Gauge) radial imita el velocímetro de un coche para mostrar el progreso hacia un objetivo específico. Es una visualización binaria y directa: ¿Hemos llegado a la meta o no? Requiere definir un valor mínimo, un máximo, el valor actual y, opcionalmente, una línea de objetivo.
+        
+        Sin embargo, su uso debe ser medido. Ocupa una gran cantidad de espacio en pantalla (pixel real estate) para comunicar un solo dato. En escenarios de diseño avanzado o para el examen, considera si un gráfico 'KPI' o un 'Bullet Chart' (visual personalizado) podría contar la misma historia de manera más eficiente. Usa el Gauge solo para las 2 o 3 métricas más críticas que requieren monitoreo constante y urgente.`,
         tips: [
           "Requiere 4 valores posibles: Mínimo, Máximo, Destino (la línea) y Valor Actual.",
           "Si no defines Mín/Máx, Power BI los calcula automáticamente (lo cual puede ser engañoso).",
@@ -231,7 +240,9 @@ const App = () => {
       {
         title: "KPI (Indicador Clave de Rendimiento)",
         desc: "Muestra valor, objetivo y tendencia con codificación de color.",
-        useCases: `Específicamente diseñado para decirte: ¿Vamos bien o mal? Muestra el valor actual, el objetivo, y colorea el fondo (o texto) de verde/rojo automáticamente. Además, muestra una pequeña gráfica de tendencia de fondo.`,
+        useCases: `El visual KPI es una potente evolución de la Tarjeta simple. Mientras que la tarjeta solo dice 'cuánto vendimos', el KPI responde a '¿es eso bueno o malo?' y '¿cuál es la tendencia?'. Requiere tres piezas de datos: el 'Valor Indicador' (lo que mides), el 'Objetivo de destino' (la meta) y el 'Eje de tendencia' (normalmente una fecha).
+        
+        Automáticamente, este visual colorea el resultado en verde si se cumple la meta o en rojo si no (configurable para métricas donde 'menos es mejor', como devoluciones). Además, dibuja una pequeña gráfica de área en el fondo que muestra la tendencia histórica reciente. Es el visual más completo para cuadros de mando ejecutivos porque proporciona contexto, estado y tendencia en un solo recuadro compacto.`,
         tips: [
           "Requiere tres campos: Valor, Eje de Tendencia (Tiempo) y Objetivo.",
           "Puedes configurar si 'Alto es bueno' (Ventas) o 'Bajo es bueno' (Devoluciones).",
@@ -342,7 +353,9 @@ const App = () => {
       {
         title: "Tabla (Table)",
         desc: "Cuadrícula de filas y columnas para mostrar datos detallados precisos.",
-        useCases: `Cuando la precisión exacta es más importante que la tendencia. Úsala para listados detallados (ej. lista de pedidos), no para análisis de alto nivel. Soporta formato condicional para añadir barras o iconos.`,
+        useCases: `La Tabla es el visual de elección cuando la precisión de los datos individuales supera la importancia de las tendencias agregadas. Aunque menos visual que un gráfico, es fundamental para usuarios operativos que necesitan ver el detalle exacto línea por línea, como un listado de facturas vencidas, inventario por SKU o transacciones detalladas.
+        
+        A pesar de su aparente simplicidad, la Tabla en Power BI es altamente interactiva. Admite ordenamiento por cualquier columna, totales automáticos y, crucialmente, 'Formato Condicional'. Puedes enriquecer una tabla simple añadiendo barras de datos, iconos de semáforo o escalas de color de fondo a las celdas numéricas, creando un híbrido que ofrece tanto el detalle preciso de los números como pistas visuales rápidas sobre el rendimiento.`,
         tips: [
           "A diferencia de la Matriz, la Tabla es plana (sin jerarquía de filas).",
           "Soporta totales automáticos al pie.",
