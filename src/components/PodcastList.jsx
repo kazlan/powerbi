@@ -1,8 +1,9 @@
 import React from 'react';
 import { Play, Calendar, Clock, Filter, Sparkles } from 'lucide-react';
 
-const PodcastList = ({ podcasts, onSelectPodcast }) => {
-    const [selectedTag, setSelectedTag] = React.useState('Todos');
+const PodcastList = ({ podcasts, onSelectPodcast, selectedTag, onSelectTag }) => {
+    // Local state removed, using props now
+
 
     // Extract unique tags
     const allTags = ['Todos', ...new Set(podcasts.flatMap(p => p.tags || []))];
@@ -113,10 +114,10 @@ const PodcastList = ({ podcasts, onSelectPodcast }) => {
                             {allTags.map(tag => (
                                 <button
                                     key={tag}
-                                    onClick={() => setSelectedTag(tag)}
+                                    onClick={() => onSelectTag(tag)}
                                     className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-300 border w-full text-left flex justify-between items-center group ${selectedTag === tag
-                                            ? 'bg-primary/20 text-primary border-primary/50 shadow-[0_0_10px_rgba(59,130,246,0.15)]'
-                                            : 'bg-white/5 text-slate-400 border-white/5 hover:bg-white/10 hover:text-white'
+                                        ? 'bg-primary/20 text-primary border-primary/50 shadow-[0_0_10px_rgba(59,130,246,0.15)]'
+                                        : 'bg-white/5 text-slate-400 border-white/5 hover:bg-white/10 hover:text-white'
                                         }`}
                                 >
                                     {tag}

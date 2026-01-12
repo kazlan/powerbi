@@ -485,6 +485,7 @@ const App = () => {
             <PodcastDetail
               podcast={selectedPodcast}
               onBack={() => setSelectedPodcast(null)}
+              onTagSelect={handleTagSelect}
             />
           );
         }
@@ -492,6 +493,8 @@ const App = () => {
           <PodcastList
             podcasts={podcasts}
             onSelectPodcast={setSelectedPodcast}
+            selectedTag={selectedTag}
+            onSelectTag={handleTagSelect}
           />
         );
       default:

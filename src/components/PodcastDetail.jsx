@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, Play, Pause, FastForward, Rewind, Link as LinkIcon, ExternalLink, Tag, Volume2, Volume1, VolumeX } from 'lucide-react';
 
-const PodcastDetail = ({ podcast, onBack }) => {
+const PodcastDetail = ({ podcast, onBack, onTagSelect }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -174,9 +174,13 @@ const PodcastDetail = ({ podcast, onBack }) => {
                             </h3>
                             <div className="flex flex-wrap gap-2">
                                 {podcast.tags?.map(tag => (
-                                    <span key={tag} className="bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white px-3 py-1.5 rounded-lg text-sm transition-colors cursor-default border border-white/5">
+                                    <button
+                                        key={tag}
+                                        onClick={() => onTagSelect(tag)}
+                                        className="bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white px-3 py-1.5 rounded-lg text-sm transition-colors cursor-pointer border border-white/5 hover:border-primary/30"
+                                    >
                                         {tag}
-                                    </span>
+                                    </button>
                                 ))}
                                 {!podcast.tags?.length && <span className="text-slate-500 text-sm">No hay etiquetas disponibles.</span>}
                             </div>
