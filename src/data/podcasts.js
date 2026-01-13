@@ -20,7 +20,7 @@ export const podcasts = [
         duration: "18:45",
         description: "Descubre los secretos de Power Query para transformar datos desordenados en modelos limpios y eficientes. Aprende sobre 'M' y optimización de consultas.",
         thumbnail: "/podcasts/podcast_cover_pq.png",
-        audioSrc: "/podcasts/Next_Episode.m4a",
+        audioSrc: "/podcasts/Power_Query_La_alquimia_real_de_los_datos.m4a",
         tags: ["Power Query", "ETL", "Lenguaje M", "Modelado"],
         links: [
             { title: "Documentación de Power Query", url: "https://learn.microsoft.com/es-es/power-query/" },
