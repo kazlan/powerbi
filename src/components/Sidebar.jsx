@@ -1,4 +1,5 @@
 import React from 'react';
+import { Linkedin } from 'lucide-react';
 
 const Sidebar = ({ activeTab, setActiveTab }) => {
     const menuItems = [
@@ -32,6 +33,15 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
             </nav>
 
             <div className="mt-auto flex flex-col gap-4">
+                <a
+                    href="https://linkedin.com/company/powerbimax"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/5 transition-all group"
+                    title="LinkedIn"
+                >
+                    <Linkedin size={20} className="group-hover:text-[#0077b5] transition-colors" />
+                </a>
 
                 <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center text-white text-xs font-bold border border-white/20 shadow-lg cursor-pointer">
                     ES
