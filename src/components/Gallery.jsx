@@ -1,10 +1,12 @@
 import React from 'react';
+import SEO from './SEO';
 
 const Gallery = ({ categories, selectedCategory, setSelectedCategory, chartLibrary, onSelectChart }) => {
     const visuals = chartLibrary[selectedCategory] || [];
 
     return (
         <div className="p-4 md:p-8 lg:p-12 max-w-[1600px] mx-auto animate-in fade-in duration-500">
+            <SEO title="Galería de Visuales" description="Explora el catálogo completo de visuales de Power BI para el examen PL-300." />
             <div className="mb-10">
                 <h1 className="text-3xl font-bold mb-6 text-white">Galería de <span className="text-primary">Visuales</span></h1>
 

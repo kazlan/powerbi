@@ -1,5 +1,6 @@
 import React from 'react';
 import { Play, Calendar, Clock, Filter, Sparkles } from 'lucide-react';
+import SEO from './SEO';
 
 const PodcastList = ({ podcasts, onSelectPodcast, selectedTag = 'Todos', onSelectTag }) => {
     // Defensive check
@@ -16,6 +17,7 @@ const PodcastList = ({ podcasts, onSelectPodcast, selectedTag = 'Todos', onSelec
 
     return (
         <div className="p-4 md:p-8 lg:p-12 max-w-[1800px] mx-auto animate-in fade-in duration-500">
+            <SEO title="Podcasts" description="Domina Power BI con nuestros podcasts de expertos. Estrategias, actualizaciones y secretos para la certificación PL-300." />
             {/* Header */}
             <div className="mb-12 relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary/10 via-background-card to-background-card border border-white/5 p-8 md:p-12">
                 <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">

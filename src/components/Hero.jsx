@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import SEO from './SEO';
 
 const Hero = ({ onExplore, allCharts = [], onSelectChart }) => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -52,6 +53,7 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart }) => {
 
     return (
         <div className="p-4 md:p-8 lg:p-12 max-w-[1600px] mx-auto animate-in fade-in duration-700">
+            <SEO />
             {/* Header Inside Main (Desktop) */}
             <div className="hidden md:flex items-center justify-between mb-12">
                 <div>

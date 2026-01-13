@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import SEO from './SEO';
 
 const VisualDetail = ({ chart, onBack, onPrevious, onNext }) => {
+    // ... existing hooks ...
     const [randomTip, setRandomTip] = useState('');
     const [isSpeaking, setIsSpeaking] = useState(false);
 
@@ -49,11 +51,16 @@ const VisualDetail = ({ chart, onBack, onPrevious, onNext }) => {
 
     return (
         <div className="p-4 md:p-8 lg:p-12 max-w-[1600px] mx-auto animate-in slide-in-from-right-10 duration-500">
+            <SEO
+                title={chart.title}
+                description={chart.desc}
+                image={chart.image}
+            />
             {/* Breadcrumbs */}
             <div className="flex flex-wrap items-center gap-2 mb-8">
                 <button onClick={onBack} className="text-slate-400 text-sm font-medium hover:text-primary">Galería</button>
                 <span className="material-symbols-outlined text-slate-600 text-sm">chevron_right</span>
-                <span className="text-white text-sm font-semibold">{chart.title}</span>
+                <h1 className="text-white text-sm font-semibold">{chart.title}</h1>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">

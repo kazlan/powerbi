@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, Play, Pause, FastForward, Rewind, Link as LinkIcon, ExternalLink, Tag, Volume2, Volume1, VolumeX } from 'lucide-react';
+import SEO from './SEO';
 
 const PodcastDetail = ({ podcast, onBack, onTagSelect }) => {
+    // ... existing hooks ...
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -15,6 +17,8 @@ const PodcastDetail = ({ podcast, onBack, onTagSelect }) => {
             audioRef.current.volume = isMuted ? 0 : volume;
         }
     }, [volume, isMuted]);
+
+    // ... methods ...
 
     const handleVolumeChange = (e) => {
         const newVolume = parseFloat(e.target.value);
@@ -68,6 +72,12 @@ const PodcastDetail = ({ podcast, onBack, onTagSelect }) => {
 
     return (
         <div className="flex flex-col h-[calc(100vh-64px)] overflow-hidden animate-in fade-in slide-in-from-right-4 duration-500 bg-background-dark">
+            <SEO
+                title={podcast.title}
+                description={podcast.description}
+                image={podcast.thumbnail}
+                type="music.song"
+            />
             {/* Header */}
             <div className="p-6 border-b border-white/5 bg-background-card flex items-center gap-4 shadow-md z-10 shrink-0">
                 <button
