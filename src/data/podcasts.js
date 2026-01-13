@@ -26,5 +26,19 @@ export const podcasts = [
             { title: "Documentación de Power Query", url: "https://learn.microsoft.com/es-es/power-query/" },
             { title: "Mejores Prácticas de Transformación", url: "https://learn.microsoft.com/es-es/power-bi/guidance/power-query-background-refresh" }
         ]
+    },
+    {
+        id: "dax-contextos",
+        title: "DAX: Contextos de Fila y Filtro",
+        date: "2026-01-26",
+        duration: "24:10",
+        description: "Dominar los contextos es el verdadero superpoder en DAX. Desglosamos la diferencia entre contexto de fila y de filtro, y cómo la función CALCULATE altera la realidad de tus datos.",
+        thumbnail: "/podcasts/podcast_cover_context.png",
+        audioSrc: "/podcasts/DAX_Contexto_de_Fila_y_Filtro_Desvelados.m4a",
+        tags: ["DAX", "Contexto de Fila", "CALCULATE", "Avanzado"],
+        links: [
+            { title: "Comprendiendo los Contextos", url: "https://learn.microsoft.com/es-es/dax/dax-overview#context" },
+            { title: "Guía Definitiva de CALCULATE", url: "https://www.sqlbi.com/articles/introducing-calculate-in-dax/" }
+        ]
     }
 ];
