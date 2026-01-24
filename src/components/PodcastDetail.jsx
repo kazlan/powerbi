@@ -99,77 +99,94 @@ const PodcastDetail = ({ podcast, onBack, onTagSelect }) => {
                             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
                             <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
-                                <div className="w-full md:w-48 aspect-square rounded-xl overflow-hidden shadow-2xl border border-white/10 shrink-0">
-                                    <img src={podcast.thumbnail} alt={podcast.title} className="w-full h-full object-cover" />
-                                </div>
-
-                                <div className="flex-1 w-full space-y-6">
-                                    <div>
-                                        <h1 className="text-2xl md:text-3xl font-bold text-white mb-2 leading-tight">{podcast.title}</h1>
-                                        <p className="text-slate-400 text-sm">{podcast.description}</p>
+                                {podcast.youtubeId ? (
+                                    <div className="w-full aspect-video rounded-xl overflow-hidden shadow-2xl border border-white/10 shrink-0">
+                                        <iframe
+                                            width="100%"
+                                            height="100%"
+                                            src={`https://www.youtube.com/embed/${podcast.youtubeId}?si=jrorTV-qvc4j8FH6`}
+                                            title="YouTube video player"
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            referrerPolicy="strict-origin-when-cross-origin"
+                                            allowFullScreen
+                                        ></iframe>
                                     </div>
+                                ) : (
+                                    <>
+                                        <div className="w-full md:w-48 aspect-square rounded-xl overflow-hidden shadow-2xl border border-white/10 shrink-0">
+                                            <img src={podcast.thumbnail} alt={podcast.title} className="w-full h-full object-cover" />
+                                        </div>
 
-                                    {/* Player Controls */}
-                                    <div className="bg-black/20 p-4 rounded-xl border border-white/5">
-                                        <audio
-                                            ref={audioRef}
-                                            src={podcast.audioSrc}
-                                            onTimeUpdate={handleTimeUpdate}
-                                            onLoadedMetadata={handleLoadedMetadata}
-                                            onEnded={() => setIsPlaying(false)}
-                                        />
+                                        <div className="flex-1 w-full space-y-6">
+                                            <div>
+                                                <h1 className="text-2xl md:text-3xl font-bold text-white mb-2 leading-tight">{podcast.title}</h1>
+                                                <p className="text-slate-400 text-sm">{podcast.description}</p>
+                                            </div>
 
-                                        {/* Progress Bar */}
-                                        <div className="mb-4">
-                                            <input
-                                                type="range"
-                                                min="0"
-                                                max={duration}
-                                                value={currentTime}
-                                                onChange={handleSeek}
-                                                className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary"
-                                            />
-                                            <div className="flex justify-between text-xs text-slate-500 mt-1">
-                                                <span>{formatTime(currentTime)}</span>
-                                                <span>{formatTime(duration)}</span>
+                                            {/* Player Controls */}
+                                            <div className="bg-black/20 p-4 rounded-xl border border-white/5">
+                                                <audio
+                                                    ref={audioRef}
+                                                    src={podcast.audioSrc}
+                                                    onTimeUpdate={handleTimeUpdate}
+                                                    onLoadedMetadata={handleLoadedMetadata}
+                                                    onEnded={() => setIsPlaying(false)}
+                                                />
+
+                                                {/* Progress Bar */}
+                                                <div className="mb-4">
+                                                    <input
+                                                        type="range"
+                                                        min="0"
+                                                        max={duration}
+                                                        value={currentTime}
+                                                        onChange={handleSeek}
+                                                        className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary"
+                                                    />
+                                                    <div className="flex justify-between text-xs text-slate-500 mt-1">
+                                                        <span>{formatTime(currentTime)}</span>
+                                                        <span>{formatTime(duration)}</span>
+                                                    </div>
+                                                </div>
+
+                                                {/* Buttons */}
+                                                <div className="flex items-center justify-center gap-6">
+                                                    <button onClick={skipBackward} className="text-slate-400 hover:text-white transition-colors">
+                                                        <Rewind size={24} />
+                                                    </button>
+
+                                                    <button
+                                                        onClick={togglePlay}
+                                                        className="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-black hover:scale-105 active:scale-95 transition-all shadow-glow"
+                                                    >
+                                                        {isPlaying ? <Pause size={28} fill="currentColor" /> : <Play size={28} fill="currentColor" className="ml-1" />}
+                                                    </button>
+
+                                                    <button onClick={skipForward} className="text-slate-400 hover:text-white transition-colors">
+                                                        <FastForward size={24} />
+                                                    </button>
+                                                </div>
+
+                                                {/* Volume Control */}
+                                                <div className="flex items-center justify-center gap-4 mt-6 px-4 py-2 bg-white/5 rounded-lg border border-white/5 w-fit mx-auto">
+                                                    <button onClick={toggleMute} className="text-slate-400 hover:text-primary transition-colors">
+                                                        {isMuted || volume === 0 ? <VolumeX size={18} /> : volume < 0.5 ? <Volume1 size={18} /> : <Volume2 size={18} />}
+                                                    </button>
+                                                    <input
+                                                        type="range"
+                                                        min="0"
+                                                        max="1"
+                                                        step="0.05"
+                                                        value={isMuted ? 0 : volume}
+                                                        onChange={handleVolumeChange}
+                                                        className="w-24 h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary hover:accent-primary/80"
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
-
-                                        {/* Buttons */}
-                                        <div className="flex items-center justify-center gap-6">
-                                            <button onClick={skipBackward} className="text-slate-400 hover:text-white transition-colors">
-                                                <Rewind size={24} />
-                                            </button>
-
-                                            <button
-                                                onClick={togglePlay}
-                                                className="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-black hover:scale-105 active:scale-95 transition-all shadow-glow"
-                                            >
-                                                {isPlaying ? <Pause size={28} fill="currentColor" /> : <Play size={28} fill="currentColor" className="ml-1" />}
-                                            </button>
-
-                                            <button onClick={skipForward} className="text-slate-400 hover:text-white transition-colors">
-                                                <FastForward size={24} />
-                                            </button>
-                                        </div>
-
-                                        {/* Volume Control */}
-                                        <div className="flex items-center justify-center gap-4 mt-6 px-4 py-2 bg-white/5 rounded-lg border border-white/5 w-fit mx-auto">
-                                            <button onClick={toggleMute} className="text-slate-400 hover:text-primary transition-colors">
-                                                {isMuted || volume === 0 ? <VolumeX size={18} /> : volume < 0.5 ? <Volume1 size={18} /> : <Volume2 size={18} />}
-                                            </button>
-                                            <input
-                                                type="range"
-                                                min="0"
-                                                max="1"
-                                                step="0.05"
-                                                value={isMuted ? 0 : volume}
-                                                onChange={handleVolumeChange}
-                                                className="w-24 h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary hover:accent-primary/80"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>

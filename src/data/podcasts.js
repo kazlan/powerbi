@@ -22,6 +22,7 @@ export const podcasts = [
         thumbnail: "/podcasts/podcast_cover_pq.png",
         audioSrc: "/podcasts/Power_Query_La_alquimia_real_de_los_datos.m4a",
         tags: ["Power Query", "ETL", "Lenguaje M", "Modelado"],
+        youtubeId: "VROcUBYbJ_o",
         links: [
             { title: "Documentación de Power Query", url: "https://learn.microsoft.com/es-es/power-query/" },
             { title: "Mejores Prácticas de Transformación", url: "https://learn.microsoft.com/es-es/power-bi/guidance/power-query-background-refresh" }
