@@ -8,6 +8,7 @@ export const podcasts = [
         thumbnail: "/podcasts/podcast_cover_dax.png",
         audioSrc: "/podcasts/Power_BI_DAX_y_narración_de_datos.m4a",
         tags: ["DAX", "Storytelling", "Visualización", "Buenas Prácticas"],
+        youtubeId: "eZALdjOBcrI",
         links: [
             { title: "Documentación Oficial DAX", url: "https://learn.microsoft.com/es-es/dax/" },
             { title: "Guía de Storytelling con Datos", url: "https://community.powerbi.com/t5/Community-Blog/Data-Storytelling-with-Power-BI/ba-p/682245" }

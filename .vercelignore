@@ -1,0 +1,19 @@
+# Exclude development podcasts folder (keep public/podcasts)
+podcasts/
+
+# Exclude engine and python scripts
+engine/
+
+# Development files
+.agent/
+.vscode/
+*.log
+
+# Large files
+*.mp4
+*.ass
+*.json
+!package.json
+!package-lock.json
+
+# Keep only what's needed in public/podcasts (m4a and png)
