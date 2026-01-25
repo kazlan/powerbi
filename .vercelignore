@@ -1,5 +1,5 @@
 # Exclude development podcasts folder (keep public/podcasts)
-podcasts/
+/podcasts/
 
 # Exclude engine and python scripts
 engine/
