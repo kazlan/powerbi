@@ -38,6 +38,7 @@ export const podcasts = [
         thumbnail: "/podcasts/podcast_cover_context.png",
         audioSrc: "/podcasts/DAX_Contexto_de_Fila_y_Filtro_Desvelados.m4a",
         tags: ["DAX", "Contexto de Fila", "CALCULATE", "Avanzado"],
+        youtubeId: "xPUU-jOLhO0",
         links: [
             { title: "Comprendiendo los Contextos", url: "https://learn.microsoft.com/es-es/dax/dax-overview#context" },
             { title: "Guía Definitiva de CALCULATE", url: "https://www.sqlbi.com/articles/introducing-calculate-in-dax/" }
