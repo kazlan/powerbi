@@ -41,7 +41,7 @@ const Gallery = ({ categories, selectedCategory, setSelectedCategory, chartLibra
                         <div className="aspect-video relative overflow-hidden bg-black/50 p-4 flex items-center justify-center">
                             <div className="w-full h-full opacity-80 group-hover:scale-105 transition-transform duration-500">
                                 {chart.image ? (
-                                    <img src={chart.image} alt={chart.title} className="w-full h-full object-cover" />
+                                    <img src={chart.image} alt={chart.title} className="w-full h-full object-cover" loading="lazy" />
                                 ) : (
                                     chart.svg
                                 )}

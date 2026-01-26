@@ -53,6 +53,7 @@ const PodcastList = ({ podcasts, onSelectPodcast, selectedTag = 'Todos', onSelec
                                 src={podcast.thumbnail}
                                 alt={podcast.title}
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                loading="lazy"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
 
