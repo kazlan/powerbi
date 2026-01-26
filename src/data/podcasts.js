@@ -39,6 +39,14 @@ export const podcasts = [
         audioSrc: "/podcasts/DAX_Contexto_de_Fila_y_Filtro_Desvelados.m4a",
         tags: ["DAX", "Contexto de Fila", "CALCULATE", "Avanzado"],
         youtubeId: "xPUU-jOLhO0",
+        highlights: [
+            "Si el contexto de fila era un microscopio mirando una célula, el contexto de filtro es el conjunto de lentes que definen qué parte del tejido estamos viendo.",
+            "El contexto no es una sugerencia, es la ley. Es el conjunto de reglas que Power BI usa para saber exactamente qué datos tiene que mirar.",
+            "CALCULATE es el director de orquesta del contexto de filtro. Puede decirle a los violines que se callen y a los trombones que toquen más fuerte.",
+            "El contexto de fila es el más intuitivo: piensa en ello como si Power BI estuviera trabajando en un Excel, aplicando una fórmula fila a fila.",
+            "El contexto de filtro es superdinámico: viene de los gráficos, de los clics, y se propaga por las relaciones del modelo como si fueran autopistas.",
+            "La diferencia entre un usuario básico y un experto es la capacidad de manipular el contexto. Usar funciones como CALCULATE permite saltarse las reglas naturales."
+        ],
         links: [
             { title: "Comprendiendo los Contextos", url: "https://learn.microsoft.com/es-es/dax/dax-overview#context" },
             { title: "Guía Definitiva de CALCULATE", url: "https://www.sqlbi.com/articles/introducing-calculate-in-dax/" }

@@ -11,7 +11,27 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [showResults, setShowResults] = useState(false);
+    const [highlightIndex, setHighlightIndex] = useState(0);
+    const [tipIndex, setTipIndex] = useState(0);
     const searchRef = useRef(null);
+
+    // Rotate highlights
+    useEffect(() => {
+        if (!latestPodcast.highlights || latestPodcast.highlights.length === 0) return;
+        const interval = setInterval(() => {
+            setHighlightIndex(prev => (prev + 1) % latestPodcast.highlights.length);
+        }, 10000);
+        return () => clearInterval(interval);
+    }, [latestPodcast]);
+
+    // Rotate chart tips
+    useEffect(() => {
+        if (!dailyChart.tips || dailyChart.tips.length === 0) return;
+        const interval = setInterval(() => {
+            setTipIndex(prev => (prev + 1) % dailyChart.tips.length);
+        }, 13000);
+        return () => clearInterval(interval);
+    }, [dailyChart]);
 
     // Close search results when clicking outside
     useEffect(() => {
@@ -32,16 +52,22 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
         setSearchQuery(query);
 
         if (query.trim().length > 0) {
-            const filtered = allCharts.filter(chart => {
-                const term = query.toLowerCase();
-                return (
-                    chart.title.toLowerCase().includes(term) ||
-                    chart.desc.toLowerCase().includes(term) ||
-                    (chart.tips && chart.tips.toLowerCase().includes(term)) ||
-                    (chart.useCases && chart.useCases.toLowerCase().includes(term))
-                );
-            });
-            setSearchResults(filtered);
+            const term = query.toLowerCase();
+
+            const filteredCharts = allCharts.filter(chart =>
+                chart.title.toLowerCase().includes(term) ||
+                chart.desc.toLowerCase().includes(term) ||
+                (chart.tips && chart.tips.some(tip => tip.toLowerCase().includes(term))) ||
+                (chart.useCases && chart.useCases.toLowerCase().includes(term))
+            ).map(chart => ({ ...chart, type: 'chart' }));
+
+            const filteredPodcasts = podcasts.filter(podcast =>
+                podcast.title.toLowerCase().includes(term) ||
+                podcast.description.toLowerCase().includes(term) ||
+                (podcast.tags && podcast.tags.some(tag => tag.toLowerCase().includes(term)))
+            ).map(podcast => ({ ...podcast, type: 'podcast', desc: podcast.description }));
+
+            setSearchResults([...filteredCharts, ...filteredPodcasts]);
             setShowResults(true);
         } else {
             setSearchResults([]);
@@ -92,11 +118,21 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
                                         {searchResults.map((result, index) => (
                                             <button
                                                 key={index}
-                                                onClick={() => handleSelectResult(result)}
+                                                onClick={() => {
+                                                    if (result.type === 'podcast') {
+                                                        if (onViewPodcast) onViewPodcast(result);
+                                                    } else {
+                                                        if (onSelectChart) onSelectChart(result);
+                                                    }
+                                                    setSearchQuery('');
+                                                    setShowResults(false);
+                                                }}
                                                 className="w-full text-left px-4 py-3 hover:bg-white/5 transition-colors border-b border-white/5 last:border-0 flex items-start gap-3 group"
                                             >
-                                                <div className="mt-1 p-1.5 rounded-lg bg-blue-500/10 text-blue-400 group-hover:text-primary group-hover:bg-primary/10 transition-colors">
-                                                    <span className="material-symbols-outlined text-sm">bar_chart</span>
+                                                <div className={`mt-1 p-1.5 rounded-lg ${result.type === 'podcast' ? 'bg-primary/10 text-primary' : 'bg-blue-500/10 text-blue-400'} group-hover:bg-primary/20 transition-colors`}>
+                                                    <span className="material-symbols-outlined text-sm">
+                                                        {result.type === 'podcast' ? 'headphones' : 'bar_chart'}
+                                                    </span>
                                                 </div>
                                                 <div>
                                                     <div className="font-bold text-slate-200 group-hover:text-white text-sm">{result.title}</div>
@@ -169,9 +205,28 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
                                     {latestPodcast.duration} min
                                 </span>
                             </div>
-                            <p className="text-slate-300 mb-8 line-clamp-2 md:line-clamp-3 leading-relaxed">
+                            <p className="text-slate-300 mb-6 line-clamp-2 md:line-clamp-3 leading-relaxed">
                                 {latestPodcast.description}
                             </p>
+
+                            {/* Rotating Highlights */}
+                            {latestPodcast.highlights && (
+                                <div className="h-20 mb-6 relative">
+                                    {latestPodcast.highlights.map((highlight, idx) => (
+                                        <div
+                                            key={idx}
+                                            className={`absolute inset-0 flex items-center transition-all duration-700 ease-in-out ${idx === highlightIndex
+                                                ? 'opacity-100 translate-y-0'
+                                                : 'opacity-0 translate-y-2'
+                                                }`}
+                                        >
+                                            <p className="text-primary/90 text-sm font-medium italic border-l-2 border-primary pl-4">
+                                                "{highlight}"
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
 
                             <button
                                 onClick={() => onViewPodcast && onViewPodcast(latestPodcast)}
@@ -214,10 +269,33 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
                     {/* Content */}
                     <div className="p-6 pt-2 flex-1 flex flex-col">
                         <h4 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{dailyChart.title}</h4>
-                        <p className="text-sm text-slate-400 line-clamp-3 mb-4 flex-1">
+                        <p className="text-sm text-slate-400 line-clamp-3 mb-4">
                             {dailyChart.desc}
                         </p>
-                        <div className="flex items-center text-xs font-medium text-primary uppercase tracking-wider">
+
+                        {/* Rotating Tips */}
+                        {dailyChart.tips && (
+                            <div className="h-16 relative flex-1 mb-2">
+                                {dailyChart.tips.map((tip, idx) => (
+                                    <div
+                                        key={idx}
+                                        className={`absolute inset-0 flex items-start transition-all duration-700 ease-in-out ${idx === tipIndex
+                                            ? 'opacity-100 translate-x-0'
+                                            : 'opacity-0 translate-x-4'
+                                            }`}
+                                    >
+                                        <div className="flex gap-2">
+                                            <span className="material-symbols-outlined text-primary text-sm shrink-0 mt-0.5">lightbulb</span>
+                                            <p className="text-xs text-slate-300 font-medium leading-relaxed">
+                                                {tip}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        <div className="flex items-center text-xs font-medium text-primary uppercase tracking-wider mt-auto">
                             Explorar Visual
                         </div>
                     </div>
