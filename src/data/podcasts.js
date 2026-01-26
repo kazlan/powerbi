@@ -24,6 +24,12 @@ export const podcasts = [
         audioSrc: "/podcasts/Power_Query_La_alquimia_real_de_los_datos.m4a",
         tags: ["Power Query", "ETL", "Lenguaje M", "Modelado"],
         youtubeId: "VROcUBYbJ_o",
+        highlights: [
+            "Power Query es tu taller de limpieza digital. Antes de cocinar el dato (DAX), tienes que lavarlo y pelarlo aquí.",
+            "El lenguaje M no es para tenerle miedo, es una secuencia lógica de pasos. Piensa en él como una receta de cocina paso a paso.",
+            "La regla de oro: Filtra filas y quita columnas LO ANTES POSIBLE. Tu modelo de memoria te lo agradecerá.",
+            "Nunca, jamás, cargues datos 'sucios' en el modelo. Power Query es el portero de discoteca que solo deja pasar a la gente guapa (datos limpios)."
+        ],
         links: [
             { title: "Documentación de Power Query", url: "https://learn.microsoft.com/es-es/power-query/" },
             { title: "Mejores Prácticas de Transformación", url: "https://learn.microsoft.com/es-es/power-bi/guidance/power-query-background-refresh" }

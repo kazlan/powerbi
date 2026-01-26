@@ -24,7 +24,7 @@ import { chartLibrary, categories, allCharts } from './data/charts.jsx';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
-  const [selectedCategory, setSelectedCategory] = useState('comparacion');
+  const [selectedCategory, setSelectedCategory] = useState('todos');
   const [selectedChart, setSelectedChart] = useState(null);
   const [selectedPodcast, setSelectedPodcast] = useState(null);
   const [selectedTag, setSelectedTag] = useState('Todos');
@@ -60,6 +60,7 @@ const App = () => {
       const params = new URLSearchParams(window.location.search);
       const podcastId = params.get('podcast');
       const visualSlug = params.get('visual');
+      const view = params.get('view');
 
       if (podcastId) {
         const foundPodcast = podcasts.find(p => p.id === podcastId);
@@ -83,8 +84,15 @@ const App = () => {
             }
           }
           setSelectedChart(foundChart);
+          return;
         }
       }
+
+      // If no deep link, check view
+      if (view && ['home', 'catalog', 'podcasts'].includes(view)) {
+        setActiveTab(view);
+      }
+
     } catch (error) {
       console.error("Deep linking error:", error);
     }
@@ -144,7 +152,10 @@ const App = () => {
     switch (activeTab) {
       case 'home':
         return <Hero
-          onExplore={() => setActiveTab('catalog')}
+          onExplore={() => {
+            setActiveTab('catalog');
+            updateUrl({ view: 'catalog' });
+          }}
           allCharts={allCharts}
           onSelectChart={handleChartSelect}
           onViewPodcast={(podcast) => {
@@ -210,7 +221,10 @@ const App = () => {
       default:
         // Fallback
         return <Hero
-          onExplore={() => setActiveTab('catalog')}
+          onExplore={() => {
+            setActiveTab('catalog');
+            updateUrl({ view: 'catalog' });
+          }}
           allCharts={allCharts}
           onSelectChart={handleChartSelect}
           onViewPodcast={(podcast) => {
@@ -223,7 +237,11 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-[#0B1120] text-slate-100 flex font-sans selection:bg-primary selection:text-black">
-      <Sidebar activeTab={activeTab} setActiveTab={(tab) => { setActiveTab(tab); handleChartSelect(null); updateUrl({ visual: null, podcast: null }); }} />
+      <Sidebar activeTab={activeTab} setActiveTab={(tab) => {
+        setActiveTab(tab);
+        handleChartSelect(null);
+        updateUrl({ visual: null, podcast: null, view: tab === 'home' ? null : tab });
+      }} />
 
       <main className="flex-1 min-w-0 flex flex-col">
         {/* Mobile Header */}
@@ -232,9 +250,7 @@ const App = () => {
             <img src="/logo.png" alt="Logo" className="w-8 h-8 rounded-lg object-cover" />
             <h1 className="font-display font-bold text-lg text-white">POWER BI <span className="text-primary">MAX</span></h1>
           </div>
-          <button onClick={() => setActiveTab('home')} className="p-2 text-slate-300">
-            <Menu />
-          </button>
+
         </header>
 
         {/* Content Area */}
@@ -259,15 +275,15 @@ const App = () => {
 
         {/* Mobile Nav */}
         <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-sidebar-dark/95 backdrop-blur-xl border-t border-white/10 p-4 flex justify-around z-50">
-          <button onClick={() => setActiveTab('home')} className={`flex flex-col items-center gap-1 ${activeTab === 'home' ? 'text-primary' : 'text-slate-500'}`}>
+          <button onClick={() => { setActiveTab('home'); updateUrl({ view: null }); }} className={`flex flex-col items-center gap-1 ${activeTab === 'home' ? 'text-primary' : 'text-slate-500'}`}>
             <span className="material-symbols-outlined">home</span>
             <span className="text-[10px] uppercase font-bold">Inicio</span>
           </button>
-          <button onClick={() => setActiveTab('catalog')} className={`flex flex-col items-center gap-1 ${activeTab === 'catalog' ? 'text-primary' : 'text-slate-500'}`}>
+          <button onClick={() => { setActiveTab('catalog'); updateUrl({ view: 'catalog' }); }} className={`flex flex-col items-center gap-1 ${activeTab === 'catalog' ? 'text-primary' : 'text-slate-500'}`}>
             <span className="material-symbols-outlined">bar_chart</span>
             <span className="text-[10px] uppercase font-bold">Visuales</span>
           </button>
-          <button onClick={() => setActiveTab('podcasts')} className={`flex flex-col items-center gap-1 ${activeTab === 'podcasts' ? 'text-primary' : 'text-slate-500'}`}>
+          <button onClick={() => { setActiveTab('podcasts'); updateUrl({ view: 'podcasts' }); }} className={`flex flex-col items-center gap-1 ${activeTab === 'podcasts' ? 'text-primary' : 'text-slate-500'}`}>
             <span className="material-symbols-outlined">podcasts</span>
             <span className="text-[10px] uppercase font-bold">Podcasts</span>
           </button>

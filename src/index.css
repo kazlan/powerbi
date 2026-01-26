@@ -67,6 +67,20 @@
         background: #334155;
         border-radius: 4px;
     }
+
+    .animate-ken-burns {
+        animation: kenBurns 20s ease-out infinite alternate;
+    }
+
+    @keyframes kenBurns {
+        0% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(1.1);
+        }
+    }
 }
 
 body {

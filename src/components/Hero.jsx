@@ -6,7 +6,9 @@ import { podcasts } from '../data/podcasts';
 const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
     const dailyChart = getDailyChart();
     // Sort podcasts by date descending to get the latest
-    const latestPodcast = [...podcasts].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+    const sortedPodcasts = [...podcasts].sort((a, b) => new Date(b.date) - new Date(a.date));
+    const featuredPodcast = sortedPodcasts[1] || sortedPodcasts[0]; // For Banner (Penultimate)
+    const secondaryPodcast = sortedPodcasts[0]; // For Card (Latest)
 
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -15,14 +17,14 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
     const [tipIndex, setTipIndex] = useState(0);
     const searchRef = useRef(null);
 
-    // Rotate highlights
+    // Rotate highlights (using secondaryPodcast for the card module)
     useEffect(() => {
-        if (!latestPodcast.highlights || latestPodcast.highlights.length === 0) return;
+        if (!secondaryPodcast.highlights || secondaryPodcast.highlights.length === 0) return;
         const interval = setInterval(() => {
-            setHighlightIndex(prev => (prev + 1) % latestPodcast.highlights.length);
+            setHighlightIndex(prev => (prev + 1) % secondaryPodcast.highlights.length);
         }, 10000);
         return () => clearInterval(interval);
-    }, [latestPodcast]);
+    }, [secondaryPodcast]);
 
     // Rotate chart tips
     useEffect(() => {
@@ -87,19 +89,21 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
         <div className="p-4 md:p-8 lg:p-12 max-w-[1600px] mx-auto animate-in fade-in duration-700">
             <SEO />
             {/* Header Inside Main (Desktop) */}
-            <div className="hidden md:flex items-center justify-between mb-12">
-                <div>
-                    <h1 className="font-display font-bold text-3xl tracking-tight text-white flex items-center gap-2">
+            <div className="flex flex-col md:flex-row items-center justify-between mb-8 md:mb-12 gap-6">
+                <div className="w-full md:w-auto text-center md:text-left">
+                    <h1 className="font-display font-bold text-3xl tracking-tight text-white flex items-center justify-center md:justify-start gap-2">
                         POWER BI <span className="text-gradient-primary">MAX</span>
                     </h1>
                     <p className="text-sm font-medium text-slate-400 mt-1">La plataforma líder para el storytelling de datos</p>
                 </div>
-                <div className="flex items-center gap-6">
-                    <div className="relative hidden lg:block group z-50" ref={searchRef}>
+
+                {/* Search Bar (Unified for Mobile/Desktop) */}
+                <div className="w-full md:w-auto flex justify-center md:justify-end">
+                    <div className="relative group z-50 w-full max-w-md" ref={searchRef}>
                         <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors" aria-hidden="true">search</span>
                         <input
-                            className="bg-[#151e32] border border-white/10 rounded-full py-2.5 pl-10 pr-6 text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 outline-none w-72 transition-all relative z-20"
-                            placeholder="Buscar visuales, patrones, funciones..."
+                            className="bg-[#151e32] border border-white/10 rounded-full py-2.5 pl-10 pr-6 text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 outline-none w-full md:w-72 transition-all relative z-20"
+                            placeholder="Buscar visuales, podcasts..."
                             aria-label="Buscar visuales Power BI"
                             type="text"
                             value={searchQuery}
@@ -109,7 +113,7 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
 
                         {/* Search Results Dropdown */}
                         {showResults && (
-                            <div className="absolute top-full left-0 right-0 mt-2 bg-sidebar-dark/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden z-10 max-h-96 overflow-y-auto w-[400px] -translate-x-[64px]">
+                            <div className="absolute top-full left-0 right-0 mt-2 bg-sidebar-dark/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden z-10 max-h-80 overflow-y-auto">
                                 {searchResults.length > 0 ? (
                                     <div className="py-2">
                                         <div className="px-4 py-2 text-xs font-bold text-slate-500 uppercase tracking-widest border-b border-white/5">
@@ -149,9 +153,45 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
                             </div>
                         )}
                     </div>
-                    <button onClick={onExplore} className="px-8 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-black text-sm font-bold shadow-glow hover:shadow-glow-strong transition-all transform hover:-translate-y-0.5 flex items-center gap-2 group">
-                        Ver Galería
-                        <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+
+                </div>
+            </div>
+
+            {/* NEW Podcast Hero Banner */}
+            <div className="relative w-full rounded-2xl overflow-hidden mb-12 group shadow-2xl border border-white/10 h-48 md:h-64">
+                {/* Background Asset */}
+                <div className="absolute inset-0 z-0">
+                    <img
+                        src="/hero-banner.png"
+                        alt="Background"
+                        className="w-full h-full object-cover opacity-80 animate-ken-burns"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0B1120] via-[#0B1120]/60 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-l from-[#0B1120] via-transparent to-transparent"></div>
+                </div>
+
+                <div className="relative z-10 p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 h-full">
+                    <div className="flex-1 text-center md:text-left z-20">
+                        <div className="inline-flex items-center gap-2 mb-3">
+                            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                            <span className="text-xs font-bold text-primary uppercase tracking-widest">Podcast Destacado</span>
+                        </div>
+                        <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-white mb-2 leading-tight drop-shadow-lg">
+                            {featuredPodcast.title}
+                        </h2>
+                        <div className="hidden md:block">
+                            <p className="text-slate-300 text-sm line-clamp-1 max-w-xl">
+                                {featuredPodcast.description}
+                            </p>
+                        </div>
+                    </div>
+
+                    <button
+                        onClick={() => onViewPodcast && onViewPodcast(featuredPodcast)}
+                        className="shrink-0 px-8 py-3 rounded-full bg-primary text-black font-bold text-sm hover:bg-white hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,193,7,0.3)] flex items-center gap-2 z-20"
+                    >
+                        <span className="material-symbols-outlined filled">play_circle</span>
+                        Escuchar Ahora
                     </button>
                 </div>
             </div>
@@ -164,55 +204,61 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
                     {/* Background Image (Podcast Cover Blurry) */}
                     <div className="absolute inset-0 opacity-40 group-hover:scale-105 transition-transform duration-700">
                         <img
-                            src={latestPodcast.thumbnail}
+                            src={secondaryPodcast.thumbnail}
                             alt=""
                             className="w-full h-full object-cover blur-sm"
                         />
                     </div>
 
-                    <div className="relative z-20 p-8 md:p-10 flex flex-col md:flex-row gap-8 items-center md:items-start h-full">
-                        {/* Podcast Artwork */}
-                        <div className="w-40 h-40 md:w-56 md:h-56 shrink-0 rounded-2xl overflow-hidden shadow-2xl border border-white/10 group-hover:shadow-[0_0_30px_rgba(255,193,7,0.3)] transition-all duration-500 relative">
-                            <img
-                                src={latestPodcast.thumbnail}
-                                alt={latestPodcast.title}
-                                className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-black shadow-glow transform scale-90 group-hover:scale-100 transition-transform">
-                                    <span className="material-symbols-outlined filled">play_arrow</span>
+                    <div className="relative z-20 p-8 md:p-10 flex flex-col gap-8 h-full">
+                        {/* ROW 1: Image & Information */}
+                        <div className="flex flex-col md:flex-row gap-8 items-start">
+                            {/* Podcast Artwork */}
+                            <div className="w-full md:w-48 aspect-square shrink-0 rounded-2xl overflow-hidden shadow-2xl border border-white/10 group-hover:shadow-[0_0_30px_rgba(255,193,7,0.3)] transition-all duration-500 relative">
+                                <img
+                                    src={secondaryPodcast.thumbnail}
+                                    alt={secondaryPodcast.title}
+                                    className="w-full h-full object-cover"
+                                />
+                                <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-black shadow-glow transform scale-90 group-hover:scale-100 transition-transform">
+                                        <span className="material-symbols-outlined filled">play_arrow</span>
+                                    </div>
                                 </div>
+                            </div>
+
+                            {/* Info Text */}
+                            <div className="flex-1 text-center md:text-left">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest mb-3">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                                    Nuevo Episodio
+                                </div>
+                                <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-3 leading-tight group-hover:text-primary transition-colors duration-300">
+                                    {secondaryPodcast.title}
+                                </h3>
+                                <div className="flex items-center justify-center md:justify-start gap-4 text-slate-400 text-sm mb-4">
+                                    <span className="flex items-center gap-1">
+                                        <span className="material-symbols-outlined text-[16px]">calendar_today</span>
+                                        {new Date(secondaryPodcast.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'long' })}
+                                    </span>
+                                    <span className="w-1 h-1 rounded-full bg-slate-600"></span>
+                                    <span className="flex items-center gap-1">
+                                        <span className="material-symbols-outlined text-[16px]">schedule</span>
+                                        {secondaryPodcast.duration} min
+                                    </span>
+                                </div>
+                                <p className="text-slate-300 line-clamp-2 leading-relaxed">
+                                    {secondaryPodcast.description}
+                                </p>
                             </div>
                         </div>
 
-                        {/* Content */}
-                        <div className="flex-1 text-center md:text-left">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest mb-4">
-                                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-                                Nuevo Episodio
-                            </div>
-                            <h3 className="text-2xl md:text-4xl font-display font-bold text-white mb-3 leading-tight group-hover:text-primary transition-colors duration-300">
-                                {latestPodcast.title}
-                            </h3>
-                            <div className="flex items-center justify-center md:justify-start gap-4 text-slate-400 text-sm mb-6">
-                                <span className="flex items-center gap-1">
-                                    <span className="material-symbols-outlined text-[16px]">calendar_today</span>
-                                    {new Date(latestPodcast.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'long' })}
-                                </span>
-                                <span className="w-1 h-1 rounded-full bg-slate-600"></span>
-                                <span className="flex items-center gap-1">
-                                    <span className="material-symbols-outlined text-[16px]">schedule</span>
-                                    {latestPodcast.duration} min
-                                </span>
-                            </div>
-                            <p className="text-slate-300 mb-6 line-clamp-2 md:line-clamp-3 leading-relaxed">
-                                {latestPodcast.description}
-                            </p>
-
+                        {/* ROW 2: Highlights & Button */}
+                        <div className="flex flex-col md:flex-row items-center gap-6 w-full pt-6 border-t border-white/5">
                             {/* Rotating Highlights */}
-                            {latestPodcast.highlights && (
-                                <div className="h-20 mb-6 relative">
-                                    {latestPodcast.highlights.map((highlight, idx) => (
+                            {secondaryPodcast.highlights && (
+                                <div className="h-16 relative flex-1 w-full">
+                                    {secondaryPodcast.highlights.map((highlight, idx) => (
                                         <div
                                             key={idx}
                                             className={`absolute inset-0 flex items-center transition-all duration-700 ease-in-out ${idx === highlightIndex
@@ -220,7 +266,7 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
                                                 : 'opacity-0 translate-y-2'
                                                 }`}
                                         >
-                                            <p className="text-primary/90 text-sm font-medium italic border-l-2 border-primary pl-4">
+                                            <p className="text-primary/90 text-sm font-medium italic border-l-2 border-primary pl-4 text-left leading-snug">
                                                 "{highlight}"
                                             </p>
                                         </div>
@@ -229,8 +275,8 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
                             )}
 
                             <button
-                                onClick={() => onViewPodcast && onViewPodcast(latestPodcast)}
-                                className="px-6 py-2.5 rounded-full bg-white/5 hover:bg-primary hover:text-black border border-white/10 hover:border-primary/50 text-white transition-all font-medium text-sm flex items-center gap-2 mx-auto md:mx-0 group-btn"
+                                onClick={() => onViewPodcast && onViewPodcast(secondaryPodcast)}
+                                className="shrink-0 px-8 py-3 rounded-full bg-white/5 hover:bg-primary hover:text-black border border-white/10 hover:border-primary/50 text-white transition-all font-medium text-sm flex items-center gap-2 group-btn w-full md:w-auto justify-center"
                             >
                                 <span className="material-symbols-outlined group-btn-hover:fill-current">headphones</span>
                                 Escuchar Ahora
@@ -295,9 +341,7 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
                             </div>
                         )}
 
-                        <div className="flex items-center text-xs font-medium text-primary uppercase tracking-wider mt-auto">
-                            Explorar Visual
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -311,11 +355,8 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
 
                 <div className="relative z-10 grid lg:grid-cols-2 gap-12 p-8 md:p-16 items-center min-h-[500px]">
                     <div className="max-w-2xl">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-wider mb-8">
-                            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-                            Nuevos Módulos de Certificación PL-300
-                        </div>
-                        <h2 className="font-display font-bold text-5xl md:text-6xl lg:text-7xl text-white mb-6 leading-[1.1] tracking-tight">
+
+                        <h2 className="font-display font-bold text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-[1.1] tracking-tight">
                             Domina <br />
                             <span className="text-gradient-primary">Power BI</span> Ahora
                         </h2>

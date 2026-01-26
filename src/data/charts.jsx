@@ -11,6 +11,7 @@ import {
 import React from 'react';
 
 export const categories = [
+    { id: 'todos', name: 'Todos', icon: <Grid size={18} />, color: 'bg-slate-600' },
     { id: 'comparacion', name: 'Comparación', icon: <BarChart3 size={18} />, color: 'bg-blue-600' },
     { id: 'tiempo', name: 'Tendencias', icon: <TrendingUp size={18} />, color: 'bg-emerald-600' },
     { id: 'composicion', name: 'Composición', icon: <PieChart size={18} />, color: 'bg-teal-600' },
@@ -405,7 +406,7 @@ export const getDailyChart = () => {
     const diff = today - start;
     const oneDay = 1000 * 60 * 60 * 24;
     const dayOfYear = Math.floor(diff / oneDay);
-    
+
     // Select chart based on day number module total charts
     const chartIndex = dayOfYear % allCharts.length;
     return allCharts[chartIndex];

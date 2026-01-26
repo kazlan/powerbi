@@ -2,7 +2,9 @@ import React from 'react';
 import SEO from './SEO';
 
 const Gallery = ({ categories, selectedCategory, setSelectedCategory, chartLibrary, onSelectChart }) => {
-    const visuals = chartLibrary[selectedCategory] || [];
+    const visuals = selectedCategory === 'todos'
+        ? Object.values(chartLibrary).flat()
+        : (chartLibrary[selectedCategory] || []);
 
     return (
         <div className="p-4 md:p-8 lg:p-12 max-w-[1600px] mx-auto animate-in fade-in duration-500">
