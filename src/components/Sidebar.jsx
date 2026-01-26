@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linkedin } from 'lucide-react';
+import { Linkedin, Youtube } from 'lucide-react';
 
 const Sidebar = ({ activeTab, setActiveTab }) => {
     const menuItems = [
@@ -33,6 +33,16 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
             </nav>
 
             <div className="mt-auto flex flex-col gap-4">
+                <a
+                    href="https://www.youtube.com/@PowerBIMax"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/5 transition-all group"
+                    title="YouTube"
+                >
+                    <Youtube size={20} className="group-hover:text-[#FF0000] transition-colors" />
+                </a>
+
                 <a
                     href="https://linkedin.com/company/powerbimax"
                     target="_blank"
