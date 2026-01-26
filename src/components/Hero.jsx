@@ -1,7 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SEO from './SEO';
+import { getDailyChart } from '../data/charts.jsx';
+import { podcasts } from '../data/podcasts';
 
-const Hero = ({ onExplore, allCharts = [], onSelectChart }) => {
+const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
+    const dailyChart = getDailyChart();
+    // Sort podcasts by date descending to get the latest
+    const latestPodcast = [...podcasts].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [showResults, setShowResults] = useState(false);
@@ -114,6 +120,111 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart }) => {
                 </div>
             </div>
 
+            {/* Dynamic Modules Section - Asymmetrical 2/3 Podcast, 1/3 Chart */}
+            <div className="grid lg:grid-cols-3 gap-6 mb-16 animate-in slide-in-from-bottom duration-1000 delay-200">
+                {/* Podcast Module (Feature - 2/3) */}
+                <div className="lg:col-span-2 relative group overflow-hidden rounded-3xl bg-[#151e32] border border-white/5 hover:border-primary/30 transition-all duration-500 shadow-xl">
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-[#151e32]/90 to-transparent z-10"></div>
+                    {/* Background Image (Podcast Cover Blurry) */}
+                    <div className="absolute inset-0 opacity-40 group-hover:scale-105 transition-transform duration-700">
+                        <img
+                            src={latestPodcast.thumbnail}
+                            alt=""
+                            className="w-full h-full object-cover blur-sm"
+                        />
+                    </div>
+
+                    <div className="relative z-20 p-8 md:p-10 flex flex-col md:flex-row gap-8 items-center md:items-start h-full">
+                        {/* Podcast Artwork */}
+                        <div className="w-40 h-40 md:w-56 md:h-56 shrink-0 rounded-2xl overflow-hidden shadow-2xl border border-white/10 group-hover:shadow-[0_0_30px_rgba(255,193,7,0.3)] transition-all duration-500 relative">
+                            <img
+                                src={latestPodcast.thumbnail}
+                                alt={latestPodcast.title}
+                                className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-black shadow-glow transform scale-90 group-hover:scale-100 transition-transform">
+                                    <span className="material-symbols-outlined filled">play_arrow</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Content */}
+                        <div className="flex-1 text-center md:text-left">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest mb-4">
+                                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                                Nuevo Episodio
+                            </div>
+                            <h3 className="text-2xl md:text-4xl font-display font-bold text-white mb-3 leading-tight group-hover:text-primary transition-colors duration-300">
+                                {latestPodcast.title}
+                            </h3>
+                            <div className="flex items-center justify-center md:justify-start gap-4 text-slate-400 text-sm mb-6">
+                                <span className="flex items-center gap-1">
+                                    <span className="material-symbols-outlined text-[16px]">calendar_today</span>
+                                    {new Date(latestPodcast.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'long' })}
+                                </span>
+                                <span className="w-1 h-1 rounded-full bg-slate-600"></span>
+                                <span className="flex items-center gap-1">
+                                    <span className="material-symbols-outlined text-[16px]">schedule</span>
+                                    {latestPodcast.duration} min
+                                </span>
+                            </div>
+                            <p className="text-slate-300 mb-8 line-clamp-2 md:line-clamp-3 leading-relaxed">
+                                {latestPodcast.description}
+                            </p>
+
+                            <button
+                                onClick={() => onViewPodcast && onViewPodcast(latestPodcast)}
+                                className="px-6 py-2.5 rounded-full bg-white/5 hover:bg-primary hover:text-black border border-white/10 hover:border-primary/50 text-white transition-all font-medium text-sm flex items-center gap-2 mx-auto md:mx-0 group-btn"
+                            >
+                                <span className="material-symbols-outlined group-btn-hover:fill-current">headphones</span>
+                                Escuchar Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Chart Module (Complement - 1/3) */}
+                <div
+                    onClick={() => onSelectChart(dailyChart)}
+                    className="lg:col-span-1 relative group rounded-3xl bg-[#151e32] border border-white/5 overflow-hidden hover:border-primary/30 cursor-pointer transition-all duration-500 shadow-xl flex flex-col"
+                >
+                    <div className="absolute top-0 right-0 p-4 z-20">
+                        <div className="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-slate-300 group-hover:bg-primary group-hover:text-black transition-colors">
+                            <span className="material-symbols-outlined">north_east</span>
+                        </div>
+                    </div>
+
+                    {/* Image Area */}
+                    <div className="h-48 overflow-hidden relative">
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#151e32] via-transparent to-transparent z-10"></div>
+                        {dailyChart.image ? (
+                            <img src={dailyChart.image} alt={dailyChart.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        ) : (
+                            <div className="w-full h-full bg-slate-800 flex items-center justify-center text-slate-600">
+                                <span className="material-symbols-outlined text-4xl">bar_chart</span>
+                            </div>
+                        )}
+                        <div className="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/60 backdrop-blur border border-white/10 text-xs font-bold text-white flex items-center gap-1">
+                            <span className="material-symbols-outlined text-xs text-primary">star</span>
+                            Visual del Día
+                        </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-6 pt-2 flex-1 flex flex-col">
+                        <h4 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{dailyChart.title}</h4>
+                        <p className="text-sm text-slate-400 line-clamp-3 mb-4 flex-1">
+                            {dailyChart.desc}
+                        </p>
+                        <div className="flex items-center text-xs font-medium text-primary uppercase tracking-wider">
+                            Explorar Visual
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Dynamic Modules Section - Asymmetrical 2/3 Podcast, 1/3 Chart */}
             {/* Hero Card */}
             <section className="relative rounded-[2.5rem] overflow-hidden mb-16 border border-white/5 bg-[#0f172a] shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#1e1b4b] via-[#0f172a] to-black opacity-90"></div>
@@ -191,6 +302,7 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart }) => {
                     </div>
                 </div>
             </section>
+
         </div>
     );
 };
