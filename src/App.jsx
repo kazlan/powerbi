@@ -27,48 +27,48 @@ const App = () => {
   const [selectedPodcast, setSelectedPodcast] = useState(null);
   const [selectedTag, setSelectedTag] = useState('Todos');
 
+  // Helper to slugify titles for URLs
+  const slugify = (text) => {
+    return text.toString().toLowerCase()
+      .replace(/\s+/g, '-')           // Replace spaces with -
+      .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+      .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+      .replace(/^-+/, '')             // Trim - from start
+      .replace(/-+$/, '');            // Trim - from end
+  };
+
   // Handle Deep Linking on Load
   useEffect(() => {
     try {
       const params = new URLSearchParams(window.location.search);
       const podcastId = params.get('podcast');
+      const visualSlug = params.get('visual');
 
       if (podcastId) {
         const foundPodcast = podcasts.find(p => p.id === podcastId);
         if (foundPodcast) {
           setActiveTab('podcasts');
           setSelectedPodcast(foundPodcast);
+          return;
         }
+      }
+
+      if (visualSlug) {
+        // We need search in allCharts which is derived from chartLibrary
+        // Since chartLibrary is defined inside component (ideal refactor: move out), 
+        // we can't access it here easily before it's defined. 
+        // BUT, useEffect runs after render, so if we define allCharts before useEffect? 
+        // No, standard React component structure.
+        // We need to move the logic inside or move data outside.
+        // For now, let's defer this check to a second effect or move data definition up.
       }
     } catch (error) {
       console.error("Deep linking error:", error);
     }
   }, []);
 
-  const handleTagSelect = (tag) => {
-    setSelectedTag(tag);
-    setSelectedPodcast(null);
-    // Clear URL param when going back to list via tag
-    const url = new URL(window.location);
-    url.searchParams.delete('podcast');
-    window.history.pushState({}, '', url);
-  };
+  // ... (need to refactor data structure to be accessible)
 
-  const handlePodcastSelect = (podcast) => {
-    setSelectedPodcast(podcast);
-    // Update URL
-    const url = new URL(window.location);
-    url.searchParams.set('podcast', podcast.id);
-    window.history.pushState({}, '', url);
-  };
-
-  const handleBackToPodcasts = () => {
-    setSelectedPodcast(null);
-    // Clean URL
-    const url = new URL(window.location);
-    url.searchParams.delete('podcast');
-    window.history.pushState({}, '', url);
-  };
 
   const categories = [
     { id: 'comparacion', name: 'Comparación', icon: <BarChart3 size={18} />, color: 'bg-blue-600' },
@@ -457,6 +457,92 @@ const App = () => {
   // Flatten charts for easier navigation and search
   const allCharts = Object.values(chartLibrary).flat();
 
+  // Helper to slugify titles
+  const slugify = (text) => {
+    return text.toString().toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w\-]+/g, '')
+      .replace(/\-\-+/g, '-')
+      .replace(/^-+/, '')
+      .replace(/-+$/, '');
+  };
+
+  const updateUrl = (params) => {
+    const url = new URL(window.location);
+    Object.keys(params).forEach(key => {
+      if (params[key]) {
+        url.searchParams.set(key, params[key]);
+      } else {
+        url.searchParams.delete(key);
+      }
+    });
+    window.history.pushState({}, '', url);
+  };
+
+  // ---------------------------------------------------------
+  // DEEP LINKING & HANDLERS
+  // ---------------------------------------------------------
+
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const podcastId = params.get('podcast');
+      const visualSlug = params.get('visual');
+
+      if (podcastId) {
+        const foundPodcast = podcasts.find(p => p.id === podcastId);
+        if (foundPodcast) {
+          setActiveTab('podcasts');
+          setSelectedPodcast(foundPodcast);
+          return; // Prioritize podcast if both exist (unlikely)
+        }
+      }
+
+      if (visualSlug) {
+        const foundChart = allCharts.find(c => slugify(c.title) === visualSlug);
+        if (foundChart) {
+          setActiveTab('catalog'); // Determine category?
+          // Not strictly necessary for display but good for UI state.
+          // Let's find the category of the chart.
+          for (const [catId, charts] of Object.entries(chartLibrary)) {
+            if (charts.find(c => c.title === foundChart.title)) {
+              setSelectedCategory(catId);
+              break;
+            }
+          }
+          setSelectedChart(foundChart);
+        }
+      }
+    } catch (error) {
+      console.error("Deep linking error:", error);
+    }
+  }, []);
+
+  const handleTagSelect = (tag) => {
+    setSelectedTag(tag);
+    setSelectedPodcast(null);
+    updateUrl({ podcast: null });
+  };
+
+  const handlePodcastSelect = (podcast) => {
+    setSelectedPodcast(podcast);
+    updateUrl({ podcast: podcast.id, visual: null });
+  };
+
+  const handleBackToPodcasts = () => {
+    setSelectedPodcast(null);
+    updateUrl({ podcast: null });
+  };
+
+  const handleChartSelect = (chart) => {
+    setSelectedChart(chart);
+    if (chart) {
+      updateUrl({ visual: slugify(chart.title), podcast: null });
+    } else {
+      updateUrl({ visual: null });
+    }
+  };
+
   const renderContent = () => {
     const currentIndex = selectedChart ? allCharts.findIndex(c => c.title === selectedChart.title) : -1;
 
@@ -476,16 +562,16 @@ const App = () => {
       return (
         <VisualDetail
           chart={selectedChart}
-          onBack={() => setSelectedChart(null)}
-          onPrevious={currentIndex > 0 ? handlePrevious : null}
-          onNext={currentIndex < allCharts.length - 1 ? handleNext : null}
+          onBack={() => handleChartSelect(null)}
+          onPrevious={currentIndex > 0 ? () => handleChartSelect(allCharts[currentIndex - 1]) : null}
+          onNext={currentIndex < allCharts.length - 1 ? () => handleChartSelect(allCharts[currentIndex + 1]) : null}
         />
       );
     }
 
     switch (activeTab) {
       case 'home':
-        return <Hero onExplore={() => setActiveTab('catalog')} allCharts={allCharts} onSelectChart={setSelectedChart} />;
+        return <Hero onExplore={() => setActiveTab('catalog')} allCharts={allCharts} onSelectChart={handleChartSelect} />;
       case 'catalog':
         return (
           <Gallery
@@ -493,7 +579,7 @@ const App = () => {
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
             chartLibrary={chartLibrary}
-            onSelectChart={setSelectedChart}
+            onSelectChart={handleChartSelect}
           />
         );
       case 'legal':
@@ -543,13 +629,13 @@ const App = () => {
         );
       default:
         // Fallback
-        return <Hero onExplore={() => setActiveTab('catalog')} allCharts={allCharts} onSelectChart={setSelectedChart} />;
+        return <Hero onExplore={() => setActiveTab('catalog')} allCharts={allCharts} onSelectChart={handleChartSelect} />;
     }
   };
 
   return (
     <div className="min-h-screen bg-[#0B1120] text-slate-100 flex font-sans selection:bg-primary selection:text-black">
-      <Sidebar activeTab={activeTab} setActiveTab={(tab) => { setActiveTab(tab); setSelectedChart(null); }} />
+      <Sidebar activeTab={activeTab} setActiveTab={(tab) => { setActiveTab(tab); handleChartSelect(null); updateUrl({ visual: null, podcast: null }); }} />
 
       <main className="flex-1 min-w-0 flex flex-col">
         {/* Mobile Header */}
@@ -576,9 +662,9 @@ const App = () => {
               <span className="text-sm">2026 POWER BI MAX. Todos los derechos reservados.</span>
             </div>
             <div className="flex gap-6">
-              <button onClick={() => { setActiveTab('legal'); setSelectedChart(null); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Aviso Legal</button>
-              <button onClick={() => { setActiveTab('privacy'); setSelectedChart(null); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Privacidad</button>
-              <button onClick={() => { setActiveTab('cookies'); setSelectedChart(null); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Cookies</button>
+              <button onClick={() => { setActiveTab('legal'); handleChartSelect(null); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Aviso Legal</button>
+              <button onClick={() => { setActiveTab('privacy'); handleChartSelect(null); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Privacidad</button>
+              <button onClick={() => { setActiveTab('cookies'); handleChartSelect(null); window.scrollTo(0, 0); }} className="text-slate-400 hover:text-primary transition-colors text-sm">Cookies</button>
             </div>
           </div>
         </footer>
