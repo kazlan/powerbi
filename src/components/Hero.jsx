@@ -67,7 +67,7 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
                 (podcast.tags && podcast.tags.some(tag => tag.toLowerCase().includes(term)))
             ).map(podcast => ({ ...podcast, type: 'podcast', desc: podcast.description }));
 
-            setSearchResults([...filteredCharts, ...filteredPodcasts]);
+            setSearchResults([...filteredPodcasts, ...filteredCharts]);
             setShowResults(true);
         } else {
             setSearchResults([]);
