@@ -27,45 +27,8 @@ const App = () => {
   const [selectedPodcast, setSelectedPodcast] = useState(null);
   const [selectedTag, setSelectedTag] = useState('Todos');
 
-  // Helper to slugify titles for URLs
-  const slugify = (text) => {
-    return text.toString().toLowerCase()
-      .replace(/\s+/g, '-')           // Replace spaces with -
-      .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-      .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-      .replace(/^-+/, '')             // Trim - from start
-      .replace(/-+$/, '');            // Trim - from end
-  };
 
-  // Handle Deep Linking on Load
-  useEffect(() => {
-    try {
-      const params = new URLSearchParams(window.location.search);
-      const podcastId = params.get('podcast');
-      const visualSlug = params.get('visual');
 
-      if (podcastId) {
-        const foundPodcast = podcasts.find(p => p.id === podcastId);
-        if (foundPodcast) {
-          setActiveTab('podcasts');
-          setSelectedPodcast(foundPodcast);
-          return;
-        }
-      }
-
-      if (visualSlug) {
-        // We need search in allCharts which is derived from chartLibrary
-        // Since chartLibrary is defined inside component (ideal refactor: move out), 
-        // we can't access it here easily before it's defined. 
-        // BUT, useEffect runs after render, so if we define allCharts before useEffect? 
-        // No, standard React component structure.
-        // We need to move the logic inside or move data outside.
-        // For now, let's defer this check to a second effect or move data definition up.
-      }
-    } catch (error) {
-      console.error("Deep linking error:", error);
-    }
-  }, []);
 
   // ... (need to refactor data structure to be accessible)
 
