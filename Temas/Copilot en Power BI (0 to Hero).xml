@@ -1,0 +1,154 @@
+<Topic name="Copilot PowerBI Series">
+    <!-- EPISODE 1: SETUP & THE AWAKENING -->
+    <Post platform="Linkedin" id="1">
+        <Title>🚀 Copilot en Power BI: El Despertar de una Nueva Era</Title>
+        <Copy>¿Estás listo para dejar de construir informes y empezar a *diseñar* insights?
+
+Copilot en Power BI no es solo un asistente; es el motor que transforma tu flujo de trabajo. Pero antes de correr, necesitas encender el motor.
+
+🔹 **¿Qué necesitas?** Capacidad F64 o superior en Microsoft Fabric.
+🔹 **¿Qué obtienes?** Un compañero que escribe DAX, diseña páginas y resume datos por ti.
+
+En este primer episodio de nuestra serie "0 to Hero", exploramos los fundamentos para activar esta bestia tecnológica. No se trata de trabajar más duro, sino de trabajar con inteligencia aumentada.
+
+¿Ya tienes tu capacidad Fabric lista? 👇
+
+#PowerBI #Copilot #MicrosoftFabric #DataAnalytics #AI #BusinessIntelligence</Copy>
+        <Tags>#PowerBI #Copilot #MicrosoftFabric #AI</Tags>
+        <ImagePrompt aspect_ratio="4:5">A cinematic, futuristic shot of a glowing Microsoft Power BI logo hovering in a dark, high-tech server room. Use a "cyberpunk corporate" aesthetic with cyan and neon yellow lighting. The logo is activating, sending streams of binary code and light into the surrounding digital infrastructure. Highly detailed, 8k resolution, photorealistic, dramatic lighting, depth of field focusing on the logo.</ImagePrompt>
+        <ImageFilename>ep1_awakening.png</ImageFilename>
+    </Post>
+    <Post platform="X" id="1b">
+        <Title>Copilot Power BI: Intro</Title>
+        <Copy>La IA no viene a quitarte el trabajo, viene a quitarte lo aburrido.
+
+Episodio 1: "El Despertar" 🤖
+Copilot en Power BI requiere Fabric (F64+). Una vez activo, es como pasar de bicicleta a cohete.
+
+¿Estás listo para el despegue? 🚀
+#PowerBI #Copilot #DataViz</Copy>
+        <Tags>#PowerBI #Copilot</Tags>
+        <ImagePrompt aspect_ratio="16:9">Wide cinematic shot of a futuristic rocket launch pad, but the rocket is a glowing data column. Dark background with neon accents. High contrast, sharp focus, digital art style.</ImagePrompt>
+        <ImageFilename>ep1_awakening_wide.png</ImageFilename>
+    </Post>
+
+    <!-- EPISODE 2: DAX (THE CODE WHISPERER) -->
+    <Post platform="Linkedin" id="2">
+        <Title>🧠 El Susurrador de Código: DAX en Lenguaje Natural</Title>
+        <Copy>Si alguna vez has soñado con decirle a Power BI: "Calcula las ventas año tras año" y que lo haga... tu sueño es realidad.
+
+En el Episodio 2, vemos cómo Copilot se convierte en tu traductor personal de DAX.
+👨‍💻 Tú: "Porcentaje de margen bruto por región".
+🤖 Copilot: `DIVIDE([Gross Profit], [Total Sales])`
+
+No reemplaza saber DAX, pero elimina el "síndrome de la página en blanco". Es productividad pura. ¿Cuál es la medida más compleja que has tenido que escribir?
+
+#PowerBI #DAX #Coding #Productivity #MicrosoftCopilot</Copy>
+        <Tags>#DAX #PowerBI #DevTips</Tags>
+        <ImagePrompt aspect_ratio="4:5">Close-up of a human hand reaching out to touch a digital glass interface. Where the finger touches, standard text validates and transforms into glowing complex mathematical formulas (DAX code). Matrix-style aesthetic but clean and modern (blue and white palette). Magical atmosphere, high detail, macro photography style.</ImagePrompt>
+        <ImageFilename>ep2_dax.png</ImageFilename>
+    </Post>
+    <Post platform="X" id="2b">
+        <Title>Copilot Power BI: DAX</Title>
+        <Copy>Olvídate del miedo a la página en blanco.
+
+Episodio 2: "El Susurrador de Código" 🧠
+Tú pides: "Margen Bruto % por Año"
+Copilot escribe: `DIVIDE(...)`
+
+No es magia, es productividad. ¿Cuál es la medida más loca que has automatizado?
+#PowerBI #DAX #Copilot</Copy>
+        <Tags>#PowerBI #DAX</Tags>
+        <ImagePrompt aspect_ratio="16:9">Macro shot of a finger touching a glass interface, surrounded by glowing blue DAX code formulas floating in the air. High tech, clean, cinematic depth of field. Aspect Ratio 16:9.</ImagePrompt>
+        <ImageFilename>ep2_dax_wide.png</ImageFilename>
+    </Post>
+
+    <!-- EPISODE 3: VISUALS (THE ARCHITECT) -->
+    <Post platform="Linkedin" id="3">
+        <Title>🏗️ El Arquitecto Digital: De Prompts a Informes</Title>
+        <Copy>¿Lienzo en blanco? Nunca más.
+
+Episodio 3: Generación de Informes Completos.
+Imagina describir tu informe ideal: "Crea un dashboard de ventas para el equipo ejecutivo con KPIs, tendencias mensuales y mapa de calor".
+En segundos, Copilot estructura la página, elige los visuales y conecta los datos.
+
+No es el final del diseño manual, es el comienzo de una iteración más rápida. El arquitecto eres tú; Copilot es tu equipo de construcción.
+
+#DataVisualization #PowerBI #DashboardDesign #FutureOfWork</Copy>
+        <Tags>#DataViz #PowerBI #AI</Tags>
+        <ImagePrompt aspect_ratio="4:5">A 3D isometric view of a blueprint transforming into a colorful, fully rendered 3D city made of bar charts and data blocks. The transition goes from sketch wireframe (left) to glossy, vibrant reality (right). Soft studio lighting, pastel colors mixed with neon, high tech architectural style.</ImagePrompt>
+        <ImageFilename>ep3_visuals.png</ImageFilename>
+    </Post>
+    <Post platform="X" id="3b">
+        <Title>Copilot Power BI: Visuals</Title>
+        <Copy>De texto a informe en segundos.
+
+Episodio 3: "El Arquitecto Digital" 🏗️
+Describe tu dashboard ideal y mira cómo Copilot lo construye ante tus ojos. Estructura, visuales y datos conectados al instante.
+
+El diseño manual ha muerto. Larga vida al diseño asistido.
+#PowerBI #DataViz #AI</Copy>
+        <Tags>#PowerBI #AI</Tags>
+        <ImagePrompt aspect_ratio="16:9">Wide angle view of a holographic city being constructed from blueprints. The city buildings are actually colorful 3D bar charts. Cyberpunk city building aesthetic, neon pastels. Aspect Ratio 16:9.</ImagePrompt>
+        <ImageFilename>ep3_visuals_wide.png</ImageFilename>
+    </Post>
+
+    <!-- EPISODE 4: NARRATIVES (THE STORYTELLER) -->
+    <Post platform="Linkedin" id="4">
+        <Title>📖 El Narrador: Datos que Hablan</Title>
+        <Copy>Los números confunden; las historias convencen.
+
+Episodio 4: Narrativas Inteligentes.
+Copilot no solo ve los datos; los lee. Puede generar resúmenes ejecutivos instantáneos, explicar fluctuaciones y resaltar anomalías en un lenguaje que tu CEO entiende.
+
+Deja de explicar "qué" pasó y empieza a discutir "por qué". Esa es la verdadera inteligencia de negocios.
+
+#Storytelling #DataLiteracy #PowerBI #ExecutiveSummary</Copy>
+        <Tags>#DataStorytelling #PowerBI</Tags>
+        <ImagePrompt aspect_ratio="4:5">An open book glowing with golden light. Instead of words, streams of binary data and small chart icons are floating out of the pages and forming a clear, readable speech bubble or hologram above it. contrasting dark background to make the gold pop. Magical realism style, sharp details.</ImagePrompt>
+        <ImageFilename>ep4_narrative.png</ImageFilename>
+    </Post>
+    <Post platform="X" id="4b">
+        <Title>Copilot Power BI: Narrative</Title>
+        <Copy>Si los datos hablaran... espera, ¡ya lo hacen!
+
+Episodio 4: "El Narrador" 📖
+Copilot lee tus gráficos y genera resúmenes ejecutivos que tu jefe SÍ entenderá.
+Menos "qué pasó", más "por qué pasó".
+
+#Storytelling #PowerBI #BusinessIntelligence</Copy>
+        <Tags>#Storytelling #PowerBI</Tags>
+        <ImagePrompt aspect_ratio="16:9">Wide shot of a magical open book on a dark table, with golden data streams and holograms rising from it, illuminating the scene. Cinematic, magical realism. Aspect Ratio 16:9.</ImagePrompt>
+        <ImageFilename>ep4_narrative_wide.png</ImageFilename>
+    </Post>
+
+    <!-- EPISODE 5: MASTERY (THE MASTER) -->
+    <Post platform="Linkedin" id="5">
+        <Title>👑 Maestría: Controlando a la Bestia</Title>
+        <Copy>Un gran poder conlleva... bueno, ya sabes.
+
+Episodio 5: De 0 a Hero.
+Copilot puede alucinar. Puede equivocarse. Tu rol evoluciona de "creador" a "editor experto".
+🔸 Verifica el DAX.
+🔸 Refina los prompts.
+🔸 Conoce las limitaciones.
+
+La verdadera maestría no es dejar que la IA haga todo, es saber exactamente cómo guiarla para lograr lo imposible. ¿Estás listo para ser un Power BI Hero?
+
+#PowerBI #AIHallucinations #DataGovernance #CareerGrowth</Copy>
+        <Tags>#AI #PowerBI #Leadership</Tags>
+        <ImagePrompt aspect_ratio="4:5">A heroic silhouette of a data analyst standing on a peak of stylized polygonal data rocks, looking out over a vast digital landscape of connected nodes and light. Epic scale, cinematic lighting from behind (rim light), adventurous and inspiring mood. "Dune" meets "Tron" aesthetic.</ImagePrompt>
+        <ImageFilename>ep5_mastery.png</ImageFilename>
+    </Post>
+    <Post platform="X" id="5b">
+        <Title>Copilot Mastery</Title>
+        <Copy>Episodio 5: De 0 a Hero 👑
+Copilot es poderoso, pero tú eres el piloto. Aprende a auditar el DAX, refinar prompts y evitar alucinaciones.
+
+La verdadera skill es saber guiar a la IA. 🧠
+#AI #PowerBI #DataLeader</Copy>
+        <Tags>#AI #PowerBI</Tags>
+        <ImagePrompt aspect_ratio="16:9">Wide cinematic shot of a data analyst silhouette standing on a digital peak, overlooking a vast, glowing data landscape. Cinematic lighting, "Dune" style wide angle. Aspect Ratio 16:9.</ImagePrompt>
+        <ImageFilename>ep5_mastery_wide.png</ImageFilename>
+    </Post>
+</Topic>

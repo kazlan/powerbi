@@ -11,9 +11,12 @@ const PodcastList = ({ podcasts, onSelectPodcast, selectedTag = 'Todos', onSelec
     // Extract unique tags
     const allTags = ['Todos', ...new Set(podcasts.flatMap(p => p.tags || []))];
 
+    // Sort podcasts descending by date
+    const sortedPodcasts = [...podcasts].sort((a, b) => new Date(b.date) - new Date(a.date));
+
     const filteredPodcasts = selectedTag === 'Todos'
-        ? podcasts
-        : podcasts.filter(p => p.tags?.includes(selectedTag));
+        ? sortedPodcasts
+        : sortedPodcasts.filter(p => p.tags?.includes(selectedTag));
 
     return (
         <div className="p-4 md:p-8 lg:p-12 max-w-[1800px] mx-auto animate-in fade-in duration-500">

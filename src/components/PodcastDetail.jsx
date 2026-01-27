@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, Play, Pause, FastForward, Rewind, Link as LinkIcon, ExternalLink, Tag, Volume2, Volume1, VolumeX } from 'lucide-react';
+import { ArrowLeft, Play, Pause, FastForward, Rewind, Link as LinkIcon, ExternalLink, Tag, Volume2, Volume1, VolumeX, FileText } from 'lucide-react';
 import SEO from './SEO';
 
 const PodcastDetail = ({ podcast, onBack, onTagSelect }) => {
@@ -189,6 +189,39 @@ const PodcastDetail = ({ podcast, onBack, onTagSelect }) => {
                                 )}
                             </div>
                         </div>
+
+                        {/* Transcription / Content Section */}
+                        {podcast.content && (
+                            <div className="bg-background-card border border-white/5 rounded-2xl p-8 shadow-xl">
+                                <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                                    <FileText size={24} className="text-primary" />
+                                    Transcripción y Claves
+                                </h3>
+                                <div className="space-y-6 text-slate-300">
+                                    {podcast.content.map((block, index) => {
+                                        if (block.type === 'paragraph') {
+                                            return <p key={index} className="leading-relaxed text-lg">{block.text}</p>;
+                                        }
+                                        if (block.type === 'quote') {
+                                            return (
+                                                <blockquote key={index} className="border-l-4 border-primary pl-6 py-4 my-8 bg-white/5 rounded-r-xl italic text-white text-xl font-light">
+                                                    "{block.text}"
+                                                </blockquote>
+                                            );
+                                        }
+                                        if (block.type === 'image') {
+                                            return (
+                                                <figure key={index} className="my-10 rounded-xl overflow-hidden border border-white/10 shadow-2xl group">
+                                                    <img src={block.src} alt={block.alt} className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
+                                                    {block.caption && <figcaption className="p-3 bg-black/40 text-center text-sm text-slate-400 italic">{block.caption}</figcaption>}
+                                                </figure>
+                                            );
+                                        }
+                                        return null;
+                                    })}
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     {/* Right Side: Meta Info (Tags & Links) */}
@@ -245,7 +278,7 @@ const PodcastDetail = ({ podcast, onBack, onTagSelect }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

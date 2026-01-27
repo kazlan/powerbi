@@ -188,9 +188,9 @@ const Hero = ({ onExplore, allCharts = [], onSelectChart, onViewPodcast }) => {
 
                     <button
                         onClick={() => onViewPodcast && onViewPodcast(featuredPodcast)}
-                        className="shrink-0 px-8 py-3 rounded-full bg-primary text-black font-bold text-sm hover:bg-white hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,193,7,0.3)] flex items-center gap-2 z-20"
+                        className="shrink-0 px-8 py-3 rounded-full bg-white/5 hover:bg-primary hover:text-black border border-white/10 hover:border-primary/50 text-white transition-all font-medium text-sm flex items-center gap-2 group-btn z-20"
                     >
-                        <span className="material-symbols-outlined filled">play_circle</span>
+                        <span className="material-symbols-outlined group-btn-hover:fill-current">play_circle</span>
                         Escuchar Ahora
                     </button>
                 </div>
