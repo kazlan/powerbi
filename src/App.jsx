@@ -19,8 +19,9 @@ import VisualDetail from './components/VisualDetail';
 import PodcastList from './components/PodcastList';
 import PodcastDetail from './components/PodcastDetail';
 import { LegalNotice, PrivacyPolicy, CookiesPolicy } from './Legal';
-import { podcasts } from './data/podcasts';
+import { podcasts, series } from './data/podcasts';
 import { chartLibrary, categories, allCharts } from './data/charts.jsx';
+import PodcastSeries from './components/PodcastSeries';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -200,6 +201,28 @@ const App = () => {
             <CookiesPolicy />
           </div>
         );
+      case 'rutas':
+        return (
+          <div className="p-4 md:p-8 lg:p-12 max-w-[1800px] mx-auto animate-in fade-in duration-500">
+            <SEO
+              title="Rutas de Aprendizaje"
+              description="Sigue nuestros caminos curados para dominar temas específicos de Power BI paso a paso."
+              url={window.location.href}
+            />
+            <div className="mb-10">
+              <h1 className="text-3xl font-bold mb-6 text-white">Rutas de <span className="text-primary">Aprendizaje</span></h1>
+              <p className="text-slate-400 max-w-2xl">Sigue nuestros caminos curados para dominar temas específicos de Power BI paso a paso.</p>
+            </div>
+            <PodcastSeries
+              seriesList={series}
+              allPodcasts={podcasts}
+              onSelectPodcast={(podcast) => {
+                handlePodcastSelect(podcast);
+                setActiveTab('podcasts');
+              }}
+            />
+          </div>
+        );
       case 'podcasts':
         if (selectedPodcast) {
           return (
@@ -282,6 +305,10 @@ const App = () => {
           <button onClick={() => { setActiveTab('catalog'); updateUrl({ view: 'catalog' }); }} className={`flex flex-col items-center gap-1 ${activeTab === 'catalog' ? 'text-primary' : 'text-slate-500'}`}>
             <span className="material-symbols-outlined">bar_chart</span>
             <span className="text-[10px] uppercase font-bold">Visuales</span>
+          </button>
+          <button onClick={() => { setActiveTab('rutas'); updateUrl({ view: 'rutas' }); }} className={`flex flex-col items-center gap-1 ${activeTab === 'rutas' ? 'text-primary' : 'text-slate-500'}`}>
+            <span className="material-symbols-outlined">map</span>
+            <span className="text-[10px] uppercase font-bold">Rutas</span>
           </button>
           <button onClick={() => { setActiveTab('podcasts'); updateUrl({ view: 'podcasts' }); }} className={`flex flex-col items-center gap-1 ${activeTab === 'podcasts' ? 'text-primary' : 'text-slate-500'}`}>
             <span className="material-symbols-outlined">podcasts</span>

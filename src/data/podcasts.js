@@ -147,3 +147,70 @@ export const podcasts = [
         ]
     }
 ];
+
+export const series = [
+    {
+        id: "ruta-copilot",
+        title: "Ruta: Copilot en Power BI (0 to Hero)",
+        description: "Domina la IA generativa en Power BI. Desde los requisitos técnicos hasta la maestría en prompts para DAX, informes y narrativa.",
+        episodes: [
+            {
+                id: "copilot-capacidad-requisitos",
+                status: "published",
+                order: 1
+            },
+            {
+                id: "copilot-dax",
+                title: "El Susurrador de Código",
+                description: "Generación de DAX con Lenguaje Natural. Superando el síndrome de la página en blanco y aumentando productividad.",
+                status: "coming_soon",
+                order: 2
+            },
+            {
+                id: "copilot-reports",
+                title: "El Arquitecto Digital",
+                description: "Generación automática de informes. Estructura, selección de visuales y conexión de datos automatizada.",
+                status: "coming_soon",
+                order: 3
+            },
+            {
+                id: "copilot-narrative",
+                title: "El Narrador",
+                description: "Narrativas Inteligentes. Interpretación de gráficos y generación de resúmenes ejecutivos que explican el 'por qué'.",
+                status: "coming_soon",
+                order: 4
+            },
+            {
+                id: "copilot-best-practices",
+                title: "Maestría y Control",
+                description: "Best Practices y Gobernanza. De creador a editor experto: auditar código, refinar prompts y evitar alucinaciones.",
+                status: "coming_soon",
+                order: 5
+            }
+        ]
+    },
+    {
+        id: "ruta-dax",
+        title: "Ruta de Aprendizaje: Dominando DAX",
+        description: "De los conceptos básicos a la manipulación avanzada del contexto. Sigue este camino para convertirte en un experto.",
+        episodes: [
+            {
+                id: "dax-narracion-datos", // References existing podcast id
+                status: "published",
+                order: 1
+            },
+            {
+                id: "dax-contextos",
+                status: "published",
+                order: 2
+            },
+            {
+                id: "dax-time-intelligence", // Future episode
+                title: "Inteligencia de Tiempo (Time Intelligence)",
+                description: "Domina las funciones de tiempo: YTD, comparativas anuales y calendarios personalizados.",
+                status: "coming_soon",
+                order: 3
+            }
+        ]
+    }
+];

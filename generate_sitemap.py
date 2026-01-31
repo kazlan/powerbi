@@ -21,10 +21,12 @@ def get_podcast_ids():
     try:
         with open(PODCASTS_FILE, 'r', encoding='utf-8') as f:
             content = f.read()
+            # Only look for IDs in the main podcasts array, avoiding the series section
+            if "export const series" in content:
+                content = content.split("export const series")[0]
+            
             # Simple regex to find id: "value"
             matches = re.findall(r'id:\s*["\']([^"\']+)["\']', content)
-            # Filter out category IDs from App.jsx if any confusion, but this is podcasts.js
-            # podcasts.js structure: id: "dax-narracion-datos"
             ids = matches
     except Exception as e:
         print(f"Error reading podcasts: {e}")
@@ -58,13 +60,15 @@ def generate_sitemap():
     
     # Static pages
     urls.append(f"{BASE_URL}/")
-    
+    urls.append(f"{BASE_URL}/?view=rutas")
+
     # Podcasts
     podcast_ids = get_podcast_ids()
-    print(f"Found {len(podcast_ids)} podcasts.")
+    print(f"Found {len(podcast_ids)} inputs (podcasts + series).")
     for pid in podcast_ids:
         # Check if it's a valid podcast ID (simple heuristic)
-        if len(pid) > 3: 
+        # Exclude IDs starting with 'ruta-' as they are series, not podcasts
+        if len(pid) > 3 and not pid.startswith("ruta-"): 
              urls.append(f"{BASE_URL}/?podcast={pid}")
 
     # Visuals

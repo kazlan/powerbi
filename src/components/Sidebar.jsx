@@ -5,6 +5,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
     const menuItems = [
         { id: 'home', icon: 'home', label: 'Inicio' },
         { id: 'catalog', icon: 'bar_chart', label: 'Visuales' },
+        { id: 'rutas', icon: 'map', label: 'Rutas' },
         { id: 'podcasts', icon: 'podcasts', label: 'Podcasts' },
     ];
 
