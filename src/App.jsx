@@ -22,6 +22,7 @@ import { LegalNotice, PrivacyPolicy, CookiesPolicy } from './Legal';
 import { podcasts, series } from './data/podcasts';
 import { chartLibrary, categories, allCharts } from './data/charts.jsx';
 import PodcastSeries from './components/PodcastSeries';
+import SEO from './components/SEO';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
