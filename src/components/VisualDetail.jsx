@@ -49,12 +49,22 @@ const VisualDetail = ({ chart, onBack, onPrevious, onNext }) => {
 
     if (!chart) return null;
 
+    const slugify = (text) => {
+        return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^\w\-]+/g, '')
+            .replace(/\-\-+/g, '-')
+            .replace(/^-+/, '')
+            .replace(/-+$/, '');
+    };
+
     return (
         <div className="p-4 md:p-8 lg:p-12 max-w-[1600px] mx-auto animate-in slide-in-from-right-10 duration-500">
             <SEO
                 title={chart.title}
                 description={chart.desc}
                 image={chart.image}
+                url={`https://www.powerbimax.com/?visual=${slugify(chart.title)}`}
             />
             {/* Breadcrumbs */}
             <div className="flex flex-wrap items-center gap-2 mb-8">

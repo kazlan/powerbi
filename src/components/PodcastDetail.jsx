@@ -71,13 +71,16 @@ const PodcastDetail = ({ podcast, onBack, onTagSelect }) => {
     };
 
     return (
-        <div className="flex flex-col h-[calc(100vh-64px)] overflow-hidden animate-in fade-in slide-in-from-right-4 duration-500 bg-background-dark">
-            <SEO
-                title={podcast.title}
-                description={podcast.description}
-                image={podcast.thumbnail}
-                type="music.song"
-            />
+        <div className="flex flex-col h-[calc(100vh-64px)] overflow-hidden bg-background-dark">
+            <div className="animate-in slide-in-from-right-10 duration-500">
+                <SEO
+                    title={podcast.title}
+                    description={podcast.description}
+                    image={podcast.thumbnail}
+                    url={`https://www.powerbimax.com/?podcast=${podcast.id}`}
+                    type="music.song"
+                />
+            </div>
             {/* Header */}
             <div className="p-6 border-b border-white/5 bg-background-card flex items-center gap-4 shadow-md z-10 shrink-0">
                 <button

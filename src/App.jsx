@@ -25,12 +25,6 @@ import PodcastSeries from './components/PodcastSeries';
 import SEO from './components/SEO';
 
 const App = () => {
-  const [activeTab, setActiveTab] = useState('home');
-  const [selectedCategory, setSelectedCategory] = useState('todos');
-  const [selectedChart, setSelectedChart] = useState(null);
-  const [selectedPodcast, setSelectedPodcast] = useState(null);
-  const [selectedTag, setSelectedTag] = useState('Todos');
-
   // Helper to slugify titles
   const slugify = (text) => {
     return text.toString().toLowerCase()
@@ -40,6 +34,49 @@ const App = () => {
       .replace(/^-+/, '')
       .replace(/-+$/, '');
   };
+
+  // Lazy initialization of state based on URL params
+  const getInitialState = () => {
+    const params = new URLSearchParams(window.location.search);
+    const podcastId = params.get('podcast');
+    const visualSlug = params.get('visual');
+    const view = params.get('view');
+
+    if (podcastId) {
+      const foundPodcast = podcasts.find(p => p.id === podcastId);
+      if (foundPodcast) {
+        return { activeTab: 'podcasts', selectedPodcast: foundPodcast, selectedChart: null, selectedCategory: 'todos', selectedTag: 'Todos' };
+      }
+    }
+
+    if (visualSlug) {
+      const foundChart = allCharts.find(c => slugify(c.title) === visualSlug);
+      if (foundChart) {
+        let category = 'todos';
+        for (const [catId, charts] of Object.entries(chartLibrary)) {
+          if (charts.find(c => c.title === foundChart.title)) {
+            category = catId;
+            break;
+          }
+        }
+        return { activeTab: 'catalog', selectedPodcast: null, selectedChart: foundChart, selectedCategory: category, selectedTag: 'Todos' };
+      }
+    }
+
+    if (view && ['home', 'catalog', 'podcasts', 'rutas', 'legal', 'privacy', 'cookies'].includes(view)) {
+      return { activeTab: view, selectedPodcast: null, selectedChart: null, selectedCategory: 'todos', selectedTag: 'Todos' };
+    }
+
+    return { activeTab: 'home', selectedPodcast: null, selectedChart: null, selectedCategory: 'todos', selectedTag: 'Todos' };
+  };
+
+  const initialState = getInitialState();
+
+  const [activeTab, setActiveTab] = useState(initialState.activeTab);
+  const [selectedCategory, setSelectedCategory] = useState(initialState.selectedCategory);
+  const [selectedChart, setSelectedChart] = useState(initialState.selectedChart);
+  const [selectedPodcast, setSelectedPodcast] = useState(initialState.selectedPodcast);
+  const [selectedTag, setSelectedTag] = useState(initialState.selectedTag);
 
   const updateUrl = (params) => {
     const url = new URL(window.location);
@@ -53,51 +90,18 @@ const App = () => {
     window.history.pushState({}, '', url);
   };
 
-  // ---------------------------------------------------------
-  // DEEP LINKING & HANDLERS
-  // ---------------------------------------------------------
-
+  // Effect to handle browser back/forward buttons
   useEffect(() => {
-    try {
-      const params = new URLSearchParams(window.location.search);
-      const podcastId = params.get('podcast');
-      const visualSlug = params.get('visual');
-      const view = params.get('view');
+    const handlePopState = () => {
+      const newState = getInitialState();
+      setActiveTab(newState.activeTab);
+      setSelectedChart(newState.selectedChart);
+      setSelectedPodcast(newState.selectedPodcast);
+      setSelectedCategory(newState.selectedCategory);
+    };
 
-      if (podcastId) {
-        const foundPodcast = podcasts.find(p => p.id === podcastId);
-        if (foundPodcast) {
-          setActiveTab('podcasts');
-          setSelectedPodcast(foundPodcast);
-          return; // Prioritize podcast if both exist (unlikely)
-        }
-      }
-
-      if (visualSlug) {
-        const foundChart = allCharts.find(c => slugify(c.title) === visualSlug);
-        if (foundChart) {
-          setActiveTab('catalog'); // Determine category?
-          // Not strictly necessary for display but good for UI state.
-          // Let's find the category of the chart.
-          for (const [catId, charts] of Object.entries(chartLibrary)) {
-            if (charts.find(c => c.title === foundChart.title)) {
-              setSelectedCategory(catId);
-              break;
-            }
-          }
-          setSelectedChart(foundChart);
-          return;
-        }
-      }
-
-      // If no deep link, check view
-      if (view && ['home', 'catalog', 'podcasts'].includes(view)) {
-        setActiveTab(view);
-      }
-
-    } catch (error) {
-      console.error("Deep linking error:", error);
-    }
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   const handleTagSelect = (tag) => {
