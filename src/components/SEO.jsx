@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-const SEO = ({ title, description, image, url, type = 'website' }) => {
+const SEO = ({ title, description, image, url, type = 'website', children }) => {
     const siteTitle = 'POWER BI MAX';
     const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
     const defaultDescription = 'Domina la certificación PL-300 con POWER BI MAX. Tu enciclopedia visual interactiva.';
@@ -39,6 +39,8 @@ const SEO = ({ title, description, image, url, type = 'website' }) => {
             <meta name="twitter:title" content={fullTitle} />
             <meta name="twitter:description" content={metaDescription} />
             <meta name="twitter:image" content={metaImage} />
+            {/* Custom Children for extra tags or JSON-LD */}
+            {children}
         </Helmet>
     );
 };

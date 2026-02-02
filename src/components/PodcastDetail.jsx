@@ -78,8 +78,31 @@ const PodcastDetail = ({ podcast, onBack, onTagSelect }) => {
                     description={podcast.description}
                     image={podcast.thumbnail}
                     url={`https://www.powerbimax.com/?podcast=${podcast.id}`}
-                    type="music.song"
-                />
+                    type="video.other"
+                >
+                    {podcast.youtubeId && (
+                        <script type="application/ld+json">
+                            {JSON.stringify({
+                                "@context": "https://schema.org",
+                                "@type": "VideoObject",
+                                "name": podcast.title,
+                                "description": podcast.description,
+                                "thumbnailUrl": [
+                                    `https://www.powerbimax.com${podcast.thumbnail}`,
+                                    `https://img.youtube.com/vi/${podcast.youtubeId}/maxresdefault.jpg`
+                                ],
+                                "uploadDate": new Date(podcast.date).toISOString(),
+                                "duration": `PT${podcast.duration.replace(':', 'M')}S`,
+                                "embedUrl": `https://www.youtube.com/embed/${podcast.youtubeId}`,
+                                "contentUrl": `https://www.youtube.com/watch?v=${podcast.youtubeId}`,
+                                "interactionStatistic": {
+                                    "@type": "InteractionCounter",
+                                    "interactionType": { "@type": "WatchAction" }
+                                }
+                            })}
+                        </script>
+                    )}
+                </SEO>
             </div>
             {/* Header */}
             <div className="p-6 border-b border-white/5 bg-background-card flex items-center gap-4 shadow-md z-10 shrink-0">
