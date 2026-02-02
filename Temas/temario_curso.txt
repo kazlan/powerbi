@@ -1,15 +1,19 @@
-Curso: Copilot en Power BI (0 to Hero)
+Ruta: Copilot en Power BI (0 to Hero)
+
 Tabla de Contenidos
 
-Capítulo 1: El Despertar de una Nueva Era
+Capítulo 1: El Despertar de una Nueva Era   
 ---------------------------------------
 Tema: Setup y Fundamentos.
 Descripción: Introducción a Copilot en Power BI. Requisitos (Fabric F64+) y visión general de sus capacidades (DAX, diseño, resúmenes). Transformando el flujo de trabajo de "construir" a "diseñar".
+
+Podcast  en http://localhost:5173/?view=podcasts&podcast=copilot-capacidad-requisitos
 
 Capítulo 2: El Susurrador de Código
 ---------------------------------------
 Tema: Generación de DAX con Lenguaje Natural.
 Descripción: Cómo utilizar Copilot para escribir medidas complejas usando instrucciones en lenguaje natural. Superando el síndrome de la página en blanco y aumentando la productividad en el modelado de datos.
+Reglas: No hacer alusión a las fuentes durante la conversación. voces en castellano de España. Empieza hablando la voz femenina.
 
 Capítulo 3: El Arquitecto Digital
 ---------------------------------------

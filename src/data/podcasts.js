@@ -145,6 +145,73 @@ export const podcasts = [
             { type: "paragraph", text: "Finalmente, está el tema de la gobernanza. No es un todo o nada. Puedes habilitarlo solo para grupos de seguridad específicos, permitiendo un despliegue controlado y por fases. E incluso delegar la activación a departamentos específicos como marketing o finanzas." },
             { type: "paragraph", text: "El reto final es cultural. Preparar a las personas para dialogar con los datos y formular las preguntas correctas. ¿Qué sucede cuando cualquier persona puede obtener respuestas visuales al instante? Ese es el verdadero cambio." }
         ]
+    },
+    {
+        id: "el-susurrador-de-codigo",
+        title: "Copilot y la Revolución del DAX",
+        date: "2026-02-02",
+        duration: "25:00",
+        description: "El rol del analista está cambiando. De escribir fórmulas a diseñar semántica. Exploramos cómo Copilot en Power BI revoluciona la escritura de DAX. No es magia, es arquitectura.",
+        thumbnail: "/podcasts/el-susurrador-de-codigo/youtube_thumb.png",
+        audioSrc: "/podcasts/el-susurrador-de-codigo/El Susurrador de Código.m4a",
+        tags: ["Copilot", "DAX", "AI", "Semantic Model"],
+        youtubeId: "rbLcMWS3YLg",
+        highlights: [
+            "El fin del síndrome de la página en blanco.",
+            "Cómo funciona realmente la conversión de Texto a DAX.",
+            "La importancia crítica del Modelo Semántico.",
+            "DAX Query View como entorno de prototipado rápido.",
+            "El nuevo rol del analista: de Coder a Arquitecto Semántico."
+        ],
+        links: [
+            { title: "Documentación Oficial Copilot", url: "https://learn.microsoft.com/en-us/power-bi/create-reports/copilot-introduction" }
+        ],
+        content: [
+            { type: "paragraph", text: "El síndrome de la página en blanco. Sabes qué calcular, pero el cursor parpadea mientras luchas con la sintaxis DAX y los contextos." },
+            { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_01.png", alt: "Blank Page Syndrome", caption: "The blank page syndrome in DAX development." },
+
+            { type: "paragraph", text: "Copilot actúa como un 'susurrador de código', traduciendo tu intención en lenguaje natural a fórmulas DAX precisas." },
+            { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_02.png", alt: "Voice to Code", caption: "Copilot translates natural language intent into code." },
+
+            { type: "paragraph", text: "DAX es difícil porque no son solo fórmulas; es lógica invisible. Contexto de Fila y Contexto de Filtro." },
+            { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_03.png", alt: "DAX Contexts", caption: "DAX complexity lies in invisible contexts (Row vs Filter)." },
+
+            { type: "paragraph", text: "Copilot entiende prácticas de negocio. Pides 'crecimiento interanual' y sabe usar CALCULATE y SAMEPERIODLASTYEAR." },
+            { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_04.png", alt: "Best Practices", caption: "Copilot applies best practices automatically." },
+
+            { type: "paragraph", text: "Velocidad de curiosidad = Velocidad de negocio. Marketing pregunta, el analista responde en minutos, no semanas." },
+            { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_05.png", alt: "Speed of Business", caption: "Accelerating business answers." },
+
+            { type: "paragraph", text: "DAX Query View (Ctrl+I). No es una caja negra, es un diálogo interactivo donde pruebas antes de guardar." },
+            { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_06.png", alt: "Interactive Dialogue", caption: "Interactive dialogue in DAX Query View." },
+
+            { type: "paragraph", text: "Valor educativo: 'Explícame este código'. Copilot desglosa medidas heredadas y cripticas para que las entiendas." },
+            { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_07.png", alt: "Code Explanation", caption: "Copilot as a teacher and debugger." },
+
+            { type: "paragraph", text: "Pero cuidado: Basura entra, basura sale. La calidad de la respuesta depende de tu Modelo Semántico." },
+            { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_08.png", alt: "GIGO", caption: "Garbage In, Garbage Out. Model quality is key." },
+
+            { type: "paragraph", text: "Regla de Oro 1: Esquema en Estrella. Hechos y Dimensiones separados. Las tablas planas confunden a la IA." },
+            { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_09.png", alt: "Star Schema", caption: "Star Schema is essential." },
+
+            { type: "paragraph", text: "Regla de Oro 2: Nomenclatura Humana. 'Ventas Totales' es mejor que 'V_Tot_03'. La IA lee como nosotros." },
+            { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_10.png", alt: "Naming Conventions", caption: "Use human-readable naming conventions." },
+
+            { type: "paragraph", text: "Regla de Oro 3: Metadatos y Sinónimos. Enseña a Copilot que 'Ganancia' es lo mismo que 'Beneficio'." },
+            { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_11.png", alt: "Synonyms", caption: "Enrich metadata with synonyms." },
+
+            { type: "paragraph", text: "Relaciones claras. La IA navega por los caminos que tú construyes. Si los caminos están rotos, se pierde." },
+            { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_12.png", alt: "Relationships", caption: "Clear relationships define navigation paths." },
+
+            { type: "paragraph", text: "Prototipado ágil: Validar hipótesis de negocio en minutos en la Query View sin ensuciar el modelo." },
+            { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_13.png", alt: "Rapid Prototyping", caption: "Rapid prototyping and hypothesis validation." },
+
+            { type: "paragraph", text: "Nuevo flujo: Explorar -> Validar -> Promocionar. Solo lo útil se convierte en medida oficial." },
+            { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_14.png", alt: "Workflow", caption: "Explore, Validate, Promote workflow." },
+
+            { type: "paragraph", text: "El futuro del analista: Menos sintaxis, más semántica. Arquitectos de datos que hacen las preguntas correctas." },
+            { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_15.png", alt: "Future Analyst", caption: "Analyst as Semantic Architect." }
+        ]
     }
 ];
 
@@ -160,10 +227,10 @@ export const series = [
                 order: 1
             },
             {
-                id: "copilot-dax",
+                id: "el-susurrador-de-codigo",
                 title: "El Susurrador de Código",
                 description: "Generación de DAX con Lenguaje Natural. Superando el síndrome de la página en blanco y aumentando productividad.",
-                status: "coming_soon",
+                status: "published",
                 order: 2
             },
             {
