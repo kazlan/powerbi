@@ -11,9 +11,9 @@ const SEO = ({ title, description, image, url, type = 'website' }) => {
     // Assuming the site is hosted at root, we use the passed image or default.
     // Ideally, 'window.location.origin' + image would be best if image is relative.
     const getAbsoluteUrl = (path) => {
-        if (!path) return 'https://powerbimax.com/og-image.png';
+        if (!path) return 'https://www.powerbimax.com/og-image.png';
         if (path.startsWith('http')) return path;
-        return `https://powerbimax.com${path.startsWith('/') ? '' : '/'}${path}`;
+        return `https://www.powerbimax.com${path.startsWith('/') ? '' : '/'}${path}`;
     };
 
     const metaImage = getAbsoluteUrl(image);

@@ -3,9 +3,9 @@ import datetime
 import os
 
 # Configuration
-BASE_URL = "https://powerbimax.com"
+BASE_URL = "https://www.powerbimax.com"
 PODCASTS_FILE = r"src/data/podcasts.js"
-APP_FILE = r"src/App.jsx"
+CHARTS_FILE = r"src/data/charts.jsx"
 OUTPUT_FILE = r"public/sitemap.xml"
 
 def slugify(text):
@@ -13,7 +13,8 @@ def slugify(text):
     text = re.sub(r'\s+', '-', text)
     text = re.sub(r'[^\w\-]+', '', text)
     text = re.sub(r'\-\-+', '-', text)
-    text = text.strip('-')
+    text = re.sub(r'^-+', '', text)
+    text = re.sub(r'-+$', '', text)
     return text
 
 def get_podcast_ids():
@@ -35,24 +36,16 @@ def get_podcast_ids():
 def get_visual_slugs():
     slugs = []
     try:
-        with open(APP_FILE, 'r', encoding='utf-8') as f:
+        with open(CHARTS_FILE, 'r', encoding='utf-8') as f:
             content = f.read()
             # Find chart objects. They have title: "..." inside chartLibrary
-            # We look for title: "..."
-            # This might match other things, but in App.jsx titles are mostly chart titles.
-            # Let's be more specific if possible, but title keys are unique to charts in the large object.
             matches = re.findall(r'title:\s*["\']([^"\']+)["\']', content)
             
-            # Filter out titles that look like links or metadata
-            # The titles in App.jsx are like "Barras y Columnas (Estándar)"
             for title in matches:
-                # Exclude known non-chart titles if any (e.g. "Documentación Oficial")
-                if "Documentación" in title or "Guía" in title:
-                    continue
                 if len(title) < 3: continue
                 slugs.append(slugify(title))
     except Exception as e:
-        print(f"Error reading App.jsx: {e}")
+        print(f"Error reading charts.jsx: {e}")
     return list(set(slugs)) # Remove duplicates
 
 def generate_sitemap():
@@ -64,7 +57,7 @@ def generate_sitemap():
 
     # Podcasts
     podcast_ids = get_podcast_ids()
-    print(f"Found {len(podcast_ids)} inputs (podcasts + series).")
+    print(f"Found {len(podcast_ids)} input IDs from podcasts.js")
     for pid in podcast_ids:
         # Check if it's a valid podcast ID (simple heuristic)
         # Exclude IDs starting with 'ruta-' as they are series, not podcasts
@@ -73,7 +66,7 @@ def generate_sitemap():
 
     # Visuals
     visual_slugs = get_visual_slugs()
-    print(f"Found {len(visual_slugs)} visuals.")
+    print(f"Found {len(visual_slugs)} visuals from charts.jsx")
     for slug in visual_slugs:
         urls.append(f"{BASE_URL}/?visual={slug}")
 
