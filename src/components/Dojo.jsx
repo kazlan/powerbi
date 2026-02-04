@@ -368,9 +368,7 @@ export default function Dojo() {
                                 <div className="flex-1 bg-background-card rounded-2xl border border-white/10 flex flex-col overflow-hidden shadow-xl">
                                     <div className="p-8 overflow-y-auto flex-1 custom-scrollbar">
                                         <div className="prose prose-invert max-w-none prose-p:text-slate-300 prose-headings:text-white prose-code:text-primary prose-code:bg-white/10 prose-strong:text-white">
-                                            <div dangerouslySetInnerHTML={{ __html: currentLesson.content }} />
-
-                                            <div className="mt-8 p-5 bg-blue-900/20 border-l-4 border-blue-500 rounded-r-lg">
+                                            <div className="mb-8 p-5 bg-blue-900/20 border-l-4 border-blue-500 rounded-r-lg">
                                                 <h3 className="font-bold text-blue-400 flex items-center gap-2 mb-2">
                                                     <Code className="w-5 h-5" /> Desafío
                                                 </h3>
@@ -381,6 +379,7 @@ export default function Dojo() {
                                                     </p>
                                                 )}
                                             </div>
+                                            <div dangerouslySetInnerHTML={{ __html: currentLesson.content }} />
                                         </div>
                                     </div>
 
