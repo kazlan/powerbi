@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import {
     Activity, Trophy, Lock, Star, Play, RefreshCw, CheckCircle,
     AlertCircle, Code, Award, Coffee
