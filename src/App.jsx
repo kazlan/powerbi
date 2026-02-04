@@ -23,6 +23,7 @@ import { podcasts, series } from './data/podcasts';
 import { chartLibrary, categories, allCharts } from './data/charts.jsx';
 import PodcastSeries from './components/PodcastSeries';
 import SEO from './components/SEO';
+import Dojo from './components/Dojo';
 
 const App = () => {
   // Helper to slugify titles
@@ -63,7 +64,7 @@ const App = () => {
       }
     }
 
-    if (view && ['home', 'catalog', 'podcasts', 'rutas', 'legal', 'privacy', 'cookies'].includes(view)) {
+    if (view && ['home', 'catalog', 'podcasts', 'rutas', 'dojo', 'legal', 'privacy', 'cookies'].includes(view)) {
       return { activeTab: view, selectedPodcast: null, selectedChart: null, selectedCategory: 'todos', selectedTag: 'Todos' };
     }
 
@@ -246,6 +247,8 @@ const App = () => {
             onSelectTag={handleTagSelect}
           />
         );
+      case 'dojo':
+        return <Dojo />;
       default:
         // Fallback
         return <Hero
@@ -318,6 +321,10 @@ const App = () => {
           <button onClick={() => { setActiveTab('podcasts'); updateUrl({ view: 'podcasts' }); }} className={`flex flex-col items-center gap-1 ${activeTab === 'podcasts' ? 'text-primary' : 'text-slate-500'}`}>
             <span className="material-symbols-outlined">podcasts</span>
             <span className="text-[10px] uppercase font-bold">Podcasts</span>
+          </button>
+          <button onClick={() => { setActiveTab('dojo'); updateUrl({ view: 'dojo' }); }} className={`flex flex-col items-center gap-1 ${activeTab === 'dojo' ? 'text-primary' : 'text-slate-500'}`}>
+            <span className="material-symbols-outlined">school</span>
+            <span className="text-[10px] uppercase font-bold">Dojo</span>
           </button>
         </nav>
       </main>

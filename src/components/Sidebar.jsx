@@ -7,6 +7,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
         { id: 'catalog', icon: 'bar_chart', label: 'Visuales' },
         { id: 'rutas', icon: 'map', label: 'Rutas' },
         { id: 'podcasts', icon: 'podcasts', label: 'Podcasts' },
+        { id: 'dojo', icon: 'school', label: 'Dojo' },
     ];
 
     return (
