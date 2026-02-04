@@ -3,10 +3,10 @@ import { Linkedin, Youtube } from 'lucide-react';
 
 const Sidebar = ({ activeTab, setActiveTab }) => {
     const menuItems = [
-        { id: 'catalog', icon: 'bar_chart', label: 'Visuales' },
+        { id: 'dojo', icon: 'school', label: 'Dojo' },
         { id: 'rutas', icon: 'map', label: 'Rutas' },
         { id: 'podcasts', icon: 'podcasts', label: 'Podcasts' },
-        { id: 'dojo', icon: 'school', label: 'Dojo' },
+        { id: 'catalog', icon: 'bar_chart', label: 'Visuales' },
     ];
 
     return (
