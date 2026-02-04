@@ -141,10 +141,34 @@ export default function Dojo() {
     const handleSuccess = (msg = "¡Correcto! Buen trabajo.") => {
         setFeedback({ type: 'success', msg });
         const key = `${activeBeltIndex}-${activeLessonIndex}`;
+
+        let newCompleted = completedLessons;
         if (!completedLessons.includes(key)) {
-            setCompletedLessons([...completedLessons, key]);
+            newCompleted = [...completedLessons, key];
+            setCompletedLessons(newCompleted);
             setXp(xp + 20);
         }
+
+        // Auto-advance to next incomplete lesson
+        setTimeout(() => {
+            const currentBeltLessons = DAX_COURSE_DATA[activeBeltIndex].lessons;
+            // Find the next lesson index that is NOT completed
+            let nextIndex = -1;
+
+            // Look forward from current position
+            for (let i = activeLessonIndex + 1; i < currentBeltLessons.length; i++) {
+                if (!newCompleted.includes(`${activeBeltIndex}-${i}`)) {
+                    nextIndex = i;
+                    break;
+                }
+            }
+
+            if (nextIndex !== -1) {
+                setActiveLessonIndex(nextIndex);
+                setUserCode('');
+                setFeedback(null);
+            }
+        }, 1500);
     };
 
     const submitExam = () => {
