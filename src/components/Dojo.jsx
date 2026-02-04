@@ -490,6 +490,7 @@ export default function Dojo() {
                         )}
                     </div>
                 </div>
-            </>
-            );
+            </div>
+        </>
+    );
 }
