@@ -212,6 +212,253 @@ export const podcasts = [
             { type: "paragraph", text: "El futuro del analista: Menos sintaxis, más semántica. Arquitectos de datos que hacen las preguntas correctas." },
             { type: "image", src: "/podcasts/el-susurrador-de-codigo/slides/slide_15.png", alt: "Future Analyst", caption: "Analyst as Semantic Architect." }
         ]
+    },
+    {
+        id: "copilot-reports",
+        title: "El Arquitecto Digital",
+        date: "2026-02-10",
+        duration: "15:00",
+        description: "Copilot no es una capa de pintura, es un cambio tectónico. Descubre cómo pasar de mover píxeles a dirigir una construcción inteligente con lenguaje natural.",
+        thumbnail: "/podcasts/copilot-reports/thumbnail_16_9.png",
+        audioSrc: "/podcasts/copilot-reports/El Arquitecto Digital.m4a",
+        tags: ["Copilot", "Power BI", "IA Generativa", "Arquitecto Digital"],
+        youtubeId: "dM7D4NKxkSk",
+        highlights: [
+            "Pasamos de un mundo determinista a uno probabilístico.",
+            "El usuario se convierte en el arquitecto. La IA es el equipo de construcción.",
+            "La magia no surge del caos. La eficacia depende del modelo semántico."
+        ],
+        links: [
+            { title: "Documentación Copilot en Power BI", url: "https://learn.microsoft.com/es-es/power-bi/create-reports/copilot-introduction" }
+        ],
+        content: [
+            {
+                "type": "paragraph",
+                "text": "¿Sabes esa sensación? Abres la herramienta de análisis de datos y [exhala] ahí está, el desierto blanco, el temido lienzo en blanco. ¡Uf, total! Y empieza el ritual: eh, clic a clic, arrastrar este campo aquí, elegir este gráfico. Es que puede llegar a paralizar. Sí."
+            },
+            {
+                "type": "paragraph",
+                "text": "Pero, ¿y si pudiéramos saltarnos todo eso? ¿Y si en vez de construir, simplemente pudiéramos, no sé, describir? Pedir. Exacto, pedir. Algo como: \"Oye, necesito una página para analizar la eficiencia de la línea de producción y compara la efectividad del equipo entre los distintos turnos.\" Justo. Pues hoy vamos a meternos de lleno en esto, en cómo esta nueva forma de interactuar con los datos usando el lenguaje natural está reinventando la creación de informes."
+            },
+            {
+                "type": "image",
+                "src": "/podcasts/copilot-reports/slides/slide_01.png",
+                "alt": "Slide 01",
+                "caption": "Concepto clave 01 del episodio."
+            },
+            {
+                "type": "paragraph",
+                "text": "Vamos a ver cómo funciona por debajo, qué hace falta para que sea de verdad eficaz y qué supone este cambio, tanto para los analistas de toda la vida como para quien empieza. Y es que, ojo, no hablamos de un simple añadido, ¿eh? Mhm. De una capa de pintura bonita. Lo que se está describiendo aquí es un cambio, yo diría que tectónico, en la arquitectura de estas herramientas. Tectónico."
+            },
+            {
+                "type": "paragraph",
+                "text": "Sí, sí. Pasamos de un mundo, digamos, determinista, donde cada clic tiene una consecuencia única y predecible, a uno probabilístico. Ahora, una inteligencia artificial interpreta la intención que hay detrás de nuestras palabras. Y es como el síndrome de la página en blanco del escritor, pero para analistas. Exacto. Tienes una montaña de datos, mil preguntas que podrías hacer y la parálisis por análisis es muy real."
+            },
+            {
+                "type": "image",
+                "src": "/podcasts/copilot-reports/slides/slide_02.png",
+                "alt": "Slide 02",
+                "caption": "Concepto clave 02 del episodio."
+            },
+            {
+                "type": "paragraph",
+                "text": "A veces, lo más difícil es empezar, y esta tecnología lo que busca es ser precisamente ese primer párrafo que te escribe un asistente para que tú ya puedas empezar a editar y a refinar. Vale, a ver, vamos a desgranar esto. La idea fundamental es que el conocimiento ya no está en saber qué campo exacto arrastrar a qué eje. No. La habilidad ahora se desplaza a saber qué preguntar. Así que en lugar de pasarme media hora montando un panel, puedo decir algo como: \"Crea un panel de ventas que muestre los ingresos por región y por categoría de producto\"."
+            },
+            {
+                "type": "paragraph",
+                "text": "Y en segundos, no solo entiende lo que pides, sino que te propone una estructura, a veces una estructura completa de varias páginas. Elige los gráficos, que creo que son los mejores, y... Y conecta los datos, claro. Y conecta los datos. El efecto inmediato es una reducción de la carga cognitiva brutal. O sea que ya no tengo que ser un experto en visualización para recordar que una tendencia se ve mejor en un gráfico de líneas."
+            },
+            {
+                "type": "image",
+                "src": "/podcasts/copilot-reports/slides/slide_03.png",
+                "alt": "Slide 03",
+                "caption": "Concepto clave 03 del episodio."
+            },
+            {
+                "type": "paragraph",
+                "text": "Justo, o que una comparativa de segmentos funciona genial con barras. El sistema ya lo sabe y te lo propone. Aquí es donde entra esa metáfora, que me parece potentísima, del arquitecto y el equipo de construcción. A ver, explícamela. El usuario se convierte en el arquitecto. Él tiene la visión, decide qué se va a construir, para qué."
+            },
+            {
+                "type": "paragraph",
+                "text": "Y la IA es ese equipo de construcción supereficiente que levanta las paredes, pone las ventanas, todo según los planos que tú le vas dando. Me gusta, porque un arquitecto no pone cada ladrillo, pero sí que revisa la obra y pide cambios. ¿Funciona así? ¿Es un proceso de ida y vuelta? Totalmente conversacional. La IA te puede generar esa primera propuesta, ese borrador del informe, basándose en el modelo de datos, y a partir de ahí empieza el diálogo."
+            },
+            {
+                "type": "image",
+                "src": "/podcasts/copilot-reports/slides/slide_04.png",
+                "alt": "Slide 04",
+                "caption": "Concepto clave 04 del episodio."
+            },
+            {
+                "type": "paragraph",
+                "text": "Vale. Le puedes decir: \"Añade un filtro para el año 2025\", o \"cambia la granularidad de los datos de mensual a trimestral\", y el informe se reajusta casi en tiempo real. O incluso algo más sutil, como: \"Destaca en otro color la región con mayores ventas\". Exactamente. Es un proceso de refinar y refinar, donde diriges a tu equipo de construcción con instrucciones cada vez más precisas, hasta que el edificio es, bueno, tal y como lo habías imaginado. Entendido."
+            },
+            {
+                "type": "paragraph",
+                "text": "La IA nos ayuda a montar los gráficos, a visualizar lo que ya está en los datos, pero el poder del análisis siempre ha estado en ir más allá, en crear nuevas métricas, en calcular cosas que no son obvias. Mmm. Y ahí es donde la mayoría de la gente, y yo me incluyo a veces, se topa con un muro, el del código, el del famoso y temido DAX en el mundo Power BI. ¿Llega la IA también a esa sala de máquinas? Es que esa es la segunda parte de la revolución y quizá la más profunda. Se habla de un objeto visual de narrativa."
+            },
+            {
+                "type": "image",
+                "src": "/podcasts/copilot-reports/slides/slide_05.png",
+                "alt": "Slide 05",
+                "caption": "Concepto clave 05 del episodio."
+            },
+            {
+                "type": "paragraph",
+                "text": "Esto es una evolución de algo que ya existía, pero vamos, con esteroides. Narrativa, ¿qué es eso? Es un componente que de forma automática genera un resumen en texto de lo que se ve en los otros gráficos de la página. No te dice solo: \"las ventas subieron\". No, puede identificar y describir en lenguaje natural las tendencias clave, los valores atípicos más importantes, los patrones que surgen. Vaya, o sea que no solo construye el gráfico, sino que también escribe el pie de foto explicando lo que significa."
+            },
+            {
+                "type": "paragraph",
+                "text": "Exactamente, y de forma dinámica. Si un usuario final filtra el informe para ver solo los datos de una región, el texto no se queda obsoleto. Con un clic en un botón de actualizar, la narrativa se regenera para contar la historia de esa nueva vista de los datos. Es literalmente que los datos cuenten su propia historia. Justo. Pero como bien decías, esto nos lleva directos a la sala de máquinas, a la creación de fórmulas."
+            },
+            {
+                "type": "image",
+                "src": "/podcasts/copilot-reports/slides/slide_06.png",
+                "alt": "Slide 06",
+                "caption": "Concepto clave 06 del episodio."
+            },
+            {
+                "type": "paragraph",
+                "text": "Al DAX, a ese lenguaje que es increíblemente potente, pero que tiene una curva de aprendizaje vertical. Pues ahí es donde entra el segundo gran avance, eh... la asistencia en la creación de esas fórmulas. Dentro del propio editor, con un atajo de teclado, un Ctrl+I, se abre una ventana donde puedes describir el cálculo que necesitas en lenguaje natural. ¿En serio? Sí, sí."
+            },
+            {
+                "type": "paragraph",
+                "text": "Puedes escribir: \"Calcula el crecimiento interanual de las ventas por región\", y la IA genera el código DAX correspondiente, usando las funciones correctas como CALCULATE o SAMEPERIODLASTYEAR, y aplicando además las mejores prácticas de la industria. Para un momento. He visto código generado por IA en otros sitios y a veces es, digamos, creativo, por no decir incorrecto o ineficiente. ¿Esto es fiable?... ¿Es un código que un analista senior pondría en producción sin más o es solo un punto de partida? Esa es la pregunta del millón, y la respuesta es que hay que tratarlo como el trabajo de un asistente junior muy, muy competente."
+            },
+            {
+                "type": "image",
+                "src": "/podcasts/copilot-reports/slides/slide_07.png",
+                "alt": "Slide 07",
+                "caption": "Concepto clave 07 del episodio."
+            },
+            {
+                "type": "paragraph",
+                "text": "Ajá. Genera un código funcional y, en la mayoría de los casos, correcto, ¿sí? ¿Deberías copiarlo y pegarlo en un modelo de datos crítico para la empresa sin entender lo que hace? Radicalmente no. Es un acelerador entonces. Es un acelerador brutal, un profesor particular increíble."
+            },
+            {
+                "type": "paragraph",
+                "text": "De hecho, también puede hacer lo contrario. Le puedes dar una fórmula DAX de veinte líneas que heredaste de alguien y pedirle que te la explique paso a paso en un lenguaje sencillo. Democratiza el acceso a lo más potente de la herramienta, pero no elimina la necesidad del juicio humano. Jo, es que eso es un cambio de vida. Cualquiera que haya pasado una tarde entera buscando un paréntesis mal puesto en una fórmula larguísima, sabe de lo que hablo. Totalmente."
+            },
+            {
+                "type": "image",
+                "src": "/podcasts/copilot-reports/slides/slide_08.png",
+                "alt": "Slide 08",
+                "caption": "Concepto clave 08 del episodio."
+            },
+            {
+                "type": "paragraph",
+                "text": "Eliminar esa fricción es monumental. Entonces, con todo este poder, ¿significa que podemos conectar una hoja de cálculo desordenada, hacerle un par de preguntas y esperar informes perfectos? Intuyo que aquí hay un pero del tamaño de un camión. Del tamaño de un tren de mercancías. Y este es un punto crítico que se deja muy claro. La magia no surge del caos."
+            },
+            {
+                "type": "paragraph",
+                "text": "La eficacia de toda esta capa de IA generativa depende directa y absolutamente de la calidad y la estructura del modelo semántico que hay debajo. La IA es tan bueno como los datos que le das, ¿no? Y el contexto que le proporcionas, exacto. Vale, ¿y qué significa un modelo bien preparado para la IA? ¿Qué tenemos que hacer en esa fase de preparación de datos, que siempre es la menos glamurosa, pero la más importante? Significa varias cosas."
+            },
+            {
+                "type": "image",
+                "src": "/podcasts/copilot-reports/slides/slide_09.png",
+                "alt": "Slide 09",
+                "caption": "Concepto clave 09 del episodio."
+            },
+            {
+                "type": "paragraph",
+                "text": "Primero, la higiene básica: usar nombres de tablas, columnas y medidas que sean claros, descriptivos, que hablen el lenguaje del negocio, no un código técnico que no entiende nadie. Ingresos trimestrales en lugar de col siete tr fact. Justo. Pero la práctica clave, y esto es fundamental para que la conversación fluya, es enriquecer los metadatos añadiendo- Sinónimos. Sinónimos. ¿Cómo funciona eso?"
+            },
+            {
+                "type": "paragraph",
+                "text": "Imagina que tienes una medida que se llama ventas netas. El sistema entiende esa etiqueta, pero un director financiero podría preguntar por beneficio, un comercial por resultado final y un analista por ingresos netos. Claro, cada uno usa su jerga. Exacto. Si no haces nada, la IA dirá que no entiende la pregunta. Pero si añades esos tres términos como sinónimos a la medida Vitas Netas, acabas de entrenar a la IA para que entienda el lenguaje real y variado de tu organización."
+            },
+            {
+                "type": "image",
+                "src": "/podcasts/copilot-reports/slides/slide_10.png",
+                "alt": "Slide 10",
+                "caption": "Concepto clave 10 del episodio."
+            },
+            {
+                "type": "paragraph",
+                "text": "Estás construyendo un puente entre la jerga técnica de la base de datos y la forma en la que las personas de verdad hablan del negocio. O sea, que el trabajo previo de modelado y enriquecimiento de datos no solo no desaparece- Qué va ... sino que se vuelve todavía más estratégico. Es la base sobre la que se asienta toda la inteligencia que viene después. Exacto. Imagina lo que pasa si esto se ignora."
+            },
+            {
+                "type": "paragraph",
+                "text": "Un directivo pide rentabilidad por campaña de marketing y la IA no encuentra nada. ¿Por qué? Porque la columna se llama Cost Westing Act Marketing veintitrés. Y la herramienta parece tonta. La herramienta parece tonta, el directivo pierde la confianza en el sistema y todo el proyecto de IA fracasa. Y no es un fallo de la inteligencia artificial, es un fallo humano en la preparación de los cimientos."
+            },
+            {
+                "type": "image",
+                "src": "/podcasts/copilot-reports/slides/slide_11.png",
+                "alt": "Slide 11",
+                "caption": "Concepto clave 11 del episodio."
+            },
+            {
+                "type": "paragraph",
+                "text": "Ahí es donde te juegas toda la partida. Entendido. Vale, hemos hablado de cómo preparar los datos y construir un solo informe, pero mi cabeza ya está pensando a escala de una organización. ¿Cómo evitas que cada departamento cree su propio mini universo de sinónimos y acabemos con un caos de definiciones? ¿Cómo funciona esto a nivel global? He visto que se menciona una experiencia independiente."
+            },
+            {
+                "type": "paragraph",
+                "text": "Sí. Frente a la que está integrada en el informe. Si conectamos esto con el panorama general, vemos dos modos de uso muy distintos. La experiencia integrada es la que hemos estado discutiendo. Estás dentro de un informe y la IA te ayuda a construirlo o analizarlo, siempre en el contexto de su modelo de datos. Es para ir a lo profundo, pero la experiencia independiente es mucho más ambiciosa."
+            },
+            {
+                "type": "image",
+                "src": "/podcasts/copilot-reports/slides/slide_12.png",
+                "alt": "Slide 12",
+                "caption": "Concepto clave 12 del episodio."
+            },
+            {
+                "type": "paragraph",
+                "text": "Funciona como un centro de inteligencia para toda la organización. ¿Quieres decir que puede buscar en varios informes a la vez? Exactamente. Puede buscar y sintetizar información de todos los informes y modelos de datos a los que un usuario tiene acceso, claro, según sus permisos de seguridad. La visión es que un directivo- La visión es que un directivo, antes de una reunión, pueda preguntar: \"Prepárame un resumen del rendimiento global de este trimestre\". Y la herramienta no se limita a un solo informe."
+            },
+            {
+                "type": "paragraph",
+                "text": "Podría extraer el crecimiento de ventas del informe comercial, el margen de beneficio del informe financiero... Mmm, y la eficiencia de producción del de operaciones. Justo. Y te presenta una respuesta coherente y unificada. Suena increíble, pero también suena a un caos potencial. Si la IA empieza a mezclar datos de ventas y finanzas, ¿cómo se asegura de no estar comparando peras con manzanas?"
+            },
+            {
+                "type": "image",
+                "src": "/podcasts/copilot-reports/slides/slide_13.png",
+                "alt": "Slide 13",
+                "caption": "Concepto clave 13 del episodio."
+            },
+            {
+                "type": "paragraph",
+                "text": "¿Quién garantiza que la definición de cliente activo es la misma en ambos informes? Esa es la gran pregunta de la gobernanza de datos, y la respuesta no es mágica. La herramienta por sí sola no puede resolver esas discrepancias si la organización no lo ha hecho primero. Su éxito a esta escala depende de que la empresa tenga modelos de datos bien gobernados, certificados, compartidos. Si no, es un caos. Claro, si tienes un modelo de datos oficial de ventas y otro de finanzas, y ambos son consistentes, la IA puede combinarlos de forma fiable."
+            },
+            {
+                "type": "paragraph",
+                "text": "Si tienes veinte informes de ventas, cada uno con sus propias definiciones, la IA solo va a reflejar ese caos. De nuevo, la tecnología es un amplificador de tus procesos, amplifica la claridad si la tienes y amplifica el desorden, si no. Lo que me lleva a la preocupación más obvia y más importante, la privacidad, la soberanía de los datos. Si un sistema de IA de un gran proveedor tecnológico tiene acceso a todos los datos de mi empresa...... para darme estas respuestas, ¿se usan esos datos para entrenar un modelo global que luego usarán mis competidores? Es la pregunta del millón, y las fuentes son, bueno, categóricas al respecto."
+            },
+            {
+                "type": "image",
+                "src": "/podcasts/copilot-reports/slides/slide_14.png",
+                "alt": "Slide 14",
+                "caption": "Concepto clave 14 del episodio."
+            },
+            {
+                "type": "paragraph",
+                "text": "La respuesta es un no rotundo. ¿Seguro? Seguro. Los datos de un cliente nunca se utilizan para entrenar, reentrenar o mejorar los modelos de lenguaje base para otros clientes. Todo el procesamiento, las preguntas, las respuestas, se mantiene estrictamente dentro de los límites geográficos y de seguridad del tenant de la organización. Es un principio de aislamiento total."
+            },
+            {
+                "type": "paragraph",
+                "text": "Tus datos son tuyos y solo se usan para generar respuestas para tus usuarios. Punto. ¡Uf! Eso es un gran alivio, y parece que la apuesta por esta tecnología es total, no es un experimento. He leído en la documentación un cambio estratégico bastante drástico: la retirada completa de la antigua herramienta de Q&A para finales de 2026. Es un movimiento de quemar las naves."
+            },
+            {
+                "type": "image",
+                "src": "/podcasts/copilot-reports/slides/slide_15.png",
+                "alt": "Slide 15",
+                "caption": "Concepto clave 15 del episodio."
+            },
+            {
+                "type": "paragraph",
+                "text": "Vaya. No es solo una actualización, es una declaración de intenciones. Consolida toda la estrategia en esta nueva plataforma de IA generativa. Se elimina lo antiguo para evitar la confusión de tener dos sistemas de lenguaje natural solapándose y, sobre todo, para centrar todos los recursos en el nuevo sistema. Es una señal inequívoca de que este es el futuro. No hay vuelta atrás."
+            },
+            {
+                "type": "paragraph",
+                "text": "Código complejo para cálculos personalizados y todo generado a través de una conversación. El rol del creador de informes parece que está cambiando, de ser un constructor meticuloso a ser, como decíamos, un arquitecto que dirige a un equipo de construcción inteligente. Exacto. Y la idea clave, que es vital entender, no es reemplazar a los analistas, es aumentarlos. Mmm. No se trata de reemplazar al piloto de carreras por un robot."
+            },
+            {
+                "type": "paragraph",
+                "text": "Se trata de darle al piloto un coche de Fórmula uno en lugar de un utilitario. La IA se encarga de la mecánica de bajo nivel, la inyección, el control de tracción, el cambio de marchas, para que el piloto pueda centrarse en lo importante: la estrategia de la carrera, trazar la curva perfecta, encontrar el hueco para adelantar. O sea, que el juicio y la estrategia del humano se vuelven más valiosos, no menos. Precisamente. Y esto subraya la necesidad de fomentar lo que podríamos llamar una cultura de alfabetización en IA. Hay que formar a los usuarios para que entiendan qué es esta herramienta."
+            },
+            {
+                "type": "paragraph",
+                "text": "No es un oráculo infalible. Es un asistente. Es un asistente increíblemente competente. El resultado que te da es un primer borrador excelente, pero siempre, siempre requiere la validación, el juicio crítico y el contexto de un experto humano. La IA genera el qué, pero el humano debe validar y explicar el porqué. Y esto nos hace pensar: a medida que estas herramientas se vuelven más y más eficientes en responder al qué, en construir el informe que pedimos, ¿cómo nos libera eso por hacer mejores preguntas estratégicas, los porqués y los qué pasaría si? Quizás la verdadera revolución no está en las respuestas que nos da la IA, sino en las nuevas y más profundas preguntas que nos permitirá explorar, ahora que ya no estaremos atascados en la mecánica de colocar cada ladrillo del informe."
+            }
+        ]
     }
 ];
 
@@ -237,7 +484,7 @@ export const series = [
                 id: "copilot-reports",
                 title: "El Arquitecto Digital",
                 description: "Generación automática de informes. Estructura, selección de visuales y conexión de datos automatizada.",
-                status: "coming_soon",
+                status: "published",
                 order: 3
             },
             {
