@@ -1,0 +1,25 @@
+
+> temp-app@0.0.0 build
+> vite build
+
+[36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32mÔ£ô[39m 25 modules transformed.
+Ô£ù Build failed in 758ms
+error during build:
+src/data/podcasts.js (35:0): Expected ',', got '--'
+file: C:/Users/perse/OneDrive/Documentos/1. PROYECTOS/PL-300/src/data/podcasts.js:35:0
+
+33:     ]
+34: }
+35: ----------------------,
+    ^
+36:     {
+37:         id: "dax-narracion-datos",
+
+    at getRollupError (file:///C:/Users/perse/OneDrive/Documentos/1.%20PROYECTOS/PL-300/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+    at ParseError.initialise (file:///C:/Users/perse/OneDrive/Documentos/1.%20PROYECTOS/PL-300/node_modules/rollup/dist/es/shared/node-entry.js:14534:28)
+    at convertNode (file:///C:/Users/perse/OneDrive/Documentos/1.%20PROYECTOS/PL-300/node_modules/rollup/dist/es/shared/node-entry.js:16418:10)
+    at convertProgram (file:///C:/Users/perse/OneDrive/Documentos/1.%20PROYECTOS/PL-300/node_modules/rollup/dist/es/shared/node-entry.js:15658:12)
+    at Module.setSource (file:///C:/Users/perse/OneDrive/Documentos/1.%20PROYECTOS/PL-300/node_modules/rollup/dist/es/shared/node-entry.js:17418:24)
+    at async ModuleLoader.addModuleSource (file:///C:/Users/perse/OneDrive/Documentos/1.%20PROYECTOS/PL-300/node_modules/rollup/dist/es/shared/node-entry.js:21497:13)
