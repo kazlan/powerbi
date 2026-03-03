@@ -1,0 +1,5 @@
+pillow
+requests
+rich
+psutil
+# Whisper: Install separately with: pip install openai-whisper

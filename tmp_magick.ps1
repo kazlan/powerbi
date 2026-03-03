@@ -1,0 +1,1 @@
+$slidesDir = "podcasts\de-0-a-hero\slides"; 1..15 | ForEach-Object { $i = "{0:D2}" -f $_; $in = "$slidesDir\slide_$i.png"; $tmp = "$slidesDir\slide_$i_tmp.png"; magick.exe "$in" '(' +clone -resize 1280x720^^ -gravity center -extent 1280x720 -blur 0x20 ')' +swap -resize x720 -gravity center -composite "$tmp"; Move-Item "$tmp" "$in" -Force }
