@@ -4,13 +4,15 @@ export const podcasts = [
         "title": "De 0 A Hero",
         "date": "2026-03-03",
         "duration": "15:00",
-        "description": "Podcast episode.",
+        "description": "Exploramos cómo el rol del analista evoluciona con Copilot en Power BI, pasando de ser un creador técnico a un editor experto estratégico que dirige la IA.",
         "thumbnail": "/podcasts/de-0-a-hero_cover.png",
         "audioSrc": "/podcasts/de-0-a-hero.m4a",
-        "tags": [],
+        "tags": ["Copilot", "Power BI", "IA", "Data Analysis"],
         "youtubeId": "yNVjnpiy4Jw",
         "highlights": [
-            "Podcast episode."
+            "El nuevo perfil indispensable es el de un editor experto.",
+            "La orquesta (la IA) tiene un virtuosismo técnico increíble, pero no tiene visión de conjunto.",
+            "La idea de ser un simple creador que empieza con un lienzo en blanco está quedando atrás."
         ],
         "links": [],
         "content": [
